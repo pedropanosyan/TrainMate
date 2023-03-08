@@ -1,4 +1,12 @@
-h1 {
-    background-color: aqua;
-    color: black;
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+
+.nav-container {
+    display: inline;
+    margin: 10px;
+    padding: 20px;
 }
