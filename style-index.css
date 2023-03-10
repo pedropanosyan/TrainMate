@@ -230,3 +230,7 @@
   padding: 10px;
   width: 90%;
 }
+.contactanos #message {
+  height: 20 px;
+  font-size: 10 px;
+}
