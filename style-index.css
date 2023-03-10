@@ -7,6 +7,10 @@
     scroll-behavior: smooth;
     box-sizing: border-box;
 }
+body{
+  background-color: #111;
+}
+
 
 .nav-container {
     width: 100%;
@@ -141,6 +145,14 @@
     color: #9f9f9f;
   }
 
+  .iniciar-sesion a{
+    color: yellow;
+  }
+  .iniciar-sesion a:hover{
+    color: green;
+  }
+
+
 
 .iniciar-sesion input {
     border: 1px solid #ccc;
@@ -171,12 +183,19 @@
     text-align: center;
     margin-bottom: 0;
 }
-
+.iniciar-sesion p {
+  color: white;
+  font-size: 20 px;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 2%;
+}
 
 .iniciar-sesion input[type="submit"]:hover {
   background-color: #2a82da;
 }
-
+#buttom{
+  margin-top: 2%;
+}
 .contactanos{
   background-color: #111;
   height: 100 vh;
@@ -230,7 +249,11 @@
   padding: 10px;
   width: 90%;
 }
-.contactanos #message {
-  height: 20 px;
-  font-size: 10 px;
+.imagen{
+  margin-left: 3%;
+  margin-top: 10%;
+  height: 330px;
+  width: auto;
+  display: flex;
+  float: left;
 }
