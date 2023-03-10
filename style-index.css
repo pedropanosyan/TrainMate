@@ -1,0 +1,178 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    font-family: sans-serif;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+}
+
+.nav-container {
+    width: 100%;
+    position: fixed;
+    background-color: #222;
+    color: whitesmoke;
+    display: flex;
+    justify-content: space-between;
+  }
+
+.logo-nav {
+    display: flex;
+    align-items: center;
+}
+
+.logo-nav img {
+    height: 70px;
+    width: auto;
+
+}
+
+.logo-nav p {
+    margin-left: 30px;
+    font-size: 3em;
+    padding-right: 3px;
+  }
+
+
+.nav-container span {
+    color: rgb(141, 181,255);
+}
+
+.nav-container__navbar {
+    padding-right: 20px;
+    display: flex;
+    align-items: center;
+  }
+
+.nav-container__navbar ul {
+    display: flex;
+  }
+  
+.nav-container__navbar li {
+    margin: 0 10px;
+  }
+  
+.nav-container__navbar a {
+    padding: 20px;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    color: whitesmoke;
+  }
+  
+.nav-container__navbar a:hover {
+    color: rgb(141, 181,255);
+  }
+
+.img-container {
+    width: 100%;
+    height: 100vh;
+    background-image: url(img1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.img-container h1{
+    color: whitesmoke;
+    font-size: 4em;
+    padding-left: 40px;
+    padding-top: 220px;
+}
+
+.img-container span {
+    color: rgb(141, 181,255);
+    
+}
+
+.quienes-somos {
+    display: flex;
+    background-color: #111;
+}
+
+.quienes-somos img {
+    height: 450px;
+    width: auto;
+    margin: 60px;
+    padding: 30;
+    border-radius: 15px;
+}
+
+.quienes-somos p {
+    color: whitesmoke;
+    margin: 60px;
+    padding: 40px;
+    font-size: 1.65em;
+    width: 50%;
+    line-height: 1.5em;
+}
+
+.iniciar-sesion {
+    background-color: #111;
+    height:100vh;
+
+}
+
+.iniciar-sesion form {
+    background-color: #111;
+    border-radius: 12px;
+    width: 50%;
+    padding: 20px;
+    margin: 100px 40px;
+    border: rgb(141, 181,255) 5px inset;
+    float: right;
+
+}
+
+.iniciar-sesion h1 {
+    color: whitesmoke;
+    text-align: center;
+    font-size: 2.15em;
+    text-transform: uppercase;
+  }
+  
+  .iniciar-sesion label {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    padding: 5px;
+    color: #9f9f9f;
+  }
+
+
+.iniciar-sesion input {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    border: rgb(141, 181, 255) 2px outset;
+    font-size: 16px;
+    margin-bottom: 20px;
+    padding: 10px;
+    width: 90%;
+}
+
+.iniciar-sesion div {
+    display: flex;
+    justify-content: center;
+}
+
+
+.iniciar-sesion input[type="submit"] {
+    background-color: rgb(141, 181, 255);
+    border: none;
+    border-radius: 8px;
+    color: #111111;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px;
+    width: 30%;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+
+.iniciar-sesion input[type="submit"]:hover {
+  background-color: #2a82da;
+}
