@@ -7,6 +7,10 @@
     scroll-behavior: smooth;
     box-sizing: border-box;
 }
+body{
+  background-color: #111;
+}
+
 
 .nav-container {
     width: 100%;
@@ -162,7 +166,12 @@
     text-align: center;
     margin-bottom: 0;
 }
-
+.iniciar-sesion p {
+  color: white;
+  font-size: 20 px;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 2%;
+}
 
 .iniciar-sesion input[type="submit"]:hover {
   background-color: #2a82da;
@@ -232,7 +241,11 @@
   padding: 10px;
   width: 90%;
 }
-.contactanos #message {
-  height: 20 px;
-  font-size: 10 px;
+.imagen{
+  margin-left: 3%;
+  margin-top: 10%;
+  height: 330px;
+  width: auto;
+  display: flex;
+  float: left;
 }
