@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style-index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <title>TrainMate</title>
 </head>
 
@@ -14,7 +16,7 @@
         <div class="nav-container">
             <div class="logo-nav">
                 <p>Train<span>Mate</span></p>
-                <img src="logo2.png" alt="">
+                <img src="Imagenes/logo2.png" alt="">
             </div>
             <nav class="nav-container__navbar">
                 <ul>
@@ -36,17 +38,19 @@
             id iste.
         
         </p>
-        <img src="logo2.png" alt="">
+        <img src="Imagenes/logo2.png" alt="">
     </section>
     <div class="iniciar-sesion" id="iniciar-sesion">
-        <div class="imagen">
-        <img src = "img.jpeg"></img>
-    </div>
+        <div class="iniciar-sesion__imagen">
+        <img src = "Imagenes/img2.jpg">
+        </div>
         <form>
             <h1>Inicio de sesión</h1>
-            <input type="text" id="username" name="username" placeholder="Nombre" required>
-            <input type="email" id="email" name="email" required placeholder="e-mail" >
-            <input type="password" id="password" name="password" placeholder="Constraseña"minlength="8" required>
+            <input type="text" id="username" name="username" placeholder="UserName" required>
+            <input type="email" id="email" name="email" required placeholder="E-mail" >
+            <input type="password" id="password" name="password" placeholder="Password"minlength="8" required>
+            <p> No tienes cuenta? <a href="registro.html"> Registrate </a></p>
+            <p> Te olvidaste la contraseña? <a href=""> Pulsa aqui</a></p>
             <div id="buttom">    
                 <input type="submit" value="Iniciar sesión">
             </div>
@@ -55,17 +59,24 @@
 
     <div class="contactanos" id = "contactanos">
         <form>
-            <h1> Contacto </h1>
+        <h1> Contacto </h1>
             <input type="text" name="fullname" placeholder="Full Name" id="fullname">
             <input type="email" name="email" placeholder="Email" id="email">
             <input type="text" name="country" placeholder="Country" id="country">
             <input type="tel" name="phone" placeholder="Phone" id="phone" minlength="10">
-            <input type="text" name="message" placeholder="Message " id="message">
+            <textarea type="text" name="message" placeholder="Message " id="message"></textarea>
             <div id="enviar">
-                <input type = "submit" value="Enviar">
+                <input type = "submit" id = "buttom-contactarnos" value="Enviar">
             </div>
         </form>
+        <img src="Imagenes/logo3.png" alt="">
+        <div class="iconos-redes-sociales">
+            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="#"><i class="fa fa-envelope"></i></a>
+            <a href="#"><i class="fa fa-facebook"></i></a>
+        </div>
     </div>
+
 </body>
 
 </html>
