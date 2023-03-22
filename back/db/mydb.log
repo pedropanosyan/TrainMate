@@ -1,0 +1,26 @@
+/*C5*/SET SCHEMA PUBLIC
+drop table if exists User CASCADE 
+drop sequence userGen if exists
+create sequence userGen start with 1 increment by 50
+create table User (id bigint not null, email varchar(255) not null, firstName varchar(255), lastName varchar(255), primary key (id))
+alter table User add constraint UK_e6gkqunxajvyxl5uctpl2vl2p unique (email)
+INSERT INTO USER VALUES(1,'pepe.martinez@gmail.com','Pepe','Martinez')
+ALTER SEQUENCE PUBLIC.USERGEN RESTART WITH 101
+COMMIT
+DISCONNECT
+/*C6*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C7*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C8*/SET SCHEMA PUBLIC
+drop table if exists User CASCADE 
+drop sequence userGen if exists
+create sequence userGen start with 1 increment by 50
+create table User (id bigint not null, email varchar(255) not null, firstName varchar(255), lastName varchar(255), primary key (id))
+alter table User add constraint UK_e6gkqunxajvyxl5uctpl2vl2p unique (email)
+INSERT INTO USER VALUES(1,'pepe.martinez@gmail.com','Pepe','Martinez')
+ALTER SEQUENCE PUBLIC.USERGEN RESTART WITH 101
+COMMIT
+DISCONNECT
+/*C9*/SET SCHEMA PUBLIC
+DISCONNECT
