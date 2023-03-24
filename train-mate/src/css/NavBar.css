@@ -1,0 +1,12 @@
+.navBar-brand p {
+    font-size: 1.75em;
+}
+
+.navBar-brand span {
+    color: #8db5ff;
+}
+
+.me-auto Nav.Link {
+    font-size: 1.5em;
+    color: whitesmoke;
+}
