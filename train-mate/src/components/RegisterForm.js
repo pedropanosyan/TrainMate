@@ -1,13 +1,14 @@
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
-import {Link} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import {useState} from "react";
-
+import axios from 'axios';
 function RegisterForm(){
 
-    let formData;
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const history = useHistory();
+
 
 
     const handleUsernameChange = (event) => {
@@ -24,10 +25,17 @@ function RegisterForm(){
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        formData = {
+        const formData = {
             username, email, password
         };
-
+        axios.post('http://localhost:8080/user', formData)
+            .then(function (response) {
+                alert("User registered successfully");
+                history.push('/home');
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
         console.log(formData)
     };
 
@@ -52,9 +60,7 @@ function RegisterForm(){
                                     <Form.Control onChange={handlePasswordChange} type="password" placeholder="Password"/>
                                 </Form.Group>
                             </Form>
-                            <Link to='/home'>
                                 <Button onClick={handleSubmit} className='m-3' variant="outline-danger" type="submit" style={{justifyContent:'center', width:'20%', minWidth:'100px'}}>Sign Up</Button>
-                            </Link>
                         </Card.Body>
                     </Card>
                 </Col>
