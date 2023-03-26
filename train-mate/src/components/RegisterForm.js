@@ -2,13 +2,15 @@ import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
 import {useHistory} from "react-router-dom";
 import {useState} from "react";
 import axios from 'axios';
+
+
 function RegisterForm(){
 
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const history = useHistory();
-
+    const MIN_PASSWORD_LENGTH = 8;
 
 
     const handleUsernameChange = (event) => {
@@ -16,11 +18,18 @@ function RegisterForm(){
     }
 
     const handleEmailChange = (event) => {
-        setEmail(event.target.value);
+        const email = event.target.value;
+        setEmail(email);
     };
+
 
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
+    };
+
+    const validateEmail = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
     };
 
     const handleSubmit = (event) => {
@@ -28,13 +37,22 @@ function RegisterForm(){
         const formData = {
             username, email, password
         };
+        if (!validateEmail(email)) {
+            alert("Enter a valid email.")
+            return;
+        }
+        if (password.length < MIN_PASSWORD_LENGTH) {
+            alert(`Password must be at least ${MIN_PASSWORD_LENGTH} characters long`);
+            return;
+        }
+
         axios.post('http://localhost:8080/user', formData)
             .then(function (response) {
                 alert("User registered successfully");
                 history.push('/home');
             })
             .catch(function (error) {
-                console.log(error);
+                alert("Username already exists, try another one.");
             });
         console.log(formData)
     };

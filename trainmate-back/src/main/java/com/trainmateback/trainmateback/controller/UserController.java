@@ -3,6 +3,7 @@ package com.trainmateback.trainmateback.controller;
 import com.trainmateback.trainmateback.model.TrainMateUser;
 import com.trainmateback.trainmateback.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,8 +14,13 @@ public class UserController {
     private UserRepository userRepository;
 
     @PostMapping("/user")
-    TrainMateUser user(@RequestBody TrainMateUser user) {
-        return userRepository.save(user);
+    ResponseEntity<TrainMateUser> user(@RequestBody TrainMateUser user) {
+        if (userRepository.existsByUsername(user.getUsername())){
+            return ResponseEntity.badRequest().build();
+        }
+        else {
+            userRepository.save(user);
+            return ResponseEntity.ok(user);
+        }
     }
-
 }
