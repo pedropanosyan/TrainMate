@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import axios from "axios";
 
 
@@ -53,7 +53,9 @@ function LoginForm() {
                                 </Form.Group>
                             </Form>
                             <Button onClick={handleSubmit} className='m-3' variant="outline-primary" type="submit" style={{justifyContent:'center', width:'20%', minWidth:'100px'}}>LogIn</Button>
-                            <Button className='m-3' variant="outline-danger" type="submit" style={{justifyContent:'center', width:'20%', minWidth:'100px'}}>SignUp</Button>
+                            <Link to="/register">
+                                <Button className='m-3' variant="outline-danger" type="submit" style={{justifyContent:'center', width:'20%', minWidth:'100px'}}>SignUp</Button>
+                            </Link>
                         </Card.Body>
                     </Card>
                 </Col>
