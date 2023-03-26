@@ -25,7 +25,7 @@ function Slider() {
                     <h2>View your <span style={{color:'#8db5ff'}}>routines</span></h2>
                 </Carousel.Caption>
             </Carousel.Item>
-            <Carousel.Item>
+            <Carousel.Item interval={1000}>
                 <img
                     className="d-block w-90 img-fluid"
                     src="Imagenes/img3.jpg"
