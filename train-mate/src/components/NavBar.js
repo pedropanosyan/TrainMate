@@ -5,7 +5,7 @@ function NavBar() {
     return (
         <>
             <Navbar bg="dark" variant="dark">
-                <Container>
+                <Container className='navBar-container'>
                     <Navbar.Brand className='navBar-brand' href="#home">
                         <p>Train<span>Mate</span></p>
                     </Navbar.Brand>

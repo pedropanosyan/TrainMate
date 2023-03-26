@@ -6,7 +6,11 @@
     color: #8db5ff;
 }
 
-.me-auto Nav.Link {
+.navBar-container {
+    display: flex;
     font-size: 1.5em;
+}
+
+.navBar-container Nav.Link {
     color: whitesmoke;
 }

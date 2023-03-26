@@ -52,7 +52,7 @@ function RegisterForm(){
                 history.push('/home');
             })
             .catch(function (error) {
-                alert("Username already exists, try another one.");
+                alert("Username already exists, try another one");
             });
         console.log(formData)
     };

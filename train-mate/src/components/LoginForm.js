@@ -1,17 +1,20 @@
 import React, {useState} from 'react';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import axios from "axios";
 
 
 
 function LoginForm() {
 
     let formData;
-    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const history = useHistory();
 
-    const handleEmailChange = (event) => {
-        setEmail(event.target.value);
+
+    const handleUsernameChange = (event) => {
+        setUsername(event.target.value);
     };
 
     const handlePasswordChange = (event) => {
@@ -20,9 +23,15 @@ function LoginForm() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-          formData = {
-            email, password
-        };
+          formData = { username, password };
+
+        axios.post('http://localhost:8080/userLogin', formData)
+            .then(function (response) {
+                history.push('/home');
+            })
+            .catch(function (error) {
+                alert("Wrong input fields, try again.")
+            });
     };
 
         return (
@@ -36,17 +45,15 @@ function LoginForm() {
                         </Card.Header>
                         <Card.Body style={{ display: "flex", flexWrap: 'wrap', justifyContent: "center" }}>
                             <Form style={{width:'100%'}}>
-                                <Form.Group className="mb-3" controlId="formBasicEmail">
-                                    <Form.Control onChange={handleEmailChange} type="email" placeholder="Enter email"/>
+                                <Form.Group className="mb-3" controlId="formBasicText">
+                                    <Form.Control onChange={handleUsernameChange} type="text" placeholder="Username"/>
                                 </Form.Group>
                                 <Form.Group className="mb-3" controlId="formBasicPassword">
                                     <Form.Control onChange={handlePasswordChange} type="password" placeholder="Password"/>
                                 </Form.Group>
                             </Form>
                             <Button onClick={handleSubmit} className='m-3' variant="outline-primary" type="submit" style={{justifyContent:'center', width:'20%', minWidth:'100px'}}>LogIn</Button>
-                            <Link to='/register'>
-                                <Button className='m-3' variant="outline-danger" type="submit" style={{justifyContent:'center', width:'20%', minWidth:'100px'}}>SignUp</Button>
-                            </Link>
+                            <Button className='m-3' variant="outline-danger" type="submit" style={{justifyContent:'center', width:'20%', minWidth:'100px'}}>SignUp</Button>
                         </Card.Body>
                     </Card>
                 </Col>
