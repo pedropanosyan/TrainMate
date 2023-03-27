@@ -11,11 +11,11 @@ function NavBar() {
                     </Navbar.Brand>
                     <Image src="Imagenes/logo2.png" style={{width:"90px", height:"90px"}}/>
                     <Nav className="me-auto" style = {{color: 'white', fontSize: '1.4em', marginLeft: '200px', marginTop: '-25px'}}>
-                        <Nav.Link href="#home"  style={{ marginRight: '80px' }}>Home</Nav.Link>
-                        <Nav.Link href="#progress" style={{ marginRight: '80px' }}>Progress</Nav.Link>
-                        <Nav.Link href="#routines" style={{ marginRight: '80px' }}>Routines</Nav.Link>
-                        <Nav.Link href="#forum" style={{ marginRight: '80px'}}>Forum</Nav.Link>
-                        <Nav.Link href="#signout" style= {{marginRight: '80px'}}>Sign Out</Nav.Link>
+                        <Nav.Link href="#home"  style={{ marginRight: '70px' }}>Home</Nav.Link>
+                        <Nav.Link href="#progress" style={{ marginRight: '70px' }}>Progress</Nav.Link>
+                        <Nav.Link href="#routines" style={{ marginRight: '70px' }}>Routines</Nav.Link>
+                        <Nav.Link href="#forum" style={{ marginRight: '70px'}}>Forum</Nav.Link>
+                        <Nav.Link href="#signout" style= {{marginRight: '70px'}}>Sign Out</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>

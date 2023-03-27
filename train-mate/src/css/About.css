@@ -1,0 +1,25 @@
+.caja {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid lightblue;
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 900px;
+    font-family: "Times New Roman", sans-serif;
+}
+
+.caja p {
+    margin-right: 80px; /* Añadimos un margen a la derecha del texto para separarlo de la imagen */
+    font-size: 25px;
+}
+
+.caja img {
+    width: 300px;
+    height: auto;
+}
+
+
+
+
