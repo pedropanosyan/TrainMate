@@ -5,12 +5,12 @@ function NavBar() {
     return (
         <Navbar className="navbar" expand="md">
             <Container>
-                <Navbar.Brand className="container-brand" href="#home">
+                <Navbar.Brand className="container-brand justify-content-right" href="#home">
                     <h1>Train<span>Mate</span></h1>
                 </Navbar.Brand>
                 <Navbar.Toggle className="navbar-toggle-primary" aria-controls="basic-navbar-nav "/>
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="container-nav">
+                    <Nav className="container-nav m-lg-auto">
                         <Nav.Link href="#home"><p>Home</p></Nav.Link>
                         <Nav.Link href="#link"><p>Progress</p></Nav.Link>
                         <Nav.Link href="#link"><p>Routines</p></Nav.Link>
