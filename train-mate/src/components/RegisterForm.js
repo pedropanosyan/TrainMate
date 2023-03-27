@@ -18,8 +18,7 @@ function RegisterForm(){
     }
 
     const handleEmailChange = (event) => {
-        const email = event.target.value;
-        setEmail(email);
+        setEmail(event.target.value);
     };
 
 
@@ -34,9 +33,7 @@ function RegisterForm(){
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const formData = {
-            username, email, password
-        };
+        const formData = { username, email, password};
         if (!validateEmail(email)) {
             alert("Enter a valid email.")
             return;
@@ -46,13 +43,13 @@ function RegisterForm(){
             return;
         }
 
-        axios.post('http://localhost:8080/user', formData)
+        axios.post('http://localhost:8080/userRegistry', formData)
             .then(function (response) {
                 alert("User registered successfully");
                 history.push('/home');
             })
             .catch(function (error) {
-                alert("Username already exists, try another one");
+                alert(JSON.stringify(error.response.data));
             });
         console.log(formData)
     };

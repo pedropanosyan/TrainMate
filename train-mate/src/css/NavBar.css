@@ -1,16 +1,21 @@
-.navBar-brand p {
-    font-size: 1.75em;
+.navbar {
+    background-color: #212529;
 }
 
-.navBar-brand span {
+
+
+
+.container-brand h1{
+    font-size: 2em;
+    color: whitesmoke;
+}
+
+.container-brand span {
     color: #8db5ff;
 }
 
-.navBar-container {
-    display: flex;
-    font-size: 1.5em;
-}
-
-.navBar-container Nav.Link {
+p {
     color: whitesmoke;
+    font-size: 1.5em;
+    margin-top: 60px;
 }
