@@ -1,0 +1,23 @@
+
+
+.card-square {
+    border: 3px solid #8db5ff;
+    filter:brightness(90%);
+
+}
+
+.card-img {
+    border: solid 1px #8db5ff;
+    height: 210px;
+    filter: brightness(50%);
+}
+
+.card-title h2 {
+    text-align: center;
+}
+
+.card-text {
+    font-size: medium;
+    color: #212529;
+}
+
