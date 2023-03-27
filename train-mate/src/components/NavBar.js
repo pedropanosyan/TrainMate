@@ -1,25 +1,26 @@
-import {Container, Nav, Navbar} from 'react-bootstrap';
+import {Container, Nav, Navbar, Image} from 'react-bootstrap';
 import "../css/NavBar.css";
 
 function NavBar() {
     return (
-        <Navbar className="navbar" expand="md">
-            <Container>
-                <Navbar.Brand className="container-brand justify-content-right" href="#home">
-                    <h1>Train<span>Mate</span></h1>
-                </Navbar.Brand>
-                <Navbar.Toggle className="navbar-toggle-primary" aria-controls="basic-navbar-nav "/>
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="container-nav m-lg-auto">
-                        <Nav.Link href="#home"><p>Home</p></Nav.Link>
-                        <Nav.Link href="#link"><p>Progress</p></Nav.Link>
-                        <Nav.Link href="#link"><p>Routines</p></Nav.Link>
-                        <Nav.Link href="#link"><p>Forum</p></Nav.Link>
+        <>
+            <Navbar bg="dark" variant="dark">
+                <Container>
+                    <Navbar.Brand className='navBar-brand' href="#home">
+                        <p>Train<span>Mate</span></p>
+                    </Navbar.Brand>
+                    <Image src="Imagenes/logo2.png" style={{width:"90px", height:"90px"}}/>
+                    <Nav className="me-auto" style = {{color: 'white', fontSize: '1.4em', marginLeft: '200px', marginTop: '-25px'}}>
+                        <Nav.Link href="#home"  style={{ marginRight: '80px' }}>Home</Nav.Link>
+                        <Nav.Link href="#progress" style={{ marginRight: '80px' }}>Progress</Nav.Link>
+                        <Nav.Link href="#routines" style={{ marginRight: '80px' }}>Routines</Nav.Link>
+                        <Nav.Link href="#forum" style={{ marginRight: '80px'}}>Forum</Nav.Link>
+                        <Nav.Link href="#signout" style= {{marginRight: '80px'}}>Sign Out</Nav.Link>
                     </Nav>
-                </Navbar.Collapse>
-            </Container>
-        </Navbar>
-    )
+                </Container>
+            </Navbar>
+        </>
+    );
 }
 
-export default NavBar;
+export default NavBar
