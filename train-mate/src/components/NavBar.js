@@ -15,7 +15,7 @@ function NavBar() {
                         <Nav className="me-auto" style = {{color: 'white', fontSize: '1.4em', marginLeft: '200px', marginTop: '-25px'}}>
                             <Nav.Link href="#routines" style={{ marginRight: '70px', marginTop:'20px' }}>Routines</Nav.Link>
                             <Nav.Link href="#forum" style={{ marginRight: '70px', marginTop:'20px'}}>Forum</Nav.Link>
-                            <Nav.Link href="#signout" style= {{marginRight: '70px', marginTop:'20px'}}>Sign Out</Nav.Link>
+                            <Nav.Link href="/login" style= {{marginRight: '70px', marginTop:'20px'}}>Sign Out</Nav.Link>
                         </Nav>
                         </Navbar.Collapse>
                 </Container>
