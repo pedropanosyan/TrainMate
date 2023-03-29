@@ -10,7 +10,7 @@ function PechoCard() {
                         <Card.Body >
                             <Card.Title className="card-title"><h2>Pecho</h2></Card.Title>
                             <Card.Text className="card-text">
-                                Track your arm progress and train smarter.
+                                Track your chest progress and train smarter.
                             </Card.Text>
                             <div className="d-flex">
                                 <Button className="m-auto" variant="primary">Enter</Button>

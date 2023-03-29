@@ -12,7 +12,7 @@ function AbdominalCard() {
                         <Card.Body >
                             <Card.Title className="card-title"><h2>Abdominal</h2></Card.Title>
                             <Card.Text className="card-text">
-                                Track your arm progress and train smarter.
+                                Track your abs progress and train smarter.
                             </Card.Text>
                             <div className="d-flex">
                                 <Button className="m-auto" variant="primary">Enter</Button>
