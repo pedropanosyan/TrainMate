@@ -1,5 +1,5 @@
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
-import {useHistory} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import axios from 'axios';
 
@@ -9,7 +9,7 @@ function RegisterForm(){
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const history = useHistory();
+    const navigate = useNavigate();
     const MIN_PASSWORD_LENGTH = 8;
 
 
@@ -46,7 +46,7 @@ function RegisterForm(){
         axios.post('http://localhost:8080/userRegistry', formData)
             .then(function (response) {
                 alert("User registered successfully");
-                history.push('/home');
+                navigate.push('/home');
             })
             .catch(function (error) {
                 alert(JSON.stringify(error.response.data));

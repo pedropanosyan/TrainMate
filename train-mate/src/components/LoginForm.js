@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
-import { useHistory, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from "axios";
 
 
@@ -10,7 +10,7 @@ function LoginForm() {
     let formData;
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const history = useHistory();
+    const navigate = useNavigate();
 
 
     const handleUsernameChange = (event) => {
@@ -27,7 +27,7 @@ function LoginForm() {
 
         axios.post('http://localhost:8080/userLogin', formData)
             .then(function (response) {
-                history.push('/home');
+                navigate.push('/home');
             })
             .catch(function (error) {
                 alert("Wrong input fields, try again.")
