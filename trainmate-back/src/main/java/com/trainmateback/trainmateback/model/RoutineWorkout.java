@@ -21,6 +21,16 @@ public class RoutineWorkout {
     @Column
     private String name;
 
+    public RoutineWorkout(String name,int series, int reps) {
+        this.series = series;
+        this.reps = reps;
+        this.name = name;
+    }
+
+    public RoutineWorkout() {
+
+    }
+
     public Long getId() {
         return id;
     }
