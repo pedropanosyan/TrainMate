@@ -26,28 +26,10 @@ public class RoutineCont {
         this.routRepo = routRepo;
     }
 
-    @PostMapping("/userRoutineWorkout")
-    public ResponseEntity<String> addUserRoutineWorkout(@RequestBody RoutineWorkout routineWorkout) {
-        routineRepository.save(routineWorkout);
-        return ResponseEntity.ok("Exercise registered successfully");
-    }
-
-
     @PostMapping("/newRoutine")
-    public ResponseEntity<String> addNewRoutine(@RequestBody Map<String, Object> requestBody) {
-        List<Map<String, Object>> workouts = (List<Map<String, Object>>) requestBody.get("workouts");
-
-        List<RoutineWorkout> routineWorkouts = new ArrayList<>();
-        for (Map<String, Object> workout : workouts) {
-            String name = (String) workout.get("name");
-            int series = (int) workout.get("series");
-            int reps = (int) workout.get("reps");
-            RoutineWorkout routineWorkout = new RoutineWorkout(name, series, reps);
-            routineWorkouts.add(routineWorkout);
-        }
-
-        Routines newRoutine = new Routines(true, routineWorkouts);
-        routRepo.save(newRoutine);
+    public ResponseEntity<String> addNewRoutine(@RequestBody Routines routine) {
+        System.out.println("Post recieved");
+        routRepo.save(routine);
         return ResponseEntity.ok("New routine created successfully");
     }
 }
