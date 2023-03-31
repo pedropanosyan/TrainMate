@@ -27,7 +27,7 @@ function LoginForm() {
 
         axios.post('http://localhost:8080/userLogin', formData)
             .then(function (response) {
-                navigate.push('/home');
+                navigate('/home');
             })
             .catch(function (error) {
                 alert("Wrong input fields, try again.")

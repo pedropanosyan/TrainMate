@@ -4,18 +4,19 @@ import Home from "./pages/Home";
 import Forum from "./pages/Forum";
 import { BrowserRouter as Router, Switch, Route, Routes } from "react-router-dom";
 import Register from "./pages/Register";
+import Routines from "./pages/Routines";
 
 
 function App() {
     return (
         <Router>
             <Routes>
-                <Route path="/" element = {<Home />}/>
+                <Route path="/" element = {<Login />}/>
                 <Route path="/home" element = {<Home />}/>
                 <Route path="/login" element = {<Login />}/>
                 <Route path="/forum" element = {<Forum />}/>
                 <Route path="/register" element = {<Register />}/>
-
+                <Route path={'/routines'} element = {<Routines/>}/>
 
             </Routes>
             {/* <Switch>
