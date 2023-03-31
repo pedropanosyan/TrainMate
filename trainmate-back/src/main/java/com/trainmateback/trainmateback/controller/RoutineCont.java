@@ -33,4 +33,10 @@ public class RoutineCont {
         routRepo.save(routines);
         return ResponseEntity.ok("Routine registered successfully");
     }
+    @PostMapping("/newRoutine")
+    public ResponseEntity<String> addRoutine() {
+        Routines newRoutine = new Routines();
+        routRepo.save(newRoutine);
+        return ResponseEntity.ok("New routine created successfully");
+    }
 }

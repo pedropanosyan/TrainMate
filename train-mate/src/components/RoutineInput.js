@@ -10,10 +10,17 @@ const RoutineInput = () => {
 
     const formRef = useRef(null);
 
-    const handleNewRoutineClick = () => {
-        setShowInputs(true);
-    };
+    const handleNewRoutineClick = async () => {
+        try {
+            axios.post("http://localhost:8080/userRoutine");
+            setRoutineWorkouts([]);
+            setRoutineName("");
+            setShowInputs(true);
+        }
+        finally {
 
+        }
+    };
     const handleNameChange = (event) => {
         setRoutineName(event.target.value);
     };
