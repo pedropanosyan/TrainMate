@@ -1,22 +1,16 @@
 import { useRef, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const RoutineInput = () => {
-    const [showInputs, setShowInputs] = useState(false);
- //   const [name, setName] = useState("");
-   // const [series, setSeries] = useState(0);
-    //const [reps, setReps] = useState("");
-    //const [routine, setRoutine] = useState([]);
+    let [showInputs, setShowInputs] = useState(false);
+    const [workouts, setWorkouts] = useState([]);
 
     const formRef = useRef(null);
 
     const handleNewRoutineClick = async () => {
         try {
-            const response = await axios.post('http://localhost:8080/newRoutine', {
-                name: "My new routine",
-                series: 3,
-                reps: 5
+            const response = await axios.post("http://localhost:8080/newRoutine", {
+                workouts: workouts,
             });
             console.log(response.data);
         } catch (error) {
@@ -24,6 +18,17 @@ const RoutineInput = () => {
         }
         setShowInputs(true);
     };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const name = event.target[0].value;
+        const series = parseInt(event.target[1].value);
+        const reps = event.target[2].value;
+        const newWorkout = { name, series, reps };
+        setWorkouts([...workouts, newWorkout]);
+        formRef.current.reset();
+    };
+
     return (
         <div>
             <button
@@ -34,17 +39,17 @@ const RoutineInput = () => {
             </button>
 
             {showInputs && (
-                <div>
+                <div style={{ color: "lightblue" }}>
                     <form
                         ref={formRef}
                         className="inp"
                         style={{ marginLeft: "1100px", marginTop: "100px" }}
-                        //onSubmit={handleSubmit}
+                        onSubmit={handleSubmit}
                     >
-                        <h4>Name</h4>
-                        <input  type="text" />
+                        <h4>Exc name</h4>
+                        <input type="text" />
                         <h4> Series </h4>
-                        <input  type="number" />
+                        <input type="number" />
                         <h4>Reps</h4>
                         <input type="text" />
                         <button
@@ -56,13 +61,21 @@ const RoutineInput = () => {
                                 backgroundColor: "white",
                                 color: "black",
                             }}
-                            type="submit"
+                            onClick={handleSubmit}
                         >
                             ADD
                         </button>
                     </form>
                     <button
-                        style={{ marginLeft: "10px", marginTop: "10px" }}
+                        style={{
+                            marginLeft: "90%",
+                            marginTop: "10px",
+                            fontSize: "0.8em",
+                            padding: "0.5em 1em",
+                            borderRadius: "0.5em",
+                            backgroundColor: "white",
+                            color: "black",
+                        }}
                     >
                         END
                     </button>
@@ -73,45 +86,3 @@ const RoutineInput = () => {
 };
 
 export default RoutineInput;
- /*   const handleNameChange = (event) => {
-        setName(event.target.value);
-    };
-
-    const handleSeriesChange = (event) => {
-        setSeries(event.target.value);
-    };
-
-    const handleRepsChange = (event) => {
-        setReps(event.target.value);
-    };
-
-    const handleNewRoutine = () => {
-        setRoutine([]);
-        setName("");
-        setSeries(0);
-        setReps("");
-        setShowInputs(false);
-    };
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        const newWorkout = { name, series, reps };
-        try {
-            await axios.post("/userRoutineWorkout", newWorkout);
-
-            setRoutine([...routine, newWorkout]);
-            formRef.current.reset();
-        } finally {
-
-        }
-    };
-
-    const handleEndRoutineClick = async () => {
-        try {
-            await axios.post("/userRoutine", { routine });
-            handleNewRoutine();
-        } catch (error) {
-            console.error(error);
-        }
-    };
-*/
