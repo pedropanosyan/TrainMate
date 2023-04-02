@@ -2,9 +2,6 @@ package com.trainmateback.trainmateback.model;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
 public class TrainMateUser {
 
@@ -17,6 +14,9 @@ public class TrainMateUser {
 
     @Column(nullable = false, unique = true)
     private String email;
+
+    @Transient
+    private String token;
 
     public TrainMateUser() {}
 
@@ -48,5 +48,13 @@ public class TrainMateUser {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

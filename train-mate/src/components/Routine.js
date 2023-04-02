@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const RoutineInput = () => {
+const Routine = () => {
     const [showInputs, setShowInputs] = useState(false);
     const [routineName, setRoutineName] = useState("");
     const [routineWorkouts, setRoutineWorkouts] = useState([]);
@@ -100,4 +100,4 @@ const RoutineInput = () => {
     );
 };
 
-export default RoutineInput;
+export default Routine;

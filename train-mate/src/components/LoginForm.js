@@ -27,6 +27,8 @@ function LoginForm() {
 
         axios.post('http://localhost:8080/userLogin', formData)
             .then(function (response) {
+                const token = response.data.token;
+                localStorage.setItem("token", token);
                 navigate('/home');
             })
             .catch(function (error) {
@@ -34,7 +36,7 @@ function LoginForm() {
             });
     };
 
-        return (
+    return (
         <Container className="mt-5 p-4 d-flex justify-content-center align-items-center">
             <Row style={{width:"90%", maxWidth:'600px', height:'90vh'}}>
                 <Col>

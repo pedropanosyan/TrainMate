@@ -2,28 +2,29 @@ package com.trainmateback.trainmateback.model;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "routines")
-public class Routines {
+public class Routine {
 
     @Id
-    @GeneratedValue(generator = "routineGen", strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column
     private boolean isActive;
 
-    @OneToMany
+    @Column
+    private String name;
+
+    @OneToMany(cascade = CascadeType.ALL)
     private List<RoutineWorkout> workouts;
-    public Routines (){
 
-    }
+    public Routine(){}
 
-    public Routines(boolean isActive, List<RoutineWorkout> workouts) {
-        this.isActive = isActive;
+    public Routine(String name, List<RoutineWorkout> workouts) {
+        this.isActive = true;
+        this.name = name;
         this.workouts = workouts;
     }
 
@@ -34,7 +35,6 @@ public class Routines {
     public void setId(long id) {
         this.id = id;
     }
-
 
     public boolean isActive() {
         return isActive;
@@ -50,6 +50,14 @@ public class Routines {
 
     public void setWorkouts(List<RoutineWorkout> workouts) {
         this.workouts = workouts;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void addWorkout(RoutineWorkout routineWorkout){

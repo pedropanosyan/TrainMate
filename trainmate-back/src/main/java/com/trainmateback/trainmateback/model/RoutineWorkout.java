@@ -3,23 +3,30 @@ package com.trainmateback.trainmateback.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "routineWorkouts")
 public class RoutineWorkout {
-    @Id
-    @GeneratedValue(generator = "routineWorkoutGen", strategy = GenerationType.SEQUENCE)
-    private Long id;
 
     @Column
-    private int series;
+    private String routineWorkout;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column
+    private int sets;
 
     @Column
     private int reps;
 
-    @ManyToOne
-    private Routines routine;
 
-    @Column
-    private String name;
+    public RoutineWorkout() {
+    }
+
+    public RoutineWorkout(String name, int sets, int reps) {
+        this.routineWorkout = name;
+        this.sets = sets;
+        this.reps = reps;
+    }
 
     public Long getId() {
         return id;
@@ -29,12 +36,12 @@ public class RoutineWorkout {
         this.id = id;
     }
 
-    public int getSeries() {
-        return series;
+    public int getSets() {
+        return sets;
     }
 
-    public void setSeries(int series) {
-        this.series = series;
+    public void setSets(int series) {
+        this.sets = series;
     }
 
     public int getReps() {
@@ -45,19 +52,15 @@ public class RoutineWorkout {
         this.reps = reps;
     }
 
-    public Routines getRoutine() {
-        return routine;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public void setRoutine(Routines routine) {
-        this.routine = routine;
+    public String getRoutineWorkout() {
+        return routineWorkout;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setRoutineWorkout(String name) {
+        this.routineWorkout = name;
     }
 }

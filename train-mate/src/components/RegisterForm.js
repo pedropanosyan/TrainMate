@@ -45,13 +45,13 @@ function RegisterForm(){
 
         axios.post('http://localhost:8080/userRegistry', formData)
             .then(function (response) {
-                alert("User registered successfully");
-                navigate.push('/Home');
+                const token = response.data.token;
+                localStorage.setItem("token", token);
+                navigate('/home');
             })
             .catch(function (error) {
                 alert(JSON.stringify(error.response.data));
             });
-        console.log(formData)
     };
 
     return (

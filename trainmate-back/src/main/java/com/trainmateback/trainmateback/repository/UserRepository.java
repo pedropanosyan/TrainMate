@@ -9,5 +9,8 @@ public interface UserRepository  extends JpaRepository<TrainMateUser, String> {
 
     boolean existsByUsernameAndPassword(String username, String password);
 
+    TrainMateUser findByUsername(String username);
+
+    TrainMateUser findByUsernameAndPassword(String username, String password);
 
 }

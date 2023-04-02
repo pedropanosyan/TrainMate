@@ -1,7 +1,6 @@
 package com.trainmateback.trainmateback.controller;
 
 import com.trainmateback.trainmateback.exceptions.NotValidLogin;
-import com.trainmateback.trainmateback.exceptions.UsernameExists;
 import com.trainmateback.trainmateback.model.LoginRequest;
 import com.trainmateback.trainmateback.model.TrainMateUser;
 import com.trainmateback.trainmateback.repository.UserRepository;
@@ -10,6 +9,10 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 
 @RestController
@@ -20,10 +23,15 @@ public class UserController {
     private UserRepository userRepository;
 
     @PostMapping("/userRegistry")
-    ResponseEntity<String> userRegistry(@RequestBody TrainMateUser user) {
+    ResponseEntity<?> userRegistry(@RequestBody TrainMateUser user) {
+        UUID uuid = UUID.randomUUID();
+        String token = uuid.toString();
+        user.setToken(token);
         try {
             userRepository.save(user);
-            return ResponseEntity.ok("Usuario registrado correctamente");
+            Map<String, String> response = new HashMap<>();
+            response.put("token", token);
+            return ResponseEntity.ok(response);
         }
         catch (DataIntegrityViolationException e) {
             String errorMessage = "Email o Username no validos";
@@ -35,13 +43,16 @@ public class UserController {
     }
 
     @PostMapping("/userLogin")
-    LoginRequest userLogin(@RequestBody LoginRequest user){
+    ResponseEntity<?> userLogin(@RequestBody TrainMateUser user){
         if (!userRepository.existsByUsernameAndPassword(user.getUsername(), user.getPassword())){
             throw new NotValidLogin();
         }
-        else {
-            return user;
-        }
+        UUID uuid = UUID.randomUUID();
+        String token = uuid.toString();
+        user.setToken(token);
+        Map<String, String> response = new HashMap<>();
+        response.put("token", token);
+        return ResponseEntity.ok(response);
     }
 
 }

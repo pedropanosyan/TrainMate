@@ -1,10 +1,10 @@
-import RoutineInput from "../components/RoutineInput";
+import Routine from "../components/Routine";
 
 
 function Routines(){
     return(
         <div className='rout'>
-            <RoutineInput/>
+            <Routine/>
         </div>
     )
 }
