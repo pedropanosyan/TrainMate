@@ -28,7 +28,7 @@ function LoginForm() {
         axios.post('http://localhost:8080/userLogin', formData)
             .then(function (response) {
                 const token = response.data.token;
-                localStorage.setItem("token", token);
+                localStorage.setItem('token', token);
                 navigate('/home');
             })
             .catch(function (error) {

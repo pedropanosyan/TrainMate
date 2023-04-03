@@ -4,8 +4,8 @@ import Home from "./pages/Home";
 import Forum from "./pages/Forum";
 import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
 import Register from "./pages/Register";
-import Routines from "./pages/Routines";
-import Routine2 from "./components/cards/Routine2";
+import Routine from "./pages/Routines";
+
 
 
 function App() {
@@ -23,8 +23,7 @@ function App() {
                 <Route path="/login" element = {<Login />}/>
                 <Route path="/forum" element = {<Forum />}/>
                 <Route path="/register" element = {<Register />}/>
-                <Route path={'/routines'} element = {<Routine2/>}/>
-¿
+                <Route path='/routines' element={isAuthenticated() ? <Routine /> : <Navigate to="/"/>}/>
             </Routes>
         </Router>
     );
