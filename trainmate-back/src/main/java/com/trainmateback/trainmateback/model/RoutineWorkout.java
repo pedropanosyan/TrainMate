@@ -28,15 +28,6 @@ public class RoutineWorkout {
         this.reps = reps;
     }
 
-    public RoutineWorkout(String name,int series, int reps) {
-        this.series = series;
-        this.reps = reps;
-        this.name = name;
-    }
-
-    public RoutineWorkout() {
-
-    }
 
     public Long getId() {
         return id;

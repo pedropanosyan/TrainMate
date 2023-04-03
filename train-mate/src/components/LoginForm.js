@@ -24,12 +24,11 @@ function LoginForm() {
     const handleSubmit = (event) => {
         event.preventDefault();
           formData = { username, password };
-
-        axios.post('http://localhost:8080/userLogin', formData)
+          axios.post('http://localhost:8080/userLogin', formData)
             .then(function (response) {
                 const token = response.data.token;
                 localStorage.setItem('token', token);
-                navigate('/home');
+                return navigate('/home');
             })
             .catch(function (error) {
                 alert("Wrong input fields, try again.")

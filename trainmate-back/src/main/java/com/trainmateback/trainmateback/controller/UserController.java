@@ -49,7 +49,9 @@ public class UserController {
         }
         UUID uuid = UUID.randomUUID();
         String token = uuid.toString();
-        user.setToken(token);
+        TrainMateUser user2 = userRepository.findByUsername(user.getUsername());
+        user2.setToken(token);
+        userRepository.save(user2);
         Map<String, String> response = new HashMap<>();
         response.put("token", token);
         return ResponseEntity.ok(response);

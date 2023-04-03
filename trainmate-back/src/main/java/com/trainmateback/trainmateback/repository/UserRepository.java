@@ -13,4 +13,5 @@ public interface UserRepository  extends JpaRepository<TrainMateUser, String> {
 
     TrainMateUser findByUsernameAndPassword(String username, String password);
 
+    TrainMateUser findByToken(String token);
 }

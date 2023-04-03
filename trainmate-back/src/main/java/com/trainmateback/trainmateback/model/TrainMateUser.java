@@ -2,11 +2,13 @@ package com.trainmateback.trainmateback.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class TrainMateUser {
 
     @Id
-    @Column()
+    @Column(nullable = false, unique = true)
     private String username;
 
     @Column
@@ -15,7 +17,10 @@ public class TrainMateUser {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Transient
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Routine> routines;
+
+    @Column
     private String token;
 
     public TrainMateUser() {}
@@ -24,6 +29,10 @@ public class TrainMateUser {
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+
+    public void addRoutine(Routine routine){
+        this.routines.add(routine);
     }
 
     public String getUsername() {
@@ -56,5 +65,13 @@ public class TrainMateUser {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public List<Routine> getRoutines() {
+        return routines;
+    }
+
+    public void setRoutines(List<Routine> routines) {
+        this.routines = routines;
     }
 }

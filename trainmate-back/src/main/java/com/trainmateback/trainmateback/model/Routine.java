@@ -20,12 +20,24 @@ public class Routine {
     @OneToMany(cascade = CascadeType.ALL)
     private List<RoutineWorkout> workouts;
 
+    @Transient
+    private String token;
+
     public Routine(){}
 
-    public Routine(String name, List<RoutineWorkout> workouts) {
+    public Routine(String name, List<RoutineWorkout> workouts, String token) {
         this.isActive = true;
         this.name = name;
         this.workouts = workouts;
+        this.token = token;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public long getId() {
