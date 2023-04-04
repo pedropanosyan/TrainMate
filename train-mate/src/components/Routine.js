@@ -1,6 +1,8 @@
 import {useRef, useState} from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import Button from 'react-bootstrap/Button';
+
 
 const Routine = () => {
 
@@ -58,21 +60,23 @@ const Routine = () => {
 
     return (
         <div>
-            <button onClick={handleNewRoutineClick}> New routine </button>
+            <Button variant="primary" onClick={handleNewRoutineClick}> New routine </Button>
             {showInputs && (
-                <div>
+                <div className='mt-5'>
                     <form ref={formRef} onSubmit={handleSubmit}>
                         <input name="routineName" required placeholder="Enter routine name" onChange={handleNameChange} type="text" />
                         {routineWorkouts.map((workout, index) => (
-                            <div key={index}>
+                            <div className='mt-5' key={index}>
                                 <input required name="routineWorkout" placeholder="Enter workout name" onChange={(event) => handleRoutineWorkoutChange(event, index)} type="text" />
                                 <input required name="sets" placeholder="Enter sets" onChange={(event) => handleRoutineWorkoutChange(event, index)} type="number" />
                                 <input required name="reps" placeholder="Enter reps" onChange={(event) => handleRoutineWorkoutChange(event, index)} type="number" />
                             </div>
                         ))}
-                        <button onClick={handleAddWorkout}>Add workout</button>
-                        <button type="submit" onClick={handleEndRoutineClick}> Create routine </button>
-                        <button onClick={handleCancel}> Cancel </button>
+                        <div>
+                        <Button className='me-1' variant="secondary" onClick={handleAddWorkout}>Add workout</Button>
+                        <Button className='me-1' variant="secondary" type="submit" onClick={handleEndRoutineClick}> Create routine </Button>
+                        <Button className='me-1' variant="secondary" onClick={handleCancel}> Cancel </Button>
+                        </div>
                     </form>
                 </div>
             )}
