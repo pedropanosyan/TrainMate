@@ -57,4 +57,12 @@ public class UserController {
         return ResponseEntity.ok(response);
     }
 
+    @PostMapping("/userSignOut")
+    ResponseEntity<?> userSignOut(@RequestBody String token){
+        token = token.substring(0, token.length()-1);
+        TrainMateUser trainMateUser = userRepository.findByToken(token);
+        trainMateUser.setToken(null);
+        userRepository.save(trainMateUser);
+        return ResponseEntity.ok("");
+    }
 }

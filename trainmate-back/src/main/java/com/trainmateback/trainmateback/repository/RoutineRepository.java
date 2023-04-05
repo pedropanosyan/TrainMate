@@ -8,6 +8,5 @@ import java.util.List;
 
 public interface RoutineRepository extends JpaRepository<Routine, Long> {
 
-    List<Routine> findByUserAndName(TrainMateUser user, String name);
 
 }

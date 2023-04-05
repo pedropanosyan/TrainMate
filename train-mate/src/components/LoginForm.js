@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
 
@@ -28,7 +28,7 @@ function LoginForm() {
             .then(function (response) {
                 const token = response.data.token;
                 localStorage.setItem('token', token);
-                return navigate('/home');
+                window.location.assign('/home');
             })
             .catch(function (error) {
                 alert("Wrong input fields, try again.")
@@ -54,9 +54,7 @@ function LoginForm() {
                                 </Form.Group>
                             </Form>
                             <Button onClick={handleSubmit} className='m-3' variant="outline-primary" type="submit" style={{justifyContent:'center', width:'20%', minWidth:'100px'}}>Log In</Button>
-                            <Link to="/register">
-                                <Button className='m-3' variant="outline-danger" type="submit" style={{justifyContent:'center', width:'20%', minWidth:'100px'}}>Sign Up</Button>
-                            </Link>
+                            <Button onClick={() => window.location.assign('/register')} className='m-3' variant="outline-danger" type="submit" style={{justifyContent:'center', width:'20%', minWidth:'100px'}}>Sign Up</Button>
                         </Card.Body>
                     </Card>
                 </Col>

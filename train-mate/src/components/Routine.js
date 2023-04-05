@@ -35,13 +35,15 @@ const Routine = () => {
     const handleEndRoutineClick = async () => {
         const token = localStorage.getItem('token');
         const newRoutine = { name: routineName, workouts: routineWorkouts, token };
-        newRoutine.current.reset();
         try {
             console.log(newRoutine)
             await axios.post("http://localhost:8080/userRoutine", newRoutine);
             alert("Routine created successfully")
         } catch (error) {
             console.error(error);
+        }
+        finally {
+            newRoutine.current.reset();
         }
     };
 

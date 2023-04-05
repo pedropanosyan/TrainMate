@@ -47,11 +47,10 @@ public class RoutineController {
     }
 
 
-/*    @GetMapping("/routines")
+    @GetMapping("/routines")
     ResponseEntity<List<Routine>> getRoutines(@RequestBody String token) {
         TrainMateUser user = userRepository.findByToken(token);
-        List<Routine> routines = routineRepository.findByUserAndName(user, user.getUsername());
+        List<Routine> routines = user.getRoutines();
         return ResponseEntity.ok(routines);
     }
-*/
 }

@@ -1,23 +1,29 @@
 import {Container, Nav, Navbar, Image} from 'react-bootstrap';
 import "../css/NavBar.css";
-import { useNavigate} from 'react-router-dom';
+import axios from "axios";
 
 
 function NavBar() {
 
-    const navigate = useNavigate();
-
-    const handleSignOut = () => {
-        localStorage.clear();
-        navigate('/');
+    const handleSignOut = (event) => {
+        event.preventDefault();
+        const token = localStorage.getItem("token");
+        console.log(token);
+        axios.post('http://localhost:8080/userSignOut', token)
+            .then(function (response) {
+                localStorage.clear();
+                window.location.assign("/login");
+            })
+            .catch(function (error) {
+            })
     }
 
     const toRoutine = () => {
-      navigate('/routines')
+      window.location.assign('/routines');
     }
 
     const toHome = () => {
-      navigate('/home')
+      window.location.assign('/home');
     }
 
     return (
