@@ -20,6 +20,7 @@ public class Routine {
     @OneToMany(cascade = CascadeType.ALL)
     private List<RoutineWorkout> workouts;
 
+
     @Transient
     private String token;
 

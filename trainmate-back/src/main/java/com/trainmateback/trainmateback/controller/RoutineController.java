@@ -7,10 +7,7 @@ import com.trainmateback.trainmateback.repository.RoutineRepository;
 import com.trainmateback.trainmateback.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 
 import java.util.ArrayList;
@@ -27,12 +24,6 @@ public class RoutineController {
     private UserRepository userRepository;
 
 
- /*   @PostMapping("/userRoutineWorkout")
-    public ResponseEntity<String> addUserRoutineWorkout(@RequestBody RoutineWorkout routineWorkout) {
-        routineRepository.save(routineWorkout);
-        return ResponseEntity.ok("Exercise registered successfully");
-    }
-*/
     @PostMapping("/userRoutine")
     public ResponseEntity<String> createRoutine(@RequestBody Routine routineDTO) {
         TrainMateUser user = userRepository.findByToken(routineDTO.getToken());
@@ -54,4 +45,13 @@ public class RoutineController {
             return new ResponseEntity<>("Failed to create routine", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
+/*    @GetMapping("/routines")
+    ResponseEntity<List<Routine>> getRoutines(@RequestBody String token) {
+        TrainMateUser user = userRepository.findByToken(token);
+        List<Routine> routines = routineRepository.findByUserAndName(user, user.getUsername());
+        return ResponseEntity.ok(routines);
+    }
+*/
 }

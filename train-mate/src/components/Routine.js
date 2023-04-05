@@ -1,6 +1,8 @@
 import {useRef, useState} from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import Button from 'react-bootstrap/Button';
+
 
 const Routine = () => {
 
@@ -58,21 +60,21 @@ const Routine = () => {
 
     return (
         <div>
-            <button onClick={handleNewRoutineClick}> New routine </button>
+            <Button className='m-3 ' variant="primary" onClick={handleNewRoutineClick}> New routine </Button>
             {showInputs && (
-                <div>
-                    <form ref={formRef} onSubmit={handleSubmit}>
-                        <input name="routineName" required placeholder="Enter routine name" onChange={handleNameChange} type="text" />
+                <div className=' d-inline-flex border border-primary rounded p-3 mt-3'>
+                    <form className='m-1' ref={formRef} onSubmit={handleSubmit}>
+                        <input className='mb-3' name="routineName" required placeholder="Enter routine name" onChange={handleNameChange} type="text" />
                         {routineWorkouts.map((workout, index) => (
                             <div key={index}>
-                                <input required name="routineWorkout" placeholder="Enter workout name" onChange={(event) => handleRoutineWorkoutChange(event, index)} type="text" />
-                                <input required name="sets" placeholder="Enter sets" onChange={(event) => handleRoutineWorkoutChange(event, index)} type="number" />
-                                <input required name="reps" placeholder="Enter reps" onChange={(event) => handleRoutineWorkoutChange(event, index)} type="number" />
+                                <input className='m-1' required name="routineWorkout" placeholder="Enter workout name" onChange={(event) => handleRoutineWorkoutChange(event, index)} type="text" />
+                                <input className='m-1' required name="sets" placeholder="Enter sets" onChange={(event) => handleRoutineWorkoutChange(event, index)} type="number" />
+                                <input className='m-1' required name="reps" placeholder="Enter reps" onChange={(event) => handleRoutineWorkoutChange(event, index)} type="number" />
                             </div>
                         ))}
-                        <button onClick={handleAddWorkout}>Add workout</button>
-                        <button type="submit" onClick={handleEndRoutineClick}> Create routine </button>
-                        <button onClick={handleCancel}> Cancel </button>
+                        <Button className='m-2' variant="secondary" onClick={handleAddWorkout}>Add workout</Button>
+                        <Button className='m-2' variant="secondary" type="submit" onClick={handleEndRoutineClick}> Create routine </Button>
+                        <Button className='m-2' variant="secondary" onClick={handleCancel}> Cancel </Button>
                     </form>
                 </div>
             )}
