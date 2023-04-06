@@ -1,6 +1,5 @@
 import {useRef, useState} from "react";
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 
 
@@ -9,7 +8,6 @@ const Routine = () => {
     const [showInputs, setShowInputs] = useState(false);
     const [routineName, setRoutineName] = useState("");
     const [routineWorkouts, setRoutineWorkouts] = useState([]);
-    const navigate = useNavigate();
 
     const formRef = useRef(null);
 
@@ -28,23 +26,31 @@ const Routine = () => {
         setRoutineWorkouts(updatedWorkouts);
     };
 
+
     const handleAddWorkout = () => {
         setRoutineWorkouts([...routineWorkouts, {routineWorkout: '', sets: 0, reps: 0}]);
     };
 
     const handleEndRoutineClick = async () => {
+        if (!routineName) {
+            alert('Please complete all required fields');
+            return
+        }
         const token = localStorage.getItem('token');
-        const newRoutine = { name: routineName, workouts: routineWorkouts, token };
+
+        const newRoutine = {name: routineName, workouts: routineWorkouts, token};
         try {
             console.log(newRoutine)
             await axios.post("http://localhost:8080/userRoutine", newRoutine);
-            alert("Routine created successfully")
+            window.location.reload();
+
         } catch (error) {
             console.error(error);
-        }
-        finally {
+        } finally {
             newRoutine.current.reset();
+
         }
+
     };
 
     const handleSubmit = (event) => {

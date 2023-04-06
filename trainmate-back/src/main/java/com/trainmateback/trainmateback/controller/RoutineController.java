@@ -48,7 +48,7 @@ public class RoutineController {
 
 
     @GetMapping("/routines")
-    ResponseEntity<List<Routine>> getRoutines(@RequestBody String token) {
+    ResponseEntity<List<Routine>> getRoutines(@RequestHeader("Authorization") String token) {
         TrainMateUser user = userRepository.findByToken(token);
         List<Routine> routines = user.getRoutines();
         return ResponseEntity.ok(routines);

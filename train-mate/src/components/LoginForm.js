@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
 
@@ -10,7 +9,6 @@ function LoginForm() {
     let formData;
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const navigate = useNavigate();
 
 
     const handleUsernameChange = (event) => {
@@ -53,8 +51,10 @@ function LoginForm() {
                                     <Form.Control onChange={handlePasswordChange} type="password" placeholder="Password"/>
                                 </Form.Group>
                             </Form>
-                            <Button onClick={handleSubmit} className='m-3' variant="outline-primary" type="submit" style={{justifyContent:'center', width:'20%', minWidth:'100px'}}>Log In</Button>
-                            <Button onClick={() => window.location.assign('/register')} className='m-3' variant="outline-danger" type="submit" style={{justifyContent:'center', width:'20%', minWidth:'100px'}}>Sign Up</Button>
+                            <div className="d-flex justify-content-center">
+                                <Button onClick={handleSubmit} className='m-3' variant="outline-primary" type="submit" style={{justifyContent:'center', width:'20%', minWidth:'100px'}}>Log In</Button>
+                                <Button onClick={() => window.location.assign('/register')} className='m-3' variant="outline-danger" type="submit" style={{justifyContent:'center', width:'20%', minWidth:'100px'}}>Sign Up</Button>
+                            </div>
                         </Card.Body>
                     </Card>
                 </Col>

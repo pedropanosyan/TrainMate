@@ -1,0 +1,41 @@
+.card {
+    height: 100%;
+    filter:brightness(90%);
+    margin-top:20px;
+}
+
+.routines h1 {
+    text-align: center;
+    font-size: 5em;
+    color: #8db5ff;
+}
+
+.card-body h3 {
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.routines li {
+    list-style: none;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.card-text h5 {
+    text-transform: capitalize;
+}
+
+.card-text p {
+    color: #212529;
+    text-transform: capitalize;
+    font-size: 1em;
+}
+
+.row {
+    margin-top: 20px;
+}
