@@ -19,17 +19,32 @@ function ShowRoutine() {
     }, []);
         console.log(routines);
 
+
+    const handleDelete = async (routineId) => {
+        const accessToken = localStorage.getItem('token');
+        try {
+            await axios.delete(`http://localhost:8080/deleteRoutine/${routineId}`, {
+                headers: {
+                    Authorization: accessToken
+                }
+            });
+            setRoutines(routines.filter(routine => routine.id !== routineId));
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <Container className="routines">
             <Row xs={1} md={2} lg={3} className="g-4">
                 {routines.map(routine => (
-                    <Col>
+                    <Col key={routine.id}>
                         <Card className='border-primary rounded border-1'>
                             <Card.Body>
                                 <Card.Title> <h3>{routine.name}</h3></Card.Title>
                                 <Card.Text className="card-text">
                                     {routine.workouts.map(workout => (
-                                        <li>
+                                        <li  key={workout.id}>
                                             <h5>{workout.routineWorkout}</h5>
                                             <p>Sets: {workout.sets}, Reps: {workout.reps}</p>
                                         </li>
@@ -37,7 +52,7 @@ function ShowRoutine() {
                                 </Card.Text>
                                 <div className="d-flex justify-content-between">
                                     <Button variant="primary">Editar</Button>
-                                    <Button variant="danger">Eliminar</Button>
+                                    <Button onClick={() => handleDelete(routine.id)} variant="danger">Delete</Button>
                                 </div>
                             </Card.Body>
                         </Card>

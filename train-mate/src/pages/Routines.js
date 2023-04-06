@@ -13,7 +13,9 @@ function Routines(){
             <Navbar/>
             {divider}
             <Routine/>
-            <ShowRoutine/>
+            <div style={{height:'70vh'}}>
+                <ShowRoutine/>
+            </div>
             {divider2}
             <Footer/>
         </div>

@@ -4,6 +4,7 @@ import com.trainmateback.trainmateback.model.RoutineWorkout;
 import com.trainmateback.trainmateback.model.Routine;
 import com.trainmateback.trainmateback.model.TrainMateUser;
 import com.trainmateback.trainmateback.repository.RoutineRepository;
+import com.trainmateback.trainmateback.repository.RoutineWorkoutRepository;
 import com.trainmateback.trainmateback.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,8 @@ public class RoutineController {
     private RoutineRepository routineRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private RoutineWorkoutRepository routineWorkoutRepository;
 
 
     @PostMapping("/userRoutine")
@@ -52,5 +55,25 @@ public class RoutineController {
         TrainMateUser user = userRepository.findByToken(token);
         List<Routine> routines = user.getRoutines();
         return ResponseEntity.ok(routines);
+    }
+
+    @DeleteMapping("/deleteRoutine/{id}")
+    public ResponseEntity<Void> deleteRoutine(@PathVariable Long id, @RequestHeader("Authorization") String token) {
+        Routine routine = routineRepository.findById(id).orElse(null);
+        TrainMateUser user = userRepository.findByToken(token);
+        user.getRoutines().remove(routine);
+        userRepository.save(user);
+        if (routine!=null) {
+            routineRepository.delete(routine);
+            int i = 0;
+            while (i < routine.getWorkouts().size()) {
+                RoutineWorkout workout = routine.getWorkouts().get(i);
+                routineWorkoutRepository.delete(workout);
+                routine.getWorkouts().remove(workout);
+                i++;
+            }
+
+        }
+        return ResponseEntity.noContent().build();
     }
 }

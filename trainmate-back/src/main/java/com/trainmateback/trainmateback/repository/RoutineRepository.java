@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface RoutineRepository extends JpaRepository<Routine, Long> {
 
+    Routine findById(long id);
 
 }

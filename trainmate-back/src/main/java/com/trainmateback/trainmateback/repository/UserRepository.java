@@ -16,4 +16,6 @@ public interface UserRepository  extends JpaRepository<TrainMateUser, String> {
     TrainMateUser findByToken(String token);
 
     void deleteByToken(String token);
+
+
 }
