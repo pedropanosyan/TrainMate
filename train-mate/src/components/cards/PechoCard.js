@@ -13,7 +13,7 @@ function PechoCard() {
                                 Track your chest progress and train smarter.
                             </Card.Text>
                             <div className="d-flex">
-                                <Button className="m-auto" variant="primary">Enter</Button>
+                                <Button onClick={() => window.location.assign('/chest')}className="m-auto" variant="primary">Enter</Button>
                             </div>
                         </Card.Body>
                     </Card>

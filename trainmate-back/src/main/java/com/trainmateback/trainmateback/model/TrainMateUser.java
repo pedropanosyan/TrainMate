@@ -2,6 +2,7 @@ package com.trainmateback.trainmateback.model;
 
 import jakarta.persistence.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -20,6 +21,8 @@ public class TrainMateUser {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Routine> routines;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Muscles> musculos;
     @Column
     private String token;
 
@@ -29,6 +32,13 @@ public class TrainMateUser {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.musculos = Arrays.asList(
+                new Muscles("Arms"),
+                new Muscles("Chest"),
+                new Muscles("Legs"),
+                new Muscles("Back"),
+                new Muscles("Abs")
+        );
     }
 
     public void addRoutine(Routine routine){

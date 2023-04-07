@@ -5,6 +5,7 @@ import Forum from "./pages/Forum";
 import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
 import Register from "./pages/Register";
 import Routine from "./pages/Routines";
+import Chest from "./pages/Chest";
 
 
 
@@ -24,6 +25,7 @@ function App() {
                 <Route path="/forum" element = {<Forum />}/>
                 <Route path="/register" element = {<Register />}/>
                 <Route path='/routines' element={isAuthenticated() ? <Routine /> : <Navigate to="/"/>}/>
+                <Route path = '/chest' element={isAuthenticated() ? <Chest /> : <Navigate to={'/'}/>}/>
             </Routes>
         </Router>
     );
