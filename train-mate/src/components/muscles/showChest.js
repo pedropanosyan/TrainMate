@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {Button, Card, Col, Container, Row} from "react-bootstrap";
 import '../../css/showRoutine.css';
+import { BiX } from 'react-icons/bi';
 
 function ShowChest() {
 
@@ -18,6 +19,19 @@ function ShowChest() {
             .then(response => setTrains(response.data))
             .catch(error => console.log(error));
     }, [])
+    const handleDelete = async (trainId) => {
+        const accessToken = localStorage.getItem('token');
+        try {
+            await axios.delete(`http://localhost:8080/deleteTrain/${trainId}`, {
+                headers: {
+                    Authorization: accessToken
+                }
+            });
+            setTrains(trains.filter(train => train.id !== trainId));
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     return(
         <Container className="routines">
@@ -25,6 +39,15 @@ function ShowChest() {
                 {trains.map(train => (
                     <Col key={train.id}>
                         <Card className='border-primary rounded border-1'>
+                            <Card.Header className="text-end">
+                                <Button variant="link" className="text-danger" onClick={() => {
+                                    if (window.confirm("Are you sure you want to delete this train?")) {
+                                        handleDelete(train.id);
+                                    }
+                                }}>
+                                    <BiX size={20} />
+                                </Button>
+                            </Card.Header>
                             <Card.Body>
                                 <Card.Title> <h3>{train.name}</h3></Card.Title>
                                 <Card.Text className="card-text">

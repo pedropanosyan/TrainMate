@@ -32,7 +32,6 @@ const ChestExercises = () => {
         const newTrain = { name: trainName, token: token, muscle: "Chest"};
         try {
             await axios.post("http://localhost:8080/createTrain", newTrain);
-            alert("Train created successfully")
         }
         catch (e) {
             console.log(e);
