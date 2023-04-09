@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class TrainMateUser {
@@ -22,7 +23,8 @@ public class TrainMateUser {
     private List<Routine> routines;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Muscles> musculos;
+    private List<Train> trains;
+
     @Column
     private String token;
 
@@ -32,13 +34,24 @@ public class TrainMateUser {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.musculos = Arrays.asList(
-                new Muscles("Arms"),
-                new Muscles("Chest"),
-                new Muscles("Legs"),
-                new Muscles("Back"),
-                new Muscles("Abs")
-        );
+    }
+
+    public Train findTrain(String trainName){
+        for (Train train : this.trains) {
+            if (Objects.equals(train.getName(), trainName)) {
+                return train;
+            }
+        }
+        return null;
+    }
+
+    public Train findTrainById(long id){
+        for (Train train : this.trains) {
+            if (Objects.equals(train.getId(), id)) {
+                return train;
+            }
+        }
+        return null;
     }
 
     public void addRoutine(Routine routine){
@@ -51,6 +64,18 @@ public class TrainMateUser {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public List<Train> getTrains() {
+        return trains;
+    }
+
+    public void addTrain(Train train){
+        this.trains.add(train);
+    }
+
+    public void setTrains(List<Train> trains) {
+        this.trains = trains;
     }
 
     public String getPassword() {

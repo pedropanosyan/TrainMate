@@ -73,7 +73,7 @@ function RegisterForm(){
                                     <Form.Control onChange={handlePasswordChange} type="password" placeholder="Password"/>
                                 </Form.Group>
                             </Form>
-                                <Button onClick={handleSubmit} className='m-3' variant="outline-danger" type="submit" style={{justifyContent:'center', width:'20%', minWidth:'100px'}}>Sign Up</Button>
+                                <Button onClick={handleSubmit} className='m-3' variant="outline-danger" type="submit" style={{margin:'auto', width:'20%', minWidth:'100px'}}>Sign Up</Button>
                         </Card.Body>
                     </Card>
                 </Col>

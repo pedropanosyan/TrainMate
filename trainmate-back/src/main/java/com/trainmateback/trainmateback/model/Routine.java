@@ -52,8 +52,8 @@ public class Routine {
         return isActive;
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
+    public void updateState() {
+        this.isActive = !isActive;
     }
 
     public List<RoutineWorkout> getWorkouts() {

@@ -1,34 +1,100 @@
 package com.trainmateback.trainmateback.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
 public class TrainWorkout {
 
     @Id
-    @Column(nullable = false, unique = true)
-    private String username;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     @Column
-    private int series;
+    private int sets;
 
     @Column
     private int reps;
 
     @Column
-    private Date fecha;
+    private String weight;
 
-    public TrainWorkout(String username, int series, int reps) {
-        this.username = username;
-        this.series = series;
+    @Column
+    private LocalDate date;
+
+//    @Transient
+//    private String trainName;
+//
+//    @Transient
+//    private String muscle;
+
+    public TrainWorkout(int sets, int reps, String weight) {
+        this.sets = sets;
         this.reps = reps;
+        this.weight = weight;
+        this.date = LocalDate.now();
     }
 
     public TrainWorkout() {
-
     }
+
+//    public String getTrainName() {
+//        return trainName;
+//    }
+//
+//    public void setTrainName(String trainName) {
+//        this.trainName = trainName;
+//    }
+//
+//    public String getMuscle() {
+//        return muscle;
+//    }
+//
+//    public void setMuscle(String muscle) {
+//        this.muscle = muscle;
+//    }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = weight;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public int getSets() {
+        return sets;
+    }
+
+    public void setSets(int sets) {
+        this.sets = sets;
+    }
+
+    public int getReps() {
+        return reps;
+    }
+
+    public void setReps(int reps) {
+        this.reps = reps;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+
 }

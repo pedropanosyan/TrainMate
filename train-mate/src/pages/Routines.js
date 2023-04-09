@@ -13,7 +13,7 @@ function Routines(){
             <Navbar/>
             {divider}
             <Routine/>
-            <div style={{height:'70vh'}}>
+            <div style={{minHeight:'50vh'}}>
                 <ShowRoutine/>
             </div>
             {divider2}

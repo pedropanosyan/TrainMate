@@ -76,4 +76,18 @@ public class RoutineController {
         }
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/updateRoutine/{id}")
+    public ResponseEntity<?> updateRoutine(@PathVariable Long id) {
+        Routine routine = routineRepository.findById(id).orElse(null);
+        if (routine != null) {
+            routine.updateState();
+            routineRepository.save(routine);
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
 }

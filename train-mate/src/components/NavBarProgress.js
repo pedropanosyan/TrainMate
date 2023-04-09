@@ -9,6 +9,7 @@ function NavBar() {
     const handleSignOut = (event) => {
         event.preventDefault();
         const token = localStorage.getItem("token");
+        console.log(token);
         axios.post('http://localhost:8080/userSignOut', token)
             .then(function (response) {
                 localStorage.clear();
@@ -19,11 +20,11 @@ function NavBar() {
     }
 
     const toRoutine = () => {
-      window.location.assign('/routines');
+        window.location.assign('/routines');
     }
 
     const toHome = () => {
-      window.location.assign('/home');
+        window.location.assign('/home');
     }
 
     return (
@@ -37,12 +38,13 @@ function NavBar() {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Image src="Imagenes/logo2.png" style={{width:"80px", height:"80px"}}/>
                         <Nav className="me-auto" style = {{color: 'white', fontSize: '1.4em', marginLeft: '200px', marginTop: '-25px'}}>
+                            <Nav.Link className={`nav-link active`} style={{ marginRight: '70px', marginTop:'20px' }}>Progress</Nav.Link>
                             <Nav.Link className={`nav-link ${currentPath === '/home' ? 'active' : ''}`} onClick={toHome} style={{ marginRight: '70px', marginTop:'20px' }}>Home</Nav.Link>
                             <Nav.Link className={`nav-link ${currentPath === '/routines' ? 'active' : ''}`} onClick={toRoutine} style={{ marginRight: '70px', marginTop:'20px' }}>Routines</Nav.Link>
                             <Nav.Link className={`nav-link ${currentPath === '/forum' ? 'active' : ''}`} style={{ marginRight: '70px', marginTop:'20px'}}>Forum</Nav.Link>
                             <Nav.Link onClick={handleSignOut} href="/login" style= {{marginRight: '70px', marginTop:'20px'}}>Sign Out</Nav.Link>
                         </Nav>
-                        </Navbar.Collapse>
+                    </Navbar.Collapse>
                 </Container>
             </Navbar>
         </>

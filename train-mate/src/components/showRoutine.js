@@ -3,13 +3,12 @@ import axios from "axios";
 import '../css/showRoutine.css';
 import {Button, Col, Card, Container, Row} from "react-bootstrap";
 
+
 function ShowRoutine() {
     const [routines, setRoutines] = useState([]);
-    const [editingExercise, setEditingExercise] = useState(null);
 
     useEffect(() => {
         const accessToken = localStorage.getItem('token');
-        console.log(accessToken)
         axios.get('http://localhost:8080/routines', {
             headers: {
                 Authorization: accessToken
@@ -18,7 +17,6 @@ function ShowRoutine() {
             .then(response => setRoutines(response.data))
             .catch(error => console.log(error));
     }, []);
-        console.log(routines);
 
 
     const handleDelete = async (routineId) => {
@@ -34,73 +32,60 @@ function ShowRoutine() {
             console.log(error);
         }
     };
-    const handleEdit = async (routineId, excerciseId, sets, reps) => {
-        const token = localStorage.getItem('token');
 
-        axios.post(
-            `http://localhost:8080/editRoutines/${routineId}`,
-            { excerciseId, sets, reps },
-            {
-                headers: { Authorization: token }
+    const handleRoutineState = async (routineId) => {
+        const newRoutines = routines.map((r) => {
+            if (r.id === routineId) {
+                const updatedRoutine = { ...r, isActive: !r.isActive };
+                updateRoutine(routineId);
+                return updatedRoutine;
             }
-        )
-            .then(response => {
-                const updatedRoutines = routines.map(routine => {
-                    const updatedWorkouts = routine.workouts.map(workout => {
-                        if (workout.id === excerciseId) {
-                            return { ...workout, sets, reps };
-                        }
-                        return workout;
-                    });
-                    return { ...routine, workouts: updatedWorkouts };
-                });
-                setRoutines(updatedRoutines);
-                setEditingExercise(null);
-            })
-            .catch(error => console.log(error));
+            return r;
+        });
+        setRoutines(newRoutines);
+    }
+
+    const updateRoutine = async (routineId) => {
+        try {
+            await axios.put(
+                `http://localhost:8080/updateRoutine/${routineId}`,
+                {}
+            );
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const orderRoutines = (routines) => {
+        const activeRoutines = routines.filter((routine) => routine.isActive);
+        const inactiveRoutines = routines.filter((routine) => !routine.isActive);
+        return [...activeRoutines, ...inactiveRoutines];
     };
 
     return (
-        <Container className="routines" style ={{overflowY: "auto", height: "500px"}}>
+        <Container className="routines">
             <Row xs={1} md={2} lg={3} className="g-4">
-                {routines.map(routine => (
+                {orderRoutines(routines).map(routine => (
                     <Col key={routine.id}>
                         <Card className='border-primary rounded border-1'>
+
                             <Card.Body>
                                 <div className="d-flex justify-content-end">
-                                    {routine.isActive ? <span className="text-success">&#10003;</span> : <span className="text-danger">&#10004;</span>}
+                                    <Button className={routine.isActive ? 'btn-success' : 'btn-secondary'}
+                                            onClick={() => handleRoutineState(routine.id)}>
+                                    {routine.isActive ? 'Active' : 'Inactive'} </Button>
                                 </div>
-
                                 <Card.Title> <h3>{routine.name}</h3></Card.Title>
                                 <Card.Text className="card-text">
                                     {routine.workouts.map(workout => (
                                         <li key={workout.id}>
-                                            <h5>
-                                                {workout.routineWorkout}{' '}
-                                                {editingExercise === workout.id && (
-                                                    <form onSubmit={e => {
-                                                        e.preventDefault();
-                                                        const sets = e.target.sets.value;
-                                                        const reps = e.target.reps.value;
-                                                        handleEdit(workout.id, sets, reps);
-                                                    }}>
-                                                        <input type="number" name="sets" defaultValue={workout.sets} />
-                                                        <input type="number" name="reps" defaultValue={workout.reps} />
-                                                        <button type="submit">Guardar</button>
-                                                    </form>
-                                                )}
-                                            </h5>
-                                            {editingExercise !== workout.id && (
-                                                <p>
-                                                    Sets: {workout.sets}, Reps: {workout.reps}{' '}
-                                                    <Button onClick={() => setEditingExercise(workout.id)}>Editar</Button>
-                                                </p>
-                                            )}
+                                            <h5>{workout.routineWorkout}</h5>
+                                            <p>Sets: {workout.sets}, Reps: {workout.reps}</p>
                                         </li>
                                     ))}
                                 </Card.Text>
                                 <div className="d-flex justify-content-between">
-                                    <Button variant="primary">Editar</Button>
+                                    <Button variant="primary">Edit</Button>
                                     <Button onClick={() => handleDelete(routine.id)} variant="danger">Delete</Button>
                                 </div>
                             </Card.Body>
@@ -111,5 +96,6 @@ function ShowRoutine() {
         </Container>
     );
 }
+
 
 export default ShowRoutine;

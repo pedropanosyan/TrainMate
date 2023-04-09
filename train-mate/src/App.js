@@ -21,11 +21,11 @@ function App() {
             <Routes>
                 <Route path="/" element = {<Login />}/>
                 <Route path="/home" element={isAuthenticated() ? <Home /> : <Navigate to="/" />}/>
+                <Route path="/chest" element={isAuthenticated() ? <Chest /> : <Navigate to="/" />}/>
                 <Route path="/login" element = {<Login />}/>
                 <Route path="/forum" element = {<Forum />}/>
                 <Route path="/register" element = {<Register />}/>
                 <Route path='/routines' element={isAuthenticated() ? <Routine /> : <Navigate to="/"/>}/>
-                <Route path = '/chest' element={isAuthenticated() ? <Chest /> : <Navigate to={'/'}/>}/>
             </Routes>
         </Router>
     );

@@ -1,7 +1,6 @@
 package com.trainmateback.trainmateback.controller;
 
 import com.trainmateback.trainmateback.exceptions.NotValidLogin;
-import com.trainmateback.trainmateback.model.LoginRequest;
 import com.trainmateback.trainmateback.model.TrainMateUser;
 import com.trainmateback.trainmateback.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
