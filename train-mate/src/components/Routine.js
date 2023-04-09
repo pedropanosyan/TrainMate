@@ -40,7 +40,6 @@ const Routine = () => {
 
         const newRoutine = {name: routineName, workouts: routineWorkouts, token};
         try {
-            console.log(newRoutine)
             await axios.post("http://localhost:8080/userRoutine", newRoutine);
             window.location.reload();
 
