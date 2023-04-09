@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -58,12 +59,19 @@ public class TrainController {
         }
     }
 
-     @GetMapping("/getTrains")
-     ResponseEntity<List<Train>> getRoutines(@RequestHeader String token) {
+     @GetMapping("/getTrains/{muscle}")
+     ResponseEntity<List<Train>> getTrain(@PathVariable String muscle, @RequestHeader String token) {
          TrainMateUser user = userRepository.findByToken(token);
          List<Train> trains = user.getTrains();
-         return ResponseEntity.ok(trains);
+         List<Train> trainsMuscle = new ArrayList<>();
+         for (Train train : trains) {
+             if (train.getMuscle().equals(muscle)) {
+                 trainsMuscle.add(train);
+             }
+         }
+         return ResponseEntity.ok(trainsMuscle);
      }
+
 
     @GetMapping("/getTrainWorkouts")
     ResponseEntity<List<TrainWorkout>> getRoutines(@RequestParam Long id, @RequestHeader String token) {

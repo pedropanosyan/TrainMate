@@ -13,6 +13,7 @@ const ChestExercises = () => {
     }
 
     const handleCancel = (event) => {
+        setTrainName("");
         setShowInputs(false);
     }
 
