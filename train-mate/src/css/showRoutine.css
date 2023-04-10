@@ -39,3 +39,6 @@
 .row {
     margin-top: 20px;
 }
+.active-routine {
+    background-color: green;
+}

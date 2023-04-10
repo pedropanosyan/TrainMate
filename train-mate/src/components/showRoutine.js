@@ -67,8 +67,7 @@ function ShowRoutine() {
             <Row xs={1} md={2} lg={3} className="g-4">
                 {orderRoutines(routines).map(routine => (
                     <Col key={routine.id}>
-                        <Card className='border-primary rounded border-1'>
-
+                        <Card style={{backgroundColor: routine.isActive ? 'lightgreen' : 'white'}}>
                             <Card.Body>
                                 <div className="d-flex justify-content-end">
                                     <Button className={routine.isActive ? 'btn-success' : 'btn-secondary'}

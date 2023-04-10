@@ -83,7 +83,7 @@ public class TrainController {
     @DeleteMapping("/deleteTrain/{id}")
     public ResponseEntity<Void> deleteRoutine(@PathVariable Long id, @RequestHeader String token) {
         TrainMateUser user = userRepository.findByToken(token);
-        Train train = user.findTrainById(id);
+        Train train = trainRepository.findById(id);
         user.getTrains().remove(train);
         userRepository.save(user);
         if (train!=null) {
