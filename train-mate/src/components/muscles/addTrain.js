@@ -2,7 +2,7 @@ import Button from "react-bootstrap/Button";
 import {useRef, useState} from "react";
 import axios from "axios";
 
-const ChestExercises = ({muscle}) => {
+const AddTrain = ({muscle}) => {
     const [showInputs, setShowInputs] = useState(false);
     const [trainName, setTrainName] = useState("");
     const formRef = useRef(null);
@@ -58,4 +58,4 @@ const ChestExercises = ({muscle}) => {
         </div>
     );
 }
-export default ChestExercises;
+export default AddTrain;

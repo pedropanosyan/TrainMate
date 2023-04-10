@@ -33,7 +33,7 @@
 .card-text p {
     color: #212529;
     text-transform: capitalize;
-    font-size: 1em;
+    font-size: 0.7em;
 }
 
 .row {
@@ -42,3 +42,4 @@
 .active-routine {
     background-color: green;
 }
+

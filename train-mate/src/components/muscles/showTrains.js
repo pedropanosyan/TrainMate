@@ -3,15 +3,21 @@ import axios from "axios";
 import {Button, Card, Col, Container, Row, Modal, Form} from "react-bootstrap";
 import '../../css/showRoutine.css';
 import { BiX } from 'react-icons/bi';
+import Collapse from "react-bootstrap/Collapse";
 
 
-function ShowChest({muscle}) {
+function ShowTrains({muscle}) {
 
     const [trains, setTrains] = useState([]);
+
     const [showModal, setShowModal] = useState(false);
+
     const [series, setSeries] = useState('');
     const [repetitions, setRepetitions] = useState('');
     const [weight, setWeight] = useState('');
+
+    const [showView, setShowView] = useState(false);
+    const [boxStates, setBoxStates] = useState(Array(trains.length).fill(false));
 
     useEffect(() => {
         const accessToken = localStorage.getItem('token');
@@ -22,7 +28,8 @@ function ShowChest({muscle}) {
         })
             .then(response => setTrains(response.data))
             .catch(error => console.log(error));
-    }, [])
+    }, [muscle, trains])
+    
     const handleSave = async (trainId) => {
         const token = localStorage.getItem("token");
         const newTrain = {sets: series, reps: repetitions, weight: weight, token: token, id: trainId};
@@ -37,6 +44,7 @@ function ShowChest({muscle}) {
             setShowModal(false);
         }
     }
+
     const handleDelete = async (trainId) => {
         const accessToken = localStorage.getItem('token');
         try {
@@ -51,36 +59,32 @@ function ShowChest({muscle}) {
         }
     };
 
+    const handleView = (id) => {
+        const newState = [...boxStates];
+        newState[id] = !newState[id];
+        setBoxStates(newState);
+    }
+
     return(
         <Container className="routines">
-            <Row xs={1} md={2} lg={3} className="g-4">
+            <Row xs={1} md={3} lg={4} className="g-4">
                 {trains.map(train => (
                     <Col key={train.id}>
                         <Card className='border-primary rounded border-1'>
-                            <Card.Header className="text-end">
+                            <Card.Header className="text-end bg-secondary">
                                 <Button variant="link" className="text-danger" onClick={() => {
                                     if (window.confirm("Are you sure you want to delete this train?")) {
                                         handleDelete(train.id);
                                     }
                                 }}>
-                                    <BiX size={20} />
+                                    <BiX size={30} className=" shadow fs-3" />
                                 </Button>
                             </Card.Header>
                             <Card.Body>
                                 <Card.Title> <h3>{train.name}</h3></Card.Title>
-                                <Card.Text className="card-text">
-                                    {train.trainWorkouts.map(workout => (
-                                        <li key={workout.id}>
-                                            <h5>{workout.trainName}</h5>
-                                            <p>Sets: {workout.sets}, Reps: {workout.reps}</p>
-                                        </li>
-                                    ))}
-                                </Card.Text>
                                 <div className="d-flex justify-content-between">
-                                    <Button variant="outline-primary">Delete</Button>
-                                    <Button variant="outline-primary" onClick={() => setShowModal(train.id)}>
-                                        Add train workout
-                                    </Button>
+                                    <Button  onClick={() => handleView(train.id)} variant="outline-primary">View</Button>
+                                    <Button variant="outline-primary" onClick={() => setShowModal(train.id)}>Add workout</Button>
 
                                     <Modal show={showModal === train.id} onHide={() => setShowModal(false)}>
                                         <Modal.Header closeButton>
@@ -107,11 +111,21 @@ function ShowChest({muscle}) {
 
                                         <Modal.Footer>
                                             <Button variant="secondary" onClick={() => setShowModal(false)}>Cancel</Button>
-                                            <Button variant="primary" onClick={() => handleSave(train.id)}
-                                            >Save</Button>
+                                            <Button variant="primary" onClick={() => handleSave(train.id)}>Save</Button>
                                         </Modal.Footer>
                                     </Modal>
                                 </div>
+                                <Collapse in={showView}>
+                                    <div className="mt-3">
+                                        { boxStates[train.id] && train.trainWorkouts.map(workout => (
+                                            <li style={{listStyle:'inside', listStylePosition:'initial'}}>
+                                                <p style={{display:'inline', color:'#212529', textTransform:'capitalize', fontSize:'0.7em'}}
+                                                   key={workout.id}> Date: {workout.date} Sets: {workout.sets}, Reps: {workout.reps}, Weight: {workout.weight}Kg
+                                                </p>
+                                            </li>
+                                        ))}
+                                    </div>
+                                </Collapse>
                             </Card.Body>
                         </Card>
                     </Col>
@@ -121,4 +135,4 @@ function ShowChest({muscle}) {
     )
 }
 
-export default ShowChest;
+export default ShowTrains;
