@@ -78,11 +78,11 @@ function ShowChest({muscle}) {
                                 </Card.Text>
                                 <div className="d-flex justify-content-between">
                                     <Button variant="outline-primary">Delete</Button>
-                                    <Button variant="outline-primary" onClick={() => setShowModal(true)}>
+                                    <Button variant="outline-primary" onClick={() => setShowModal(train.id)}>
                                         Add train workout
                                     </Button>
 
-                                    <Modal show={showModal} onHide={() => setShowModal(false)}>
+                                    <Modal show={showModal === train.id} onHide={() => setShowModal(false)}>
                                         <Modal.Header closeButton>
                                             <Modal.Title>Enter Workout Information</Modal.Title>
                                         </Modal.Header>
