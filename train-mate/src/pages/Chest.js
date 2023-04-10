@@ -10,9 +10,9 @@ function Chest() {
         <div style={{background:'#222222'}}>
             <NavBar/>
             {divider}
-            <ChestExercises/>
+            <ChestExercises muscle="Chest" />
             <div style={{minHeight:'80vh'}}>
-                <ShowChest/>
+                <ShowChest muscle="Chest"/>
             </div>
             {divider}
             <Footer/>

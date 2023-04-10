@@ -42,7 +42,7 @@ public class TrainController {
     public ResponseEntity<?> addTrainWorkout(@RequestBody TrainWorkoutRequest trainWorkoutRequest){
         try {
             TrainMateUser user = userRepository.findByToken(trainWorkoutRequest.getToken());
-            Train train = user.findTrain(trainWorkoutRequest.getTrainName());
+            Train train = user.findTrainById(trainWorkoutRequest.getId());
             TrainWorkout trainWorkout = new TrainWorkout(trainWorkoutRequest.getSets(),
                                     trainWorkoutRequest.getReps(), trainWorkoutRequest.getWeight());
             if (train != null){
@@ -89,15 +89,16 @@ public class TrainController {
         if (train!=null) {
             trainRepository.delete(train);
             int i = 0;
-            while (i < train.getTrainWorkouts().size()) {
-                TrainWorkout trainWorkout = train.getTrainWorkouts().get(i);
-                trainWorkoutRepository.delete(trainWorkout);
-                train.getTrainWorkouts().remove(trainWorkout);
-                i++;
+            if(train.getTrainWorkouts() != null) {
+                while (i < train.getTrainWorkouts().size()) {
+                    TrainWorkout trainWorkout = train.getTrainWorkouts().get(i);
+                    trainWorkoutRepository.delete(trainWorkout);
+                    train.getTrainWorkouts().remove(trainWorkout);
+                    i++;
+                }
             }
         }
         return ResponseEntity.noContent().build();
     }
-
 
 }

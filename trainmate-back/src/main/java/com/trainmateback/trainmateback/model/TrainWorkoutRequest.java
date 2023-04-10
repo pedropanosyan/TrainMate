@@ -8,14 +8,14 @@ public class TrainWorkoutRequest {
     private int reps;
     private String weight;
     private String token;
-    private String trainName;
+    private int id;
 
-    public String getTrainName() {
-        return trainName;
+    public int getId() {
+        return id;
     }
 
-    public void setTrainName(String trainName) {
-        this.trainName = trainName;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getSets() {

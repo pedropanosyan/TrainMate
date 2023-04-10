@@ -2,7 +2,7 @@ import Button from "react-bootstrap/Button";
 import {useRef, useState} from "react";
 import axios from "axios";
 
-const ChestExercises = () => {
+const ChestExercises = ({muscle}) => {
     const [showInputs, setShowInputs] = useState(false);
     const [trainName, setTrainName] = useState("");
     const formRef = useRef(null);
@@ -29,7 +29,7 @@ const ChestExercises = () => {
 
     const handleAddNewTrain = async () => {
         const token = localStorage.getItem("token");
-        const newTrain = { name: trainName, token: token, muscle: "Chest"};
+        const newTrain = { name: trainName, token: token, muscle: muscle};
         try {
             await axios.post("http://localhost:8080/createTrain", newTrain);
         }
