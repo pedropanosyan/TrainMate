@@ -1,7 +1,7 @@
-import NavBar from "../components/NavBar";
-import Footer from "../components/Footer";
-import ShowTrains from "../components/muscles/showTrains";
-import AddTrain from "../components/muscles/addTrain";
+import NavBar from "../../components/NavBar";
+import Footer from "../../components/Footer";
+import ShowTrains from "../../components/muscles/showTrains";
+import AddTrain from "../../components/muscles/addTrain";
 
 const divider = <div style={{paddingTop: '50px', backgroundColor:'#1b263b'}}/>
 

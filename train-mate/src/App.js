@@ -5,7 +5,11 @@ import Forum from "./pages/Forum";
 import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
 import Register from "./pages/Register";
 import Routine from "./pages/Routines";
-import Chest from "./pages/Chest";
+import Chest from "./pages/muscles/Chest";
+import Abs from "./pages/muscles/Abs";
+import Arms from "./pages/muscles/Arms";
+import Legs from "./pages/muscles/Legs";
+import Back from "./pages/muscles/Back";
 
 
 
@@ -22,6 +26,10 @@ function App() {
                 <Route path="/" element = {<Login />}/>
                 <Route path="/home" element={isAuthenticated() ? <Home /> : <Navigate to="/" />}/>
                 <Route path="/chest" element={isAuthenticated() ? <Chest /> : <Navigate to="/" />}/>
+                <Route path="/abs" element={isAuthenticated() ? <Abs /> : <Navigate to="/" />}/>
+                <Route path="/arms" element={isAuthenticated() ? <Arms /> : <Navigate to="/" />}/>
+                <Route path="/legs" element={isAuthenticated() ? <Legs /> : <Navigate to="/" />}/>
+                <Route path="/back" element={isAuthenticated() ? <Back /> : <Navigate to="/" />}/>
                 <Route path="/login" element = {<Login />}/>
                 <Route path="/forum" element = {<Forum />}/>
                 <Route path="/register" element = {<Register />}/>

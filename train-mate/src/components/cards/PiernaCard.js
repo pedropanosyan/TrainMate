@@ -15,7 +15,7 @@ function PiernaCard() {
                                 Track your leg progress and train smarter.
                             </Card.Text>
                             <div className="d-flex">
-                                <Button onClick={() => window.location.assign('/progress')} className="m-auto" variant="primary">Enter</Button>
+                                <Button onClick={() => window.location.assign('/legs')} className="m-auto" variant="primary">Enter</Button>
                             </div>
                         </Card.Body>
                     </Card>

@@ -15,7 +15,7 @@ function BrazoCard() {
                                 Track your arm progress and train smarter.
                             </Card.Text>
                             <div className="d-flex">
-                                <Button onClick={() => window.location.assign('/progress')} className="m-auto" variant="primary">Enter</Button>
+                                <Button onClick={() => window.location.assign('/arms')} className="m-auto" variant="primary">Enter</Button>
                             </div>
                         </Card.Body>
                     </Card>
