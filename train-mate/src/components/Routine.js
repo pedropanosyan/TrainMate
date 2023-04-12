@@ -1,13 +1,13 @@
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import axios from "axios";
 import Button from 'react-bootstrap/Button';
 
-
 const Routine = () => {
-
     const [showInputs, setShowInputs] = useState(false);
     const [routineName, setRoutineName] = useState("");
     const [routineWorkouts, setRoutineWorkouts] = useState([]);
+
+
 
     const formRef = useRef(null);
 
@@ -20,33 +20,37 @@ const Routine = () => {
     };
 
     const handleRoutineWorkoutChange = (event, index) => {
-        const { name, value } = event.target;
-        const updatedWorkouts = [...routineWorkouts];
-        updatedWorkouts[index] = {...updatedWorkouts[index], [name]: value};
-        setRoutineWorkouts(updatedWorkouts);
+            const { name, value } = event.target;
+            const updatedWorkouts = [...routineWorkouts];
+            if (event.target.tagName === "SELECT") {
+                updatedWorkouts[index] = {...updatedWorkouts[index], [name]: value, muscle: event.target.selectedOptions[0].value};
+            } else {
+                updatedWorkouts[index] = {...updatedWorkouts[index], [name]: value};
+            }
+            setRoutineWorkouts(updatedWorkouts);
     };
 
-
     const handleAddWorkout = () => {
-        setRoutineWorkouts([...routineWorkouts, {routineWorkout: '', sets: 0, reps: 0}]);
+        setRoutineWorkouts([...routineWorkouts, { routineWorkout: '', sets: 0, reps: 0, muscle: '' }]);
     };
 
     const handleEndRoutineClick = async () => {
-        if (!routineName) {
-            alert('Please complete all required fields');
+        if (!routineName || !routineWorkouts.every((workout) => workout.routineWorkout && workout.sets && workout.reps && workout.muscle)) {
             return
         }
         const token = localStorage.getItem('token');
 
-        const newRoutine = {name: routineName, workouts: routineWorkouts, token};
+        const newRoutine = { name: routineName, workouts: routineWorkouts, token };
         try {
             await axios.post("http://localhost:8080/userRoutine", newRoutine);
             window.location.reload();
-
         } catch (error) {
             console.error(error);
         } finally {
-            newRoutine.current.reset();
+            formRef.current.reset();
+            setRoutineName("");
+            setRoutineWorkouts([]);
+            setShowInputs(false);
         }
     };
 
@@ -61,7 +65,6 @@ const Routine = () => {
         setRoutineName("");
         setRoutineWorkouts([]);
     };
-
 
     return (
         <div>
