@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -100,5 +99,14 @@ public class TrainController {
         }
         return ResponseEntity.noContent().build();
     }
-
+    @GetMapping("/muscle")
+    ResponseEntity<List<Train>> getWorkouts(@RequestHeader("Authorization") String token, String muscle) {
+        TrainMateUser user = userRepository.findByToken(token);
+        List<Train> trains = user.getTrains();
+        List <Train> trainsByMuscle = new ArrayList<>();
+        for (int i=0; i< trains.size(); i++){
+            trainsByMuscle.add(trainRepository.findByMuscle(muscle));
+        }
+        return ResponseEntity.ok(trainsByMuscle);
+    }
 }

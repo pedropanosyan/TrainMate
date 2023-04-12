@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState} from "react";
+import { useRef, useState} from "react";
 import axios from "axios";
 import Button from 'react-bootstrap/Button';
 
@@ -20,14 +20,14 @@ const Routine = () => {
     };
 
     const handleRoutineWorkoutChange = (event, index) => {
-            const { name, value } = event.target;
-            const updatedWorkouts = [...routineWorkouts];
-            if (event.target.tagName === "SELECT") {
-                updatedWorkouts[index] = {...updatedWorkouts[index], [name]: value, muscle: event.target.selectedOptions[0].value};
-            } else {
-                updatedWorkouts[index] = {...updatedWorkouts[index], [name]: value};
-            }
-            setRoutineWorkouts(updatedWorkouts);
+        const { name, value } = event.target;
+        const updatedWorkouts = [...routineWorkouts];
+        if (event.target.tagName === "SELECT") {
+            updatedWorkouts[index] = {...updatedWorkouts[index], [name]: value, muscle: event.target.selectedOptions[0].value};
+        } else {
+            updatedWorkouts[index] = {...updatedWorkouts[index], [name]: value};
+        }
+        setRoutineWorkouts(updatedWorkouts);
     };
 
     const handleAddWorkout = () => {
