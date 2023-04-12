@@ -35,7 +35,7 @@ public class RoutineController {
             Routine routine = new Routine();
             for (RoutineWorkout
                     workoutDTO : routineDTO.getWorkouts()) {
-                RoutineWorkout workout = new RoutineWorkout(workoutDTO.getRoutineWorkout(), workoutDTO.getSets(), workoutDTO.getReps());
+                RoutineWorkout workout = new RoutineWorkout(workoutDTO.getRoutineWorkout(), workoutDTO.getSets(), workoutDTO.getReps(), workoutDTO.getMuscle());
                 workouts.add(workout);
             }
             routine.setName(routineDTO.getName());
@@ -47,6 +47,7 @@ public class RoutineController {
         } catch (Exception e) {
             return new ResponseEntity<>("Failed to create routine", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+
     }
 
 

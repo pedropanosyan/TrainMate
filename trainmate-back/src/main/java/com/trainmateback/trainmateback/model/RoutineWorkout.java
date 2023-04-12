@@ -25,10 +25,11 @@ public class RoutineWorkout {
     public RoutineWorkout() {
     }
 
-    public RoutineWorkout(String name, int sets, int reps) {
+    public RoutineWorkout(String name, int sets, int reps, String muscle) {
         this.routineWorkout = name;
         this.sets = sets;
         this.reps = reps;
+        this.muscle = muscle;
     }
 
 
@@ -66,5 +67,13 @@ public class RoutineWorkout {
 
     public void setRoutineWorkout(String name) {
         this.routineWorkout = name;
+    }
+
+    public String getMuscle() {
+        return muscle;
+    }
+
+    public void setMuscle(String muscle) {
+        this.muscle = muscle;
     }
 }

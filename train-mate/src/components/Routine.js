@@ -47,9 +47,7 @@ const Routine = () => {
             console.error(error);
         } finally {
             newRoutine.current.reset();
-
         }
-
     };
 
     const handleSubmit = (event) => {
@@ -74,6 +72,14 @@ const Routine = () => {
                         <input className='mb-3' name="routineName" required placeholder="Enter routine name" onChange={handleNameChange} type="text" />
                         {routineWorkouts.map((workout, index) => (
                             <div key={index}>
+                                <select className='m-1' required value={routineWorkouts[index]?.muscle} onChange={(event) => handleRoutineWorkoutChange(event, index)}>
+                                    <option value="">Select a muscle</option>
+                                    <option value="Chest">Chest</option>
+                                    <option value="Back">Back</option>
+                                    <option value="Legs">Legs</option>
+                                    <option value="Abs">Abs</option>
+                                    <option value="Arms">Arms</option>
+                                </select>
                                 <input className='m-1' required name="routineWorkout" placeholder="Enter workout name" onChange={(event) => handleRoutineWorkoutChange(event, index)} type="text" />
                                 <input className='m-1' required name="sets" placeholder="Enter sets" onChange={(event) => handleRoutineWorkoutChange(event, index)} type="number" />
                                 <input className='m-1' required name="reps" placeholder="Enter reps" onChange={(event) => handleRoutineWorkoutChange(event, index)} type="number" />
