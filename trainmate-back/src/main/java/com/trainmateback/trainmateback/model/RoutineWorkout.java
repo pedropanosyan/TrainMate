@@ -18,6 +18,9 @@ public class RoutineWorkout {
     @Column
     private int reps;
 
+    @Column
+    private String muscle;
+
 
     public RoutineWorkout() {
     }

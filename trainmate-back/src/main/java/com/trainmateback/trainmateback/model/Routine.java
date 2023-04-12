@@ -48,7 +48,7 @@ public class Routine {
         this.id = id;
     }
 
-    public boolean isActive() {
+    public boolean active() {
         return active;
     }
 

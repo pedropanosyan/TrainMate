@@ -134,6 +134,8 @@ function ShowRoutine() {
 
                                 </Card.Text>
                                 <div className="d-flex justify-content-between">
+                                    <Button variant="primary"> Edit </Button>
+
                                     <Button onClick={() => handleDelete(routine.id)} variant="danger">Delete</Button>
                                 </div>
                             </Card.Body>
