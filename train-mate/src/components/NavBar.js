@@ -31,7 +31,7 @@ function NavBar() {
             <Navbar bg="dark" variant="dark" style={{backgroundColor:'#212529'}}>
                 <Container>
                     <Navbar.Brand className='navBar-brand' href="#home">
-                        <p style={{color: '#FFFFFF', fontSize: '2em'}}>Train<span style={{color:'#8db5ff'}}>Mate</span></p>
+                        <p style={{color: '#f8f8f8', fontSize: '2em'}}>Train<span style={{color:'#8db5ff'}}>Mate</span></p>
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">

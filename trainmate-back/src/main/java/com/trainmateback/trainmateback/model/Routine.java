@@ -12,7 +12,7 @@ public class Routine {
     private long id;
 
     @Column
-    private boolean isActive;
+    public boolean active;
 
     @Column
     private String name;
@@ -26,7 +26,7 @@ public class Routine {
     public Routine(){}
 
     public Routine(String name, List<RoutineWorkout> workouts, String token) {
-        this.isActive = true;
+        this.active = true;
         this.name = name;
         this.workouts = workouts;
         this.token = token;
@@ -49,11 +49,11 @@ public class Routine {
     }
 
     public boolean isActive() {
-        return isActive;
+        return active;
     }
 
     public void updateState() {
-        this.isActive = !isActive;
+        this.active = !active;
     }
 
     public List<RoutineWorkout> getWorkouts() {
