@@ -1,4 +1,4 @@
-import { useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import axios from "axios";
 import Button from 'react-bootstrap/Button';
 
@@ -6,7 +6,19 @@ const Routine = () => {
     const [showInputs, setShowInputs] = useState(false);
     const [routineName, setRoutineName] = useState("");
     const [routineWorkouts, setRoutineWorkouts] = useState([]);
+    const [trains, setTrains] = useState([]);
+    const [muscle, setMuscle] = useState();
 
+    useEffect(() => {
+        const accessToken = localStorage.getItem('token');
+        axios.get(`http://localhost:8080/getTrains/${muscle}`, {
+            headers: {
+                token: accessToken
+            }
+        })
+            .then(response => setTrains(response.data))
+            .catch(error => console.log(error));
+    }, [muscle]);
 
 
     const formRef = useRef(null);
@@ -28,6 +40,8 @@ const Routine = () => {
             updatedWorkouts[index] = {...updatedWorkouts[index], [name]: value};
         }
         setRoutineWorkouts(updatedWorkouts);
+        setMuscle(event.target.value);
+
     };
 
     const handleAddWorkout = () => {
@@ -83,7 +97,12 @@ const Routine = () => {
                                     <option value="Abs">Abs</option>
                                     <option value="Arms">Arms</option>
                                 </select>
-                                <input className='m-1' required name="routineWorkout" placeholder="Enter workout name" onChange={(event) => handleRoutineWorkoutChange(event, index)} type="text" />
+                                <select className='m-1' required name="routineWorkout" placeholder="Enter workout name" onChange={(event) => handleRoutineWorkoutChange(event, index)}>
+                                    <option value=""> Select a workout</option>
+                                    {trains && trains.map(train => (
+                                        <option key={train.id} value={train.name}>{train.name}</option>
+                                    ))}
+                                </select>
                                 <input className='m-1' required name="sets" placeholder="Enter sets" onChange={(event) => handleRoutineWorkoutChange(event, index)} type="number" />
                                 <input className='m-1' required name="reps" placeholder="Enter reps" onChange={(event) => handleRoutineWorkoutChange(event, index)} type="number" />
                             </div>

@@ -9,6 +9,7 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons';
 function ShowRoutine() {
     const [routines, setRoutines] = useState([]);
     const [editingExercise, setEditingExercise] = useState(null);
+
     useEffect(() => {
         const accessToken = localStorage.getItem('token');
         axios.get('http://localhost:8080/routines', {
@@ -19,6 +20,7 @@ function ShowRoutine() {
             .then(response => setRoutines(response.data))
             .catch(error => console.log(error));
     }, []);
+
 
 
     const handleDelete = async (routineId) => {
