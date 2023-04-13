@@ -18,18 +18,14 @@ public class RoutineWorkout {
     @Column
     private int reps;
 
-    @Column
-    private String muscle;
-
 
     public RoutineWorkout() {
     }
 
-    public RoutineWorkout(String name, int sets, int reps, String muscle) {
+    public RoutineWorkout(String name, int sets, int reps) {
         this.routineWorkout = name;
         this.sets = sets;
         this.reps = reps;
-        this.muscle = muscle;
     }
 
 
@@ -69,11 +65,4 @@ public class RoutineWorkout {
         this.routineWorkout = name;
     }
 
-    public String getMuscle() {
-        return muscle;
-    }
-
-    public void setMuscle(String muscle) {
-        this.muscle = muscle;
-    }
 }

@@ -35,7 +35,7 @@ public class RoutineController {
             Routine routine = new Routine();
             for (RoutineWorkout
                     workoutDTO : routineDTO.getWorkouts()) {
-                RoutineWorkout workout = new RoutineWorkout(workoutDTO.getRoutineWorkout(), workoutDTO.getSets(), workoutDTO.getReps(), workoutDTO.getMuscle());
+                RoutineWorkout workout = new RoutineWorkout(workoutDTO.getRoutineWorkout(), workoutDTO.getSets(), workoutDTO.getReps());
                 workouts.add(workout);
             }
             routine.setName(routineDTO.getName());

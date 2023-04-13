@@ -35,26 +35,24 @@ const Routine = () => {
         const { name, value } = event.target;
         const updatedWorkouts = [...routineWorkouts];
         if (event.target.tagName === "SELECT") {
-            updatedWorkouts[index] = {...updatedWorkouts[index], [name]: value, muscle: event.target.selectedOptions[0].value};
+            updatedWorkouts[index] = {...updatedWorkouts[index], [name]: value};
         } else {
             updatedWorkouts[index] = {...updatedWorkouts[index], [name]: value};
         }
         setRoutineWorkouts(updatedWorkouts);
-        setMuscle(event.target.value);
-
     };
 
     const handleAddWorkout = () => {
-        setRoutineWorkouts([...routineWorkouts, { routineWorkout: '', sets: 0, reps: 0, muscle: '' }]);
+        setRoutineWorkouts([...routineWorkouts, { routineWorkout: '', sets: 0, reps: 0}]);
     };
 
     const handleEndRoutineClick = async () => {
-        if (!routineName || !routineWorkouts.every((workout) => workout.routineWorkout && workout.sets && workout.reps && workout.muscle)) {
+        if (!routineName || !routineWorkouts.every((workout) => workout.routineWorkout && workout.sets && workout.reps)) {
             return
         }
         const token = localStorage.getItem('token');
 
-        const newRoutine = { name: routineName, workouts: routineWorkouts, token };
+        const newRoutine = { name: routineName, workouts: routineWorkouts, token};
         try {
             await axios.post("http://localhost:8080/userRoutine", newRoutine);
             window.location.reload();
@@ -79,6 +77,10 @@ const Routine = () => {
         setRoutineName("");
         setRoutineWorkouts([]);
     };
+    const handleSet = (event) => {
+        const muscle = event.target.value;
+        setMuscle(muscle);
+    }
 
     return (
         <div>
@@ -89,7 +91,7 @@ const Routine = () => {
                         <input className='mb-3' name="routineName" required placeholder="Enter routine name" onChange={handleNameChange} type="text" />
                         {routineWorkouts.map((workout, index) => (
                             <div key={index}>
-                                <select className='m-1' required value={routineWorkouts[index]?.muscle} onChange={(event) => handleRoutineWorkoutChange(event, index)}>
+                                <select className='m-1' required value={muscle} onChange={handleSet}>
                                     <option value="">Select a muscle</option>
                                     <option value="Chest">Chest</option>
                                     <option value="Back">Back</option>
