@@ -10,9 +10,9 @@ function Back() {
         <div style={{background:'#222222'}}>
             <NavBar/>
             {divider}
-            <AddTrain muscle="Abs" />
+            <AddTrain muscle="Back" />
             <div style={{minHeight:'80vh'}}>
-                <ShowTrains muscle="Abs"/>
+                <ShowTrains muscle="Back"/>
             </div>
             {divider}
             <Footer/>

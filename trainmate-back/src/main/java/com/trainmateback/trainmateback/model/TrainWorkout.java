@@ -24,11 +24,6 @@ public class TrainWorkout {
     @Column
     private LocalDate date;
 
-//    @Transient
-//    private String trainName;
-//
-//    @Transient
-//    private String muscle;
 
     public TrainWorkout(int sets, int reps, String weight) {
         this.sets = sets;
@@ -39,22 +34,6 @@ public class TrainWorkout {
 
     public TrainWorkout() {
     }
-
-//    public String getTrainName() {
-//        return trainName;
-//    }
-//
-//    public void setTrainName(String trainName) {
-//        this.trainName = trainName;
-//    }
-//
-//    public String getMuscle() {
-//        return muscle;
-//    }
-//
-//    public void setMuscle(String muscle) {
-//        this.muscle = muscle;
-//    }
 
     public String getWeight() {
         return weight;

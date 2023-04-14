@@ -23,7 +23,9 @@ public class Routine {
     @Transient
     private String token;
 
-    public Routine(){}
+    public Routine(){
+        this.active = true;
+    }
 
     public Routine(String name, List<RoutineWorkout> workouts, String token) {
         this.active = true;
@@ -57,7 +59,7 @@ public class Routine {
     }
 
     public List<RoutineWorkout> getWorkouts() {
-        return workouts;
+        return this.workouts;
     }
 
     public void setWorkouts(List<RoutineWorkout> workouts) {

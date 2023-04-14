@@ -9,6 +9,7 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons';
 function ShowRoutine() {
     const [routines, setRoutines] = useState([]);
     const [editingExercise, setEditingExercise] = useState(null);
+
     useEffect(() => {
         const accessToken = localStorage.getItem('token');
         axios.get('http://localhost:8080/routines', {
@@ -19,6 +20,7 @@ function ShowRoutine() {
             .then(response => setRoutines(response.data))
             .catch(error => console.log(error));
     }, []);
+    console.log(routines);
 
 
     const handleDelete = async (routineId) => {
@@ -64,12 +66,12 @@ function ShowRoutine() {
         return [...activeRoutines, ...inactiveRoutines];
     };
 
-    const handleEdit = async (routineId, excerciseId, sets, reps) => {
+    const handleEdit = async (routineId, exerciseId, sets, reps) => {
         const token = localStorage.getItem('token');
 
         axios.post(
             `http://localhost:8080/editRoutines/${routineId}`,
-            { excerciseId, sets, reps },
+            { exerciseId: exerciseId, sets, reps },
             {
                 headers: { Authorization: token }
             }
@@ -77,7 +79,7 @@ function ShowRoutine() {
             .then(response => {
                 const updatedRoutines = routines.map(routine => {
                     const updatedWorkouts = routine.workouts.map(workout => {
-                        if (workout.id === excerciseId) {
+                        if (workout.id === exerciseId) {
                             return { ...workout, sets, reps };
                         }
                         return workout;
