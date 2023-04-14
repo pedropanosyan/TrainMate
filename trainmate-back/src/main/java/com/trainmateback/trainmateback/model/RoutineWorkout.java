@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 @Entity
 public class RoutineWorkout {
 
+
     @Column
     private String routineWorkout;
 
