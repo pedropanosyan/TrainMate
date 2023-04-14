@@ -38,8 +38,8 @@ public class RoutineController {
                 RoutineWorkout workout = new RoutineWorkout(workoutDTO.getRoutineWorkout(), workoutDTO.getSets(), workoutDTO.getReps());
                 workouts.add(workout);
             }
+            routine.active = true;
             routine.setName(routineDTO.getName());
-            routine.setWorkouts(workouts);
             routineRepository.save(routine);
             user.addRoutine(routine);
             userRepository.save(user);
@@ -47,9 +47,7 @@ public class RoutineController {
         } catch (Exception e) {
             return new ResponseEntity<>("Failed to create routine", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
     }
-
 
     @GetMapping("/routines")
     ResponseEntity<List<Routine>> getRoutines(@RequestHeader("Authorization") String token) {

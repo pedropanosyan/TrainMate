@@ -12,7 +12,7 @@ public class Routine {
     private long id;
 
     @Column
-    public boolean active;
+    public boolean active = true;
 
     @Column
     private String name;
@@ -23,10 +23,11 @@ public class Routine {
     @Transient
     private String token;
 
-    public Routine(){}
+    public Routine(){
+
+    }
 
     public Routine(String name, List<RoutineWorkout> workouts, String token) {
-        this.active = true;
         this.name = name;
         this.workouts = workouts;
         this.token = token;
