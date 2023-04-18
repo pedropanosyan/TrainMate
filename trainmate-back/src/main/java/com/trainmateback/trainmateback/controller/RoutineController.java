@@ -63,7 +63,7 @@ public class RoutineController {
         TrainMateUser user = userRepository.findByToken(token);
         user.getRoutines().remove(routine);
         userRepository.save(user);
-        if (routine!=null) {
+        if (routine != null) {
             routineRepository.delete(routine);
             int i = 0;
             while (i < routine.getWorkouts().size()) {
@@ -89,5 +89,11 @@ public class RoutineController {
         }
     }
 
-
+    @PostMapping("/editRoutine")
+    public ResponseEntity<?> updateRoutine(@RequestHeader String token ,@RequestBody Routine routine) {
+        TrainMateUser user = userRepository.findByToken(token);
+        user.updateRoutine(routine);
+        userRepository.save(user);
+        return ResponseEntity.ok("");
+    }
 }

@@ -7,8 +7,10 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
 
 function ShowRoutine() {
+
     const [routines, setRoutines] = useState([]);
     const [editingExercise, setEditingExercise] = useState(null);
+    const [update, setUpdate] = useState(false);
 
     useEffect(() => {
         const accessToken = localStorage.getItem('token');
@@ -19,8 +21,7 @@ function ShowRoutine() {
         })
             .then(response => setRoutines(response.data))
             .catch(error => console.log(error));
-    }, []);
-    console.log(routines);
+    }, [update]);
 
 
     const handleDelete = async (routineId) => {
@@ -67,30 +68,44 @@ function ShowRoutine() {
     };
 
     const handleEdit = async (routineId, exerciseId, sets, reps) => {
+        console.log(routineId, exerciseId, sets, reps)
+        const updatedRoutines = routines.map((routine) => {
+            if (routine.id === routineId) {
+                const updatedWorkouts = routine.workouts.map((workout) => {
+                    if (workout.id === exerciseId) {
+                        return { ...workout, sets, reps };
+                    } else {
+                        return workout;
+                    }
+                });
+                return { ...routine, workouts: updatedWorkouts };
+            } else {
+                return routine;
+            }
+        });
+        setRoutines(updatedRoutines);
+
+        const updatedRoutine = updatedRoutines.find((routine) => routine.id === routineId);
         const token = localStorage.getItem('token');
 
-        axios.post(
-            `http://localhost:8080/editRoutines/${routineId}`,
-            { exerciseId: exerciseId, sets, reps },
-            {
-                headers: { Authorization: token }
-            }
-        )
-            .then(response => {
-                const updatedRoutines = routines.map(routine => {
-                    const updatedWorkouts = routine.workouts.map(workout => {
-                        if (workout.id === exerciseId) {
-                            return { ...workout, sets, reps };
-                        }
-                        return workout;
-                    });
-                    return { ...routine, workouts: updatedWorkouts };
-                });
-                setRoutines(updatedRoutines);
-                setEditingExercise(null);
-            })
+        axios.post("http://localhost:8080/editRoutine",updatedRoutine, {
+            headers: {'token': token}
+        })
             .catch(error => console.log(error));
+        handleIsEditing(updatedRoutine.id)
+        setUpdate(!update);
     };
+
+    const handleIsEditing = (routineId) => {
+        const updatedRoutines = routines.map(routine => {
+            if (routine.id === routineId) {
+                return { ...routine, editing: !routine.editing };
+            }
+            return routine;
+        });
+        setRoutines(updatedRoutines);
+        setEditingExercise(null);
+    }
 
     return (
         <Container className="routines">
@@ -112,22 +127,25 @@ function ShowRoutine() {
                                             {editingExercise === workout.id ? (
                                                 <form onSubmit={e => {
                                                     e.preventDefault();
-                                                    const sets = e.target.sets.value;
-                                                    const reps = e.target.reps.value;
-                                                    handleEdit(workout.id, sets, reps);
+                                                    const sets = parseInt(e.target.sets.value);
+                                                    const reps = parseInt(e.target.reps.value);
+                                                    handleEdit(routine.id, workout.id, sets, reps);
+                                                    handleIsEditing(routine.id)
                                                 }}>
                                                     <div style={{ margin: "3x" }}>
-                                                        <input type="number" name="sets" defaultValue={workout.sets} style={{ fontSize: "12px", width: "30px", marginRight: "5px" }} />
-                                                        <input type="number" name="reps" defaultValue={workout.reps} style={{ fontSize: "12px", width: "30px", marginRight: "5px" }} />
-                                                        <Button size='sm' type="submit">Guardar</Button>
+                                                        <input type="number" name="sets" defaultValue={workout.sets} style={{ fontSize: "12px", width: "35px", marginRight: "5px" }} />
+                                                        <input type="number" name="reps" defaultValue={workout.reps} style={{ fontSize: "12px", width: "35px", marginRight: "10px" }} />
+                                                        <button type="submit" className="btn btn-sm rounded-pill bg-opacity-30 bg-secondary text-light">Save</button>
                                                     </div>
                                                 </form>
                                             ) : (
                                                 <div style={{display: "inline"}}>
                                                     <p>Sets: {workout.sets}, Reps: {workout.reps}
-                                                        <Button style={{marginLeft: "20px"}} size= "sm" onClick={() => setEditingExercise(workout.id)}>
-                                                            <FontAwesomeIcon icon={faEdit} />
-                                                        </Button>
+                                                        {routine.editing && (
+                                                            <Button style={{marginLeft: "20px"}} size= "sm" onClick={() => setEditingExercise(workout.id)}>
+                                                                <FontAwesomeIcon icon={faEdit} />
+                                                            </Button>
+                                                            )}
                                                     </p>
                                                 </div>
                                             )}
@@ -136,6 +154,7 @@ function ShowRoutine() {
 
                                 </Card.Text>
                                 <div className="d-flex justify-content-between">
+                                    <Button onClick={() => handleIsEditing(routine.id)} variant="primary">{routine.editing ? 'Save' : 'Edit'}</Button>
                                     <Button onClick={() => handleDelete(routine.id)} variant="danger">Delete</Button>
                                 </div>
                             </Card.Body>

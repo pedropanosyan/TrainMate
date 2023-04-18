@@ -23,8 +23,12 @@ public class Routine {
     @Transient
     private String token;
 
+    @Transient
+    private boolean editing;
+
     public Routine(){
         this.active = true;
+        this.editing = false;
     }
 
     public Routine(String name, List<RoutineWorkout> workouts, String token) {
@@ -32,6 +36,14 @@ public class Routine {
         this.name = name;
         this.workouts = workouts;
         this.token = token;
+    }
+
+    public boolean isEditing() {
+        return editing;
+    }
+
+    public void setEditing() {
+        this.editing = !this.editing;
     }
 
     public String getToken() {
