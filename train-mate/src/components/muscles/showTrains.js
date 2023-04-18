@@ -16,7 +16,6 @@ function ShowTrains({muscle}) {
     const [repetitions, setRepetitions] = useState('');
     const [weight, setWeight] = useState('');
 
-    const [showView, setShowView] = useState(false);
     const [boxStates, setBoxStates] = useState(Array(trains.length).fill(false));
 
     useEffect(() => {
@@ -108,16 +107,15 @@ function ShowTrains({muscle}) {
                                                 </Form.Group>
                                             </Form>
                                         </Modal.Body>
-
                                         <Modal.Footer>
                                             <Button variant="secondary" onClick={() => setShowModal(false)}>Cancel</Button>
                                             <Button variant="primary" onClick={() => handleSave(train.id)}>Save</Button>
                                         </Modal.Footer>
                                     </Modal>
                                 </div>
-                                <Collapse in={showView}>
+                                <Collapse in={boxStates[train.id]}>
                                     <div className="mt-3">
-                                        { boxStates[train.id] && train.trainWorkouts.map(workout => (
+                                        { train.trainWorkouts.map(workout => (
                                             <li style={{listStyle:'inside', listStylePosition:'initial'}}>
                                                 <p style={{display:'inline', color:'#212529', textTransform:'capitalize', fontSize:'0.7em'}}
                                                    key={workout.id}> Date: {workout.date} Sets: {workout.sets}, Reps: {workout.reps}, Weight: {workout.weight}Kg

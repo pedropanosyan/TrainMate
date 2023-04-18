@@ -36,10 +36,28 @@ public class TrainMateUser {
         this.password = password;
     }
 
+    public void updateRoutine(Routine routine){
+        for (int i = 0; i < this.routines.size(); i++){
+            if (this.routines.get(i).getId() == routine.getId()){
+                this.routines.set(i, routine);
+                break;
+            }
+        }
+    }
+
     public Train findTrain(String trainName){
         for (Train train : this.trains) {
             if (Objects.equals(train.getName(), trainName)) {
                 return train;
+            }
+        }
+        return null;
+    }
+
+    public Routine findRoutineById(long id){
+        for (Routine routine: this.routines){
+            if (routine.getId() == id){
+                return routine;
             }
         }
         return null;
