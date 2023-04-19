@@ -1,4 +1,5 @@
 import {Modal, Button} from "react-bootstrap";
+import ForumPost from "../components/forum_components/ForumPost";
 
 const ForumHome = () => {
     return (
@@ -11,11 +12,13 @@ const ForumHome = () => {
                     size="xl"
                 >
                     <Modal.Header>
-                        <Modal.Title>Posts  </Modal.Title>
+                        <Modal.Title>Posts</Modal.Title>
+                        <h5>X Total Posts</h5>
+
                     </Modal.Header>
 
                     <Modal.Body>
-                        Posts go here
+                        <ForumPost/>
                     </Modal.Body>
 
                     <Modal.Footer>
