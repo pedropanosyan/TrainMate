@@ -66,7 +66,7 @@ function ShowTrains({muscle}) {
 
     return(
         <Container className="routines">
-            <Row xs={1} md={3} lg={4} className="g-4">
+            <Row xs={1} md={3} lg={4} className="g-1">
                 {trains.map(train => (
                     <Col key={train.id}>
                         <Card className='border-primary rounded border-1'>

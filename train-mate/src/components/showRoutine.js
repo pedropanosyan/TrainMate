@@ -94,6 +94,7 @@ function ShowRoutine() {
             .catch(error => console.log(error));
         handleIsEditing(updatedRoutine.id)
         setUpdate(!update);
+        window.location.reload();
     };
 
     const handleIsEditing = (routineId) => {
@@ -155,7 +156,12 @@ function ShowRoutine() {
                                 </Card.Text>
                                 <div className="d-flex justify-content-between">
                                     <Button onClick={() => handleIsEditing(routine.id)} variant="primary">{routine.editing ? 'Save' : 'Edit'}</Button>
-                                    <Button onClick={() => handleDelete(routine.id)} variant="danger">Delete</Button>
+                                    <Button onClick={() => {
+                                        if (window.confirm("Are you sure you want to delete this routine?")) {
+                                            handleDelete(routine.id);
+                                        }
+                                    }} variant="danger">Delete
+                                    </Button>
                                 </div>
                             </Card.Body>
                         </Card>
