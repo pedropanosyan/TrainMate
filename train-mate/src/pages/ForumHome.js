@@ -1,9 +1,8 @@
-import {Modal, Container, Button} from "react-bootstrap";
+import {Modal, Button} from "react-bootstrap";
 
 const ForumHome = () => {
     return (
         <>
-            <Container>
             <div
                 className="modal show"
                 style={{ display: 'block', position: 'initial' }}
@@ -12,7 +11,7 @@ const ForumHome = () => {
                     size="xl"
                 >
                     <Modal.Header>
-                        <Modal.Title>Post  </Modal.Title>
+                        <Modal.Title>Posts  </Modal.Title>
                     </Modal.Header>
 
                     <Modal.Body>
@@ -20,13 +19,12 @@ const ForumHome = () => {
                     </Modal.Body>
 
                     <Modal.Footer>
-                        <Button variant="secondary">Cancel</Button>
-                        <Button variant="primary">Publish</Button>
+                        <Button variant="secondary">Previous</Button>
+                        <Button variant="primary">Next</Button>
                     </Modal.Footer>
                 </Modal.Dialog>
 
             </div>
-            </Container>
             </>
     );
 };
