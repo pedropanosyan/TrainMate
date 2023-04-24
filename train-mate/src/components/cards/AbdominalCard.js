@@ -10,7 +10,7 @@ function AbdominalCard() {
                     <Card className="card-square border-primary">
                         <Card.Img className="card-img" variant="top" src={"Imagenes/abdomen.jpg"} />
                         <Card.Body >
-                            <Card.Title className="card-title"><h2>Abdominal</h2></Card.Title>
+                            <Card.Title className="card-title"><h2>Abs</h2></Card.Title>
                             <Card.Text className="card-text">
                                 Track your abs progress and train smarter.
                             </Card.Text>

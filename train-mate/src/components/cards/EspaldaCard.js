@@ -10,7 +10,7 @@ function EspaldaCard() {
                     <Card className="card-square border-primary">
                         <Card.Img className="card-img" variant="top" src={"Imagenes/espalda.jpg"} />
                         <Card.Body >
-                            <Card.Title className="card-title"><h2>Espalda</h2></Card.Title>
+                            <Card.Title className="card-title"><h2>Back</h2></Card.Title>
                             <Card.Text className="card-text">
                                 Track your back progress and train smarter.
                             </Card.Text>

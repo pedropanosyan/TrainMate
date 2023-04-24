@@ -10,7 +10,7 @@ function BrazoCard() {
                     <Card className="card-square border-primary">
                         <Card.Img className="card-img" variant="top" src={"Imagenes/bicep2.jpg"} />
                         <Card.Body >
-                            <Card.Title className="card-title"><h2>Brazo</h2></Card.Title>
+                            <Card.Title className="card-title"><h2>Arms</h2></Card.Title>
                             <Card.Text className="card-text">
                                 Track your arm progress and train smarter.
                             </Card.Text>

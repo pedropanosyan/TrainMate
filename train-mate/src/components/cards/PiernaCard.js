@@ -10,7 +10,7 @@ function PiernaCard() {
                     <Card className="card-square border-primary">
                         <Card.Img className="card-img" variant="top" src={"Imagenes/piernas.jpg"} />
                         <Card.Body >
-                            <Card.Title className="card-title"><h2>Pierna</h2></Card.Title>
+                            <Card.Title className="card-title"><h2>Legs</h2></Card.Title>
                             <Card.Text className="card-text">
                                 Track your leg progress and train smarter.
                             </Card.Text>
