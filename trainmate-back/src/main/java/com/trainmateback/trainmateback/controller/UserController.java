@@ -26,18 +26,15 @@ public class UserController {
         UUID uuid = UUID.randomUUID();
         String token = uuid.toString();
         user.setToken(token);
-        try {
-            userRepository.save(user);
-            Map<String, String> response = new HashMap<>();
-            response.put("token", token);
-            return ResponseEntity.ok(response);
-        }
-        catch (DataIntegrityViolationException e) {
+        if (userRepository.existsByEmail(user.getEmail()) || userRepository.existsByUsername(user.getUsername())) {
             String errorMessage = "Email o Username no validos";
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
         }
-        catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ocurrió un error al crear el usuario");
+        else {
+                userRepository.save(user);
+                Map<String, String> response = new HashMap<>();
+                response.put("token", token);
+                return ResponseEntity.ok(response);
         }
     }
 

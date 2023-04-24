@@ -12,5 +12,8 @@ public interface UserRepository  extends JpaRepository<TrainMateUser, String> {
 
     TrainMateUser findByToken(String token);
 
+    boolean existsByUsername(String username);
+
+    boolean existsByEmail(String email);
 
 }

@@ -55,7 +55,7 @@ const Workout = ({ index, handleOnChange }) => {
                 <option key={option} value={option}>{option}</option>
             ))}
         </select>
-        <select name="routineWorkout" onChange={(event => {handleWorkoutNameChange(event)})}>
+        <select name="routineWorkout" onChange={(event => {handleWorkoutNameChange(event)})} required>
             <option value=""> Select a workout</option>
             {trains && trains.map(train => (
                 <option key={train.id} value={train.name}>{train.name}</option>
