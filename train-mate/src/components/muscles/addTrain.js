@@ -28,16 +28,20 @@ const AddTrain = ({muscle}) => {
     }
 
     const handleAddNewTrain = async () => {
-        const token = localStorage.getItem("token");
-        const newTrain = { name: trainName, token: token, muscle: muscle};
-        try {
-            await axios.post("http://localhost:8080/createTrain", newTrain);
+        if (!trainName){
+            alert("Please add a name")
+            return
         }
-        catch (e) {
-            console.log(e);
-        }
-        finally {
-            newTrain.current.reset();
+        else {
+            const token = localStorage.getItem("token");
+            const newTrain = {name: trainName, token: token, muscle: muscle};
+            try {
+                await axios.post("http://localhost:8080/createTrain", newTrain);
+            } catch (e) {
+                console.log(e);
+            } finally {
+                newTrain.current.reset();
+            }
         }
     }
 

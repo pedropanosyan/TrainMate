@@ -33,7 +33,6 @@ const Routine = () => {
         try {
             await axios.post("http://localhost:8080/userRoutine", newRoutine);
             console.log(newRoutine)
-            window.location.reload();
         } catch (error) {
             console.error(error);
         } finally {

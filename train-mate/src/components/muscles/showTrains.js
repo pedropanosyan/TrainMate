@@ -30,6 +30,10 @@ function ShowTrains({muscle}) {
     }, [muscle, trains])
     
     const handleSave = async (trainId) => {
+        if (!weight || !repetitions || !series){
+            alert ("Please complete correctly all fields")
+            return
+        }
         const token = localStorage.getItem("token");
         const newTrain = {sets: series, reps: repetitions, weight: weight, token: token, id: trainId};
         try {
