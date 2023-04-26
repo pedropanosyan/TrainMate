@@ -4,6 +4,7 @@ import {Button, Card, Col, Container, Row, Modal, Form} from "react-bootstrap";
 import '../../css/showRoutine.css';
 import { BiX } from 'react-icons/bi';
 import Collapse from "react-bootstrap/Collapse";
+import {toast} from "react-toastify";
 
 
 function ShowTrains({muscle}) {
@@ -31,7 +32,7 @@ function ShowTrains({muscle}) {
     
     const handleSave = async (trainId) => {
         if (!weight || !repetitions || !series){
-            alert ("Please complete correctly all fields")
+            toast.error ("Please complete correctly all fields")
             return
         }
         const token = localStorage.getItem("token");

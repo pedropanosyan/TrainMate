@@ -2,6 +2,7 @@ import {useState, useCallback} from "react";
 import axios from "axios";
 import Button from 'react-bootstrap/Button';
 import Workout from "./Workout";
+import {toast} from "react-toastify";
 
 
 const Routine = () => {
@@ -24,7 +25,7 @@ const Routine = () => {
 
     const handleEndRoutineClick = async () => {
         if (!routineName) {
-            alert('Please complete all required fields');
+            toast.error('Please complete all required fields');
             return
         }
         const token = localStorage.getItem('token');

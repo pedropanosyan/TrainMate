@@ -1,6 +1,7 @@
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
 import {useState} from "react";
 import axios from 'axios';
+import {toast} from "react-toastify";
 
 
 function RegisterForm(){
@@ -33,11 +34,11 @@ function RegisterForm(){
         event.preventDefault();
         const formData = { username, email, password};
         if (!validateEmail(email)) {
-            alert("Enter a valid email.")
+            toast.error("Enter a valid email.")
             return;
         }
         if (password.length < MIN_PASSWORD_LENGTH) {
-            alert(`Password must be at least ${MIN_PASSWORD_LENGTH} characters long`);
+            toast.error(`Password must be at least ${MIN_PASSWORD_LENGTH} characters long`);
             return;
         }
 
@@ -48,7 +49,7 @@ function RegisterForm(){
                 window.location.assign('/home');
             })
             .catch(function (error) {
-                alert(JSON.stringify(error.response.data));
+                toast.error(JSON.stringify(error.response.data));
             });
     };
 

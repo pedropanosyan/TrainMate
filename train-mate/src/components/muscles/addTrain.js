@@ -1,6 +1,7 @@
 import Button from "react-bootstrap/Button";
 import {useRef, useState} from "react";
 import axios from "axios";
+import {toast} from "react-toastify";
 
 const AddTrain = ({muscle}) => {
     const [showInputs, setShowInputs] = useState(false);
@@ -29,8 +30,7 @@ const AddTrain = ({muscle}) => {
 
     const handleAddNewTrain = async () => {
         if (!trainName){
-            alert("Please add a name")
-            return
+            toast.error("Please add a name")
         }
         else {
             const token = localStorage.getItem("token");

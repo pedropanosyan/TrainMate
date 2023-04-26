@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
 import axios from "axios";
+import {toast} from "react-toastify";
 
 
 
@@ -29,7 +30,7 @@ function LoginForm() {
                 window.location.assign('/home');
             })
             .catch(function (error) {
-                alert("Wrong input fields, try again.")
+                toast.error("Wrong input fields, try again.");
             });
     };
 
