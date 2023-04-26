@@ -37,6 +37,7 @@ const Routine = () => {
             console.error(error);
         } finally {
             newRoutine.current.reset();
+            window.location.reload()
         }
     };
 

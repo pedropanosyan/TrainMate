@@ -35,7 +35,7 @@ function LoginForm() {
 
     return (
         <Container className="mt-5 p-4 d-flex justify-content-center align-items-center">
-            <Row style={{width:"90%", maxWidth:'600px', height:'90vh'}}>
+            <Row id={'aca'} style={{width:"90%", maxWidth:'600px', height:'90vh'}}>
                 <Col>
                     <Card className="shadow-lg mx-auto"  style={{ border:'5px solid #8db5ff', borderRadius: "10px", width:"100%", opacity:'1', backgroundColor:'#e9ecef'}}>
                         <Card.Img variant="top" src='Imagenes/logo2.png' style={{ height: "200px", objectFit: "cover", width:'auto'}} />
