@@ -12,6 +12,7 @@ function ShowRoutine() {
     const [editingExercise, setEditingExercise] = useState(null);
     const [update, setUpdate] = useState(false);
 
+
     useEffect(() => {
         const accessToken = localStorage.getItem('token');
         axios.get('http://localhost:8080/routines', {
@@ -92,9 +93,9 @@ function ShowRoutine() {
             headers: {'token': token}
         })
             .catch(error => console.log(error));
+
         handleIsEditing(updatedRoutine.id)
         setUpdate(!update);
-        window.location.reload();
     };
 
     const handleIsEditing = (routineId) => {
@@ -155,7 +156,7 @@ function ShowRoutine() {
 
                                 </Card.Text>
                                 <div className="d-flex justify-content-between">
-                                    <Button onClick={() => handleIsEditing(routine.id)} variant="primary">{routine.editing ? 'Save' : 'Edit'}</Button>
+                                    <Button onClick={() => handleIsEditing(routine.id)} variant="primary">{routine.editing ? 'Exit edit' : 'Edit'}</Button>
                                     <Button onClick={() => {
                                         if (window.confirm("Are you sure you want to delete this routine?")) {
                                             handleDelete(routine.id);

@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository  extends JpaRepository<TrainMateUser, String> {
 
+    TrainMateUser findByEmail(String email);
 
     boolean existsByUsernameAndPassword(String username, String password);
 

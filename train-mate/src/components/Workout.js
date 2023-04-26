@@ -24,7 +24,10 @@ const Workout = ({ index, handleOnChange }) => {
     useEffect(() => {
         if (reps !== "" && sets !== "" && routineWorkout !== ""){
             const workout = { routineWorkout, sets, reps }
-            handleOnChange(workout, index)
+            if(routineWorkout) {
+                handleOnChange(workout, index)
+            }
+            else alert("Please complete all required fields")
         }
     }, [routineWorkout, sets, reps])
 
@@ -49,20 +52,20 @@ const Workout = ({ index, handleOnChange }) => {
 
     return(
     <div>
-        <select className='m-1' name="muscleSelected" onChange={(event => {handleMuscleChange(event)})}>
+        <select  style={{height:'25px', width:'150px'}} className='m-1' name="muscleSelected" onChange={(event => {handleMuscleChange(event)})}>
             <option value=''>Select a muscle</option>
             {muscleOptions.map((option) => (
                 <option key={option} value={option}>{option}</option>
             ))}
         </select>
-        <select name="routineWorkout" onChange={(event => {handleWorkoutNameChange(event)})} required>
+        <select style={{height:'25px', width:'150px'}} className='m-1' name="routineWorkout" onChange={(event => {handleWorkoutNameChange(event)})} required>
             <option value=""> Select a workout</option>
             {trains && trains.map(train => (
-                <option key={train.id} value={train.name}>{train.name}</option>
+                <option  key={train.id} value={train.name}>{train.name}</option>
             ))}
         </select>
-        <input className='m-1' required name="sets" placeholder="Enter sets" onChange={(event) => handleSetsChange(event)} type="number" />
-        <input className='m-1' required name="reps" placeholder="Enter reps" onChange={(event) => handleRepsChange(event)} type="number" />
+        <input style={{height:'25px', width:'100px'}} className='m-1' required name="sets" placeholder="Enter sets" onChange={(event) => handleSetsChange(event)} type="number" />
+        <input style={{height:'25px', width:'100px'}} className='m-1' required name="reps" placeholder="Enter reps" onChange={(event) => handleRepsChange(event)} type="number" />
     </div>
 )
 }

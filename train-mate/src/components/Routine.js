@@ -5,11 +5,13 @@ import Workout from "./Workout";
 import {toast} from "react-toastify";
 
 
-const Routine = () => {
+const Routine = ({handleCreateRoutine, value}) => {
 
     const [showInputs, setShowInputs] = useState(false);
     const [routineName, setRoutineName] = useState("");
     const [routineWorkouts, setRoutineWorkouts] = useState([]);
+
+
     const handleNewRoutineClick = () => {
         setShowInputs(true);
     };
@@ -17,7 +19,6 @@ const Routine = () => {
     const handleNameChange = (event) => {
         setRoutineName(event.target.value);
     };
-
 
     const handleAddWorkout = () => {
         setRoutineWorkouts([...routineWorkouts, {routineWorkout: '', sets: 0, reps: 0, muscleSelected: ''}]);
@@ -37,6 +38,7 @@ const Routine = () => {
         } catch (error) {
             console.error(error);
         } finally {
+            handleCreateRoutine(!value);
             newRoutine.current.reset();
             window.location.reload()
         }
