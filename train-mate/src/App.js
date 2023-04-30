@@ -48,6 +48,7 @@ function App() {
                 <Route path="/forum" element = {<Forum />}/>
                 <Route path="/register" element = {<Register />}/>
                 <Route path='/routines' element={isAuthenticated() ? <Routine /> : <Navigate to="/"/>}/>
+                <Route path='/forum' element={isAuthenticated() ? <Forum /> : <Navigate to="/"/>}/>
             </Routes>
         </Router>
     );

@@ -26,6 +26,10 @@ function NavBar() {
       window.location.assign('/home');
     }
 
+    const toForum = () => {
+        window.location.assign("/forum");
+    }
+
     return (
         <>
             <Navbar bg="dark" variant="dark" style={{backgroundColor:'#212529'}}>
@@ -39,7 +43,7 @@ function NavBar() {
                         <Nav className="me-auto" style = {{color: 'white', fontSize: '1.4em', marginLeft: '200px', marginTop: '-25px'}}>
                             <Nav.Link className={`nav-link ${currentPath === '/home' ? 'active' : ''}`} onClick={toHome} style={{ marginRight: '70px', marginTop:'20px' }}>Home</Nav.Link>
                             <Nav.Link className={`nav-link ${currentPath === '/routines' ? 'active' : ''}`} onClick={toRoutine} style={{ marginRight: '70px', marginTop:'20px' }}>Routines</Nav.Link>
-                            <Nav.Link className={`nav-link ${currentPath === '/forum' ? 'active' : ''}`} style={{ marginRight: '70px', marginTop:'20px'}}>Forum</Nav.Link>
+                            <Nav.Link className={`nav-link ${currentPath === '/forum' ? 'active' : ''}`} onClick={toForum} style={{ marginRight: '70px', marginTop:'20px'}}>Forum</Nav.Link>
                             <Nav.Link onClick={handleSignOut} href="/login" style= {{marginRight: '70px', marginTop:'20px'}}>Sign Out</Nav.Link>
                         </Nav>
                         </Navbar.Collapse>
