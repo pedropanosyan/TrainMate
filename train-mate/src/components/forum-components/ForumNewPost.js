@@ -18,35 +18,43 @@ function ForumNewPost() {
     }
 
     const handleSubmit = () => {
-        const data = {question}
-        axios.post('http://localhost:8080/addQuestion', data)
-            .then(function (response) {
+        if (question === ""){
+            toast.warning("Complete the field")
+        }
+        else {
+            const data = {question}
+            axios.post('http://localhost:8080/addQuestion', data)
+                .then(function (response) {
 
-            })
-            .catch(function (error) {
-                toast.error(JSON.stringify(error.response.data));
-            });
+                })
+                .catch(function (error) {
+                    toast.error(JSON.stringify(error.response.data));
+                });
+            setIsAsking(!isAsking);
+            setQuestion("");
+        }
     }
 
     return(
         <div
             className="modal show"
             style={{ display: 'block', position: 'initial' }}
+
         >
             <div className="m-3">
-                <Button variant="primary" onClick={handleIsAsking}>Add a question</Button>
+                <Button variant="outline-warning" onClick={handleIsAsking}>Add a question</Button>
             </div>
             {isAsking &&
                 <Modal.Dialog size="lg">
                     <Modal.Header>
-                        <Modal.Title>Ask new Question</Modal.Title>
+                        <Modal.Title>Ask new question</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Form className="form-inline">
                             <Form.Group className="form-inline">
-                                <Form.Control onChange={handleQuestion} type="post-title" placeholder="Post Question"/>
+                                <Form.Control className="border border-warning" onChange={handleQuestion} type="post-title" placeholder="Post Question"/>
                             </Form.Group>
-                            <Button onClick={handleSubmit} className="mt-2 justify-content-end" variant="outline-primary"> Submit</Button>
+                            <Button onClick={handleSubmit} className="mt-2 justify-content-end" variant="warning"> Submit</Button>
                         </Form>
                     </Modal.Body>
                 </Modal.Dialog>
