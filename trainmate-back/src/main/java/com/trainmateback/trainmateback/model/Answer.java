@@ -12,6 +12,10 @@ public class Answer {
     @Column
     private String answer;
 
+    public Answer(String answer){
+        this.answer = answer;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }

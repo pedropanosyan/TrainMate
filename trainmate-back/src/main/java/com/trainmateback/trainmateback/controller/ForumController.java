@@ -1,5 +1,6 @@
 package com.trainmateback.trainmateback.controller;
 
+import com.trainmateback.trainmateback.model.Answer;
 import com.trainmateback.trainmateback.model.Question;
 import com.trainmateback.trainmateback.repository.QuestionController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,16 @@ public class ForumController {
 
     @GetMapping("/getQuestions")
     List<Question> getQuestions(){
-        List<Question> questions = questionController.findAll();
-        return questions;
+        return questionController.findAll();
+    }
+
+    @PostMapping("/addAnswer/{id}")
+    ResponseEntity<?> addAnswer(@PathVariable long id, @RequestBody Answer answer){
+        Answer answer1 = new Answer(answer.getAnswer());
+        Question question_aux = questionController.findById(id);
+        question_aux.addAnswer(answer1);
+        questionController.save(question_aux);
+        return ResponseEntity.ok("");
     }
 
 }

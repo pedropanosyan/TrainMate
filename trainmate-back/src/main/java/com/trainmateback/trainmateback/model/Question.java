@@ -2,6 +2,8 @@ package com.trainmateback.trainmateback.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -18,10 +20,16 @@ public class Question {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Answer> answers;
 
-    public Question(){}
+    @Column
+    private LocalDate questionTime;
+
+    public Question(){
+        this.questionTime = LocalDate.now();
+    }
 
     public Question(String question_aux){
         this.question = question_aux;
+        this.questionTime = LocalDate.now();
     }
 
     public void setId(Long id) {
@@ -48,5 +56,11 @@ public class Question {
         this.answers = answers;
     }
 
+    public void addAnswer(Answer answer) {
+        this.answers.add(answer);
+    }
 
+    public LocalDate getQuestionTime(){
+        return this.questionTime;
+    }
 }

@@ -1,6 +1,6 @@
 import {Modal} from "react-bootstrap";
 
-function ForumPost({}) {
+function ForumPost() {
     return(
         <div
             style={{ display: 'block', position: 'initial' }}
@@ -9,7 +9,6 @@ function ForumPost({}) {
                 <Modal.Header>
                     <Modal.Title>Post Title</Modal.Title>
                 </Modal.Header>
-
                 <Modal.Body>
                     <p>Modal body text goes here.</p>
                 </Modal.Body>

@@ -10,7 +10,6 @@ function ShowRoutine() {
 
     const [routines, setRoutines] = useState([]);
     const [editingExercise, setEditingExercise] = useState(null);
-    const [update, setUpdate] = useState(false);
 
 
     useEffect(() => {
@@ -22,7 +21,7 @@ function ShowRoutine() {
         })
             .then(response => setRoutines(response.data))
             .catch(error => console.log(error));
-    }, [update]);
+    }, []);
 
 
     const handleDelete = async (routineId) => {
@@ -69,7 +68,6 @@ function ShowRoutine() {
     };
 
     const handleEdit = async (routineId, exerciseId, sets, reps) => {
-        console.log(routineId, exerciseId, sets, reps)
         const updatedRoutines = routines.map((routine) => {
             if (routine.id === routineId) {
                 const updatedWorkouts = routine.workouts.map((workout) => {
@@ -84,7 +82,6 @@ function ShowRoutine() {
                 return routine;
             }
         });
-        setRoutines(updatedRoutines);
 
         const updatedRoutine = updatedRoutines.find((routine) => routine.id === routineId);
         const token = localStorage.getItem('token');
@@ -92,10 +89,9 @@ function ShowRoutine() {
         axios.post("http://localhost:8080/editRoutine",updatedRoutine, {
             headers: {'token': token}
         })
-            .catch(error => console.log(error));
+            .catch(error => console.log(error))
+            .then(() => setRoutines(updatedRoutines))
 
-        handleIsEditing(updatedRoutine.id)
-        setUpdate(!update);
     };
 
     const handleIsEditing = (routineId) => {
@@ -119,7 +115,7 @@ function ShowRoutine() {
                                 <div className="d-flex justify-content-end">
                                     <Button className={routine.active ? 'btn-success' : 'btn-secondary'}
                                             onClick={() => handleRoutineState(routine.id)}>
-                                    {routine.active ? 'Active' : 'Inactive'} </Button>
+                                    {routine.active ? 'Deactivate' : 'Activate'} </Button>
                                 </div>
                                 <Card.Title> <h3>{routine.name}</h3></Card.Title>
                                 <Card.Text className="card-text">
