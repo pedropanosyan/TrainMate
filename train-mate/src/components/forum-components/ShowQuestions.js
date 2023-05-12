@@ -29,6 +29,7 @@ function ShowQuestions() {
             axios.post(`http://localhost:8080/addAnswer/${id}`, formData)
                 .then(() => {
                     setUserAnswer("")
+                    document.getElementById("answer").value = "";
                     toast.success("Answer submitted correctly")
                 });
         }
@@ -41,20 +42,31 @@ function ShowQuestions() {
         setShowAnswer(newState);
     }
 
+    const handleDelete = async (id) => {
+        if(window.confirm("Are you sure you want to delete the question?")) {
+            try {
+                await axios.delete(`http://localhost:8080/deleteQuestion/${id}`);
+                setQuestions(questions.filter(question => question.id !== id));
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    }
+
     return (
         <Container>
             <Row lg={2}>
                 {questions.map((question, index) => (
                     <Col>
-                        <Toast key={index} className="border border-warning m-3" style={{width:'600px'}}>
+                        <Toast onClose={()=>handleDelete(question.id)} key={index} className="border border-warning m-3" style={{width:'600px'}}>
                                 <Toast.Header>
                                     <strong className="me-auto">{question.question}</strong>
                                     <small>{question.questionTime}</small>
                                 </Toast.Header>
                                 <Toast.Body>
                                         <Form.Group>
-                                            <Form.Control onChange={handleAnswer} required as="textarea" placeholder={"Write your answer"} rows={3} />
-                                            <Button type="submit" onClick={() => handleAnswerSubmit(question.id)} className="m-2 px-1 py-0 btn-sm float-end" variant="outline-warning">Submit answer</Button>
+                                            <Form.Control id="answer" onChange={handleAnswer} required as="textarea" placeholder={"Write your answer"} rows={3} />
+                                            <Button type="submit"  onClick={() => handleAnswerSubmit(question.id)} className="m-2 px-1 py-0 btn-sm float-end" variant="outline-warning">Submit answer</Button>
                                         </Form.Group>
                                 </Toast.Body>
                             <Button onClick={() => handleView(question.id)} className="m-2 p-1" variant="warning">View answers</Button>

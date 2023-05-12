@@ -38,4 +38,11 @@ public class ForumController {
         return ResponseEntity.ok("");
     }
 
+    @DeleteMapping("deleteQuestion/{id}")
+    ResponseEntity<?> deleteQuestion(@PathVariable long id){
+            Question question = questionController.findById(id);
+            questionController.delete(question);
+            return ResponseEntity.ok("");
+        }
+
 }

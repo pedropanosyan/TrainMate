@@ -35,6 +35,10 @@ function ForumNewPost() {
         }
     }
 
+    const handleCancel = () => {
+      setIsAsking(!isAsking)
+    }
+
     return(
         <div
             className="modal show"
@@ -54,7 +58,10 @@ function ForumNewPost() {
                             <Form.Group className="form-inline">
                                 <Form.Control className="border border-warning" onChange={handleQuestion} type="post-title" placeholder="Post Question"/>
                             </Form.Group>
-                            <Button onClick={handleSubmit} className="mt-2 justify-content-end" variant="warning"> Submit</Button>
+                            <div className="d-flex justify-content-between">
+                            <Button onClick={handleSubmit} className="mt-2 justify-content-end" variant="warning">Submit</Button>
+                            <Button onClick={handleCancel} className="mt-2 justify-content-end" variant="danger">Cancel</Button>
+                            </div>
                         </Form>
                     </Modal.Body>
                 </Modal.Dialog>
