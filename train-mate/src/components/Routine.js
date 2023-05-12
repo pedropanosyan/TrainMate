@@ -61,8 +61,14 @@ const Routine = ({handleCreateRoutine, value}) => {
     }, [routineWorkouts])
 
     return (
-        <div>
-            <Button className='m-3 ' variant="primary" onClick={handleNewRoutineClick}> New routine </Button>
+        <div
+        style= {{display: "flex",
+        alignItems: "center",
+        justifyContent: 'center',
+        height: '20vh',
+        }}
+        >
+            <Button className='m-3 ' variant="primary" size="lg" onClick={handleNewRoutineClick}> New routine </Button>
             {showInputs && (
                 <div className=' d-inline-flex border border-primary rounded p-3 mt-3'>
                     <form className='m-1' onSubmit={handleSubmit}>

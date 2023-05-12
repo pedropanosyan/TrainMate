@@ -46,8 +46,14 @@ const AddTrain = ({muscle}) => {
     }
 
     return (
-        <div>
-            <Button className='m-3 ' onClick={handleNewTrain} variant="primary"> New Train </Button>
+        <div
+        style= {{display: "flex",
+        alignItems: "center",
+        justifyContent: 'center',
+        height: '20vh',
+        }}
+        >
+            <Button className='m-3' size="lg" onClick={handleNewTrain} variant="primary"> New Train </Button>
             {showInputs && (
                 <div className=' d-inline-flex border border-primary rounded p-3 mt-3'>
                     <form className='m-1' ref={formRef} onSubmit={handleSubmit}>
