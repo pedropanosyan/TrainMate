@@ -45,10 +45,11 @@ function ShowQuestions() {
     const handleDelete = async (id) => {
         if(window.confirm("Are you sure you want to delete the question?")) {
             try {
-                await axios.delete(`http://localhost:8080/deleteQuestion/${id}`);
+                const token = localStorage.getItem("token");
+                await axios.delete(`http://localhost:8080/deleteQuestion/${id}/${token}`);
                 setQuestions(questions.filter(question => question.id !== id));
             } catch (error) {
-                console.log(error);
+                toast.error("Cannot delete others questions!")
             }
         }
     }
