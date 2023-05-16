@@ -22,7 +22,8 @@ function ForumNewPost() {
             toast.warning("Complete the field")
         }
         else {
-            const data = {question}
+            const token = localStorage.getItem("token")
+            const data = {question, token}
             axios.post('http://localhost:8080/addQuestion', data)
                 .then(function (response) {
 

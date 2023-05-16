@@ -23,6 +23,12 @@ public class Question {
     @Column
     private LocalDate questionTime;
 
+    @Column
+    private String author;
+
+    @Transient
+    private String token;
+
     public Question(){
         this.questionTime = LocalDate.now();
     }
@@ -30,6 +36,28 @@ public class Question {
     public Question(String question_aux){
         this.question = question_aux;
         this.questionTime = LocalDate.now();
+    }
+
+    public Question(String question_aux, String author_aux){
+        this.question = question_aux;
+        this.questionTime = LocalDate.now();
+        this.author = author_aux;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public void setId(Long id) {
