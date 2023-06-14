@@ -1,4 +1,4 @@
-import {Container, Nav, Navbar, Image} from 'react-bootstrap';
+import {Container, Nav, Navbar } from 'react-bootstrap';
 import axios from "axios";
 
 
