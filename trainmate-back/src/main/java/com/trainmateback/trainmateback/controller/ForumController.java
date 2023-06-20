@@ -37,7 +37,8 @@ public class ForumController {
 
     @PostMapping("/addAnswer/{id}")
     ResponseEntity<?> addAnswer(@PathVariable long id, @RequestBody Answer answer){
-        Answer answer1 = new Answer(answer.getAnswer());
+        String author = userRepository.findByToken(answer.getToken()).getUsername();
+        Answer answer1 = new Answer(answer.getAnswer(), author);
         Question question_aux = questionController.findById(id);
         question_aux.addAnswer(answer1);
         questionController.save(question_aux);

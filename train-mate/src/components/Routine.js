@@ -5,7 +5,7 @@ import Workout from "./Workout";
 import {toast} from "react-toastify";
 
 
-const Routine = ({handleCreateRoutine, value}) => {
+const Routine = () => {
 
     const [showInputs, setShowInputs] = useState(false);
     const [routineName, setRoutineName] = useState("");
@@ -29,19 +29,30 @@ const Routine = ({handleCreateRoutine, value}) => {
             toast.error('Please complete all required fields');
             return
         }
-        const token = localStorage.getItem('token');
 
-        const newRoutine = {name: routineName, workouts: routineWorkouts, token};
-        try {
-            await axios.post("http://localhost:8080/userRoutine", newRoutine);
-            console.log(newRoutine)
-        } catch (error) {
-            console.error(error);
-        } finally {
-            handleCreateRoutine(!value);
-            newRoutine.current.reset();
-            window.location.reload()
+        let finish = true;
+        routineWorkouts.forEach((workout) => {
+            if (!workout.routineWorkout || !workout.sets || !workout.reps ){
+                finish = false;
+            }
+        })
+
+        if (finish) {
+            const token = localStorage.getItem('token');
+
+            const newRoutine = {name: routineName, workouts: routineWorkouts, token};
+            try {
+                await axios.post("http://localhost:8080/userRoutine", newRoutine);
+                console.log(newRoutine)
+            } catch (error) {
+                console.error(error);
+            } finally {
+                window.location.reload();
+                newRoutine.current.reset();
+
+            }
         }
+        else toast.error("Error creating the routine. Complete all required fields.")
     };
 
     const handleSubmit = (event) => {
@@ -54,6 +65,7 @@ const Routine = ({handleCreateRoutine, value}) => {
         setRoutineName("");
         setRoutineWorkouts([]);
     };
+
     const handleOnChange = useCallback((workout, index) => {
         const updatedWorkouts = [...routineWorkouts];
         updatedWorkouts[index] =  workout
@@ -61,14 +73,8 @@ const Routine = ({handleCreateRoutine, value}) => {
     }, [routineWorkouts])
 
     return (
-        <div
-        style= {{display: "flex",
-        alignItems: "center",
-        justifyContent: 'center',
-        height: '20vh',
-        }}
-        >
-            <Button className='m-3 ' variant="primary" size="lg" onClick={handleNewRoutineClick}> New routine </Button>
+        <div>
+            <Button className='m-3 ' variant="primary" onClick={handleNewRoutineClick}> New routine </Button>
             {showInputs && (
                 <div className=' d-inline-flex border border-primary rounded p-3 mt-3'>
                     <form className='m-1' onSubmit={handleSubmit}>
@@ -78,7 +84,7 @@ const Routine = ({handleCreateRoutine, value}) => {
                             ))}
                         <Button className='m-2' variant="secondary" onClick={handleAddWorkout}>Add workout</Button>
                         <Button className='m-2' variant="secondary" type="submit" onClick={handleEndRoutineClick}> Create routine </Button>
-                        <Button className='m-2' variant="secondary" onClick={handleCancel}> Cancel </Button>
+                        <Button className='m-2' variant="danger" onClick={handleCancel}> Cancel </Button>
                     </form>
                 </div>
             )}

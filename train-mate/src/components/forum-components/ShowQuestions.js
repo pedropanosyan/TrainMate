@@ -25,7 +25,8 @@ function ShowQuestions() {
 
     const handleAnswerSubmit = (id) => {
         if (userAnswer !== ""){
-            const formData = {answer: userAnswer}
+            const token = localStorage.getItem('token');
+            const formData = {answer: userAnswer, token: token}
             axios.post(`http://localhost:8080/addAnswer/${id}`, formData)
                 .then(() => {
                     setUserAnswer("")
@@ -59,26 +60,33 @@ function ShowQuestions() {
             <Row lg={2}>
                 {questions.map((question, index) => (
                     <Col>
-                        <Toast onClose={()=>handleDelete(question.id)} key={index} className="border border-warning m-3" style={{width:'600px'}}>
+                        <Toast onClose={()=>handleDelete(question.id)} key={index} className="border border-primary m-3" style={{width:'600px'}}>
                                 <Toast.Header>
                                     <strong className="me-auto">{question.question}</strong>
-                                    <small>{question.questionTime}</small>
+                                    <small>{question.questionTime}  question by {question.author}</small>
                                 </Toast.Header>
                                 <Toast.Body>
                                         <Form.Group>
                                             <Form.Control id="answer" onChange={handleAnswer} required as="textarea" placeholder={"Write your answer"} rows={3} />
-                                            <Button type="submit"  onClick={() => handleAnswerSubmit(question.id)} className="m-2 px-1 py-0 btn-sm float-end" variant="outline-warning">Submit answer</Button>
+                                            <Button type="submit"  onClick={() => handleAnswerSubmit(question.id)} className="m-2 px-1 py-0 btn-sm float-end" variant="success">Submit answer</Button>
                                         </Form.Group>
                                 </Toast.Body>
-                            <Button onClick={() => handleView(question.id)} className="m-2 p-1" variant="warning">View answers</Button>
+                            <Button onClick={() => handleView(question.id)} className="m-2 p-1" variant="primary">View answers</Button>
                             <Collapse in={showAnswer[question.id]}>
                                 <div className="mt-3">
                                 {question.answers.map((answer, index2) => (
                                 <Card key={index2} className="m-2">
                                     <Card.Body>
-                                        <Card.Text>{answer.answer}</Card.Text>
+                                        <div className="d-flex flex-column">
+                                            <div className="d-flex justify-content-between align-items-start">
+                                                <Card.Text><p className="m-0 p-0">Answered by {answer.author}</p></Card.Text>
+                                                <Card.Text><p className="m-0 p-0">{answer.date}</p></Card.Text>
+                                            </div>
+                                            <Card.Text className="mt-0">{answer.answer}</Card.Text>
+                                        </div>
                                     </Card.Body>
                                 </Card>
+
                                 ))}
                                 </div>
                             </Collapse>

@@ -47,7 +47,7 @@ function ForumNewPost() {
 
         >
             <div className="m-3">
-                <Button variant="outline-warning" onClick={handleIsAsking}>Add a question</Button>
+                <Button variant="primary" onClick={handleIsAsking}>Add a question</Button>
             </div>
             {isAsking &&
                 <Modal.Dialog size="lg">
@@ -57,10 +57,10 @@ function ForumNewPost() {
                     <Modal.Body>
                         <Form className="form-inline">
                             <Form.Group className="form-inline">
-                                <Form.Control className="border border-warning" onChange={handleQuestion} type="post-title" placeholder="Post Question"/>
+                                <Form.Control className="border border-primary" onChange={handleQuestion} type="post-title" placeholder="Post Question"/>
                             </Form.Group>
                             <div className="d-flex justify-content-between">
-                            <Button onClick={handleSubmit} className="mt-2 justify-content-end" variant="warning">Submit</Button>
+                            <Button onClick={handleSubmit} className="mt-2 justify-content-end" variant="primary">Submit</Button>
                             <Button onClick={handleCancel} className="mt-2 justify-content-end" variant="danger">Cancel</Button>
                             </div>
                         </Form>

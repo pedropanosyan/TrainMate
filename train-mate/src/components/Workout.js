@@ -5,7 +5,7 @@ const Workout = ({ index, handleOnChange }) => {
     const muscleOptions = ['Arms', 'Chest', 'Abs', 'Legs', 'Back'];
     const [muscleSelected, setMuscleSelected] = useState(null);
     const [trains, setTrains] = useState([]);
-    const [routineWorkout, setWorkoutName] = useState("");
+    const [routineWorkout, setRoutineWorkout] = useState("");
     const [sets, setSets] = useState("");
     const [reps, setReps] = useState("");
 
@@ -37,7 +37,7 @@ const Workout = ({ index, handleOnChange }) => {
     };
 
     const handleWorkoutNameChange = (event) => {
-        setWorkoutName(event.target.value);
+        setRoutineWorkout(event.target.value);
     }
 
     const handleSetsChange = (event) => {
@@ -52,20 +52,23 @@ const Workout = ({ index, handleOnChange }) => {
 
     return(
     <div>
+
         <select  style={{height:'25px', width:'150px'}} className='m-1' name="muscleSelected" onChange={(event => {handleMuscleChange(event)})}>
             <option value=''>Select a muscle</option>
             {muscleOptions.map((option) => (
                 <option key={option} value={option}>{option}</option>
             ))}
         </select>
-        <select style={{height:'25px', width:'150px'}} className='m-1' name="routineWorkout" onChange={(event => {handleWorkoutNameChange(event)})} required>
+
+        <select style={{height:'25px', width:'150px'}} className='m-1' name="routineWorkout" onChange={(event => {handleWorkoutNameChange(event)})}>
             <option value=""> Select a workout</option>
             {trains && trains.map(train => (
                 <option  key={train.id} value={train.name}>{train.name}</option>
             ))}
         </select>
-        <input style={{height:'25px', width:'100px'}} className='m-1' required name="sets" placeholder="Enter sets" onChange={(event) => handleSetsChange(event)} type="number" />
-        <input style={{height:'25px', width:'100px'}} className='m-1' required name="reps" placeholder="Enter reps" onChange={(event) => handleRepsChange(event)} type="number" />
+
+        <input style={{height:'25px', width:'100px'}} className='m-1' name="sets" placeholder="Enter sets" onChange={(event) => handleSetsChange(event)} type="number" />
+        <input style={{height:'25px', width:'100px'}} className='m-1' name="reps" placeholder="Enter reps" onChange={(event) => handleRepsChange(event)} type="number" />
     </div>
 )
 }

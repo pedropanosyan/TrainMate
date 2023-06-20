@@ -53,9 +53,7 @@ function ShowRoutine() {
     const updateRoutine = async (routineId) => {
         try {
             await axios.put(
-                `http://localhost:8080/updateRoutine/${routineId}`,
-                {}
-            );
+                `http://localhost:8080/updateRoutine/${routineId}`);
         } catch (error) {
             console.log(error);
         }
