@@ -32,22 +32,31 @@ function NavBar() {
 
     return (
         <>
-            <Navbar bg="dark" variant="dark" style={{backgroundColor:'#212529'}}>
-                <Container>
+            <Navbar bg="dark" expand="sm" variant="dark" style={{backgroundColor:'#212529'}}>
+                    <Container>                    
+                    <img
+                        src="Imagenes/logo2.png"
+                        alt="TrainMate logo"
+                        width="60"
+                        height="60"
+                        className='d-inline block align top'
+                        style={{marginRight: '10px', marginBottom: '15px'}}
+                        /> 
                     <Navbar.Brand className='navBar-brand' href="#home">
-                        <p style={{color: '#f8f8f8', fontSize: '2em'}}>Train<span style={{color:'#8db5ff'}}>Mate</span></p>
-                    </Navbar.Brand>
+                         <p style={{color: '#f8f8f8', fontSize: '2em'}}>Train<span style={{color:'#8db5ff'}}>Mate</span></p>
+                         </Navbar.Brand>
+
+                     
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
-                        <Image src="Imagenes/logo2.png" style={{width:"80px", height:"80px"}}/>
-                        <Nav className="me-auto" style = {{color: 'white', fontSize: '1.4em', marginLeft: '200px', marginTop: '-25px'}}>
-                            <Nav.Link className={`nav-link ${currentPath === '/home' ? 'active' : ''}`} onClick={toHome} style={{ marginRight: '70px', marginTop:'20px' }}>Home</Nav.Link>
-                            <Nav.Link className={`nav-link ${currentPath === '/routines' ? 'active' : ''}`} onClick={toRoutine} style={{ marginRight: '70px', marginTop:'20px' }}>Routines</Nav.Link>
-                            <Nav.Link className={`nav-link ${currentPath === '/forum' ? 'active' : ''}`} onClick={toForum} style={{ marginRight: '70px', marginTop:'20px'}}>Forum</Nav.Link>
-                            <Nav.Link onClick={handleSignOut} href="/login" style= {{marginRight: '70px', marginTop:'20px'}}>Sign Out</Nav.Link>
+                        <Nav className="me-auto" style = {{color: 'white', fontSize: '1.4em', marginRight: '0px', marginTop: '-12px'}}>
+                            <Nav.Link className={`nav-link ${currentPath === '/home' ? 'active' : ''}`} onClick={toHome}  style={{marginRight: '30px'}}>Home</Nav.Link>
+                            <Nav.Link className={`nav-link ${currentPath === '/routines' ? 'active' : ''}`} onClick={toRoutine} style={{marginRight: '30px'}} >Routines</Nav.Link>
+                            <Nav.Link className={`nav-link ${currentPath === '/forum' ? 'active' : ''}`} onClick={toForum} style={{marginRight: '30px'}}>Forum</Nav.Link>
+                            <Nav.Link onClick={handleSignOut} href="/login" >Sign Out</Nav.Link>
                         </Nav>
                         </Navbar.Collapse>
-                </Container>
+            </Container>
             </Navbar>
         </>
     );
