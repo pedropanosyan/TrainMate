@@ -73,7 +73,7 @@ function NavBar() {
                             <Nav.Link className={`nav-link ${currentPath === '/view' ? 'active' : ''}`} onClick={toView} style={{ marginRight: '50px' }}>View Progress</Nav.Link>
                             <Nav.Link className={`nav-link ${currentPath === '/forum' ? 'active' : ''}`} onClick={toForum} style={{ marginRight: '50px' }}>Forum</Nav.Link>
                             <Nav.Link onClick={handleSignOut} href="/login">Sign Out</Nav.Link>
-                            <p style={{fontSize:'0.6em', color:'grey', margin:'16px', marginLeft:'40px'}}>Logged with {user}<FaUserCircle style={{marginLeft: "5px"}} size={20} /> </p>
+                            <p style={{fontSize:'0.8em', color:'lightblue', margin: '14px 14px 14px 150px'}}> {user}<FaUserCircle style={{marginLeft: "5px"}} size={24} /> </p>
                         </Nav>
                         </Navbar.Collapse>
             </Container>
