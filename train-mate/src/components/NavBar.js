@@ -1,7 +1,7 @@
 import {Container, Nav, Navbar, Image} from 'react-bootstrap';
 import axios from "axios";
 import {useEffect, useState} from "react";
-import {toast} from "react-toastify";
+import { FaUserCircle } from "react-icons/fa";
 
 
 function NavBar() {
@@ -68,12 +68,12 @@ function NavBar() {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto" style={{ color: 'white', fontSize: '1.4em', marginLeft: '10%', marginTop: '-12px', justifyContent: 'space-between' }}>
-                            <Nav.Link className={`nav-link ${currentPath === '/home' ? 'active' : ''}`} onClick={toHome} style={{ marginRight: '70px' }}>Home</Nav.Link>
-                            <Nav.Link className={`nav-link ${currentPath === '/routines' ? 'active' : ''}`} onClick={toRoutine} style={{ marginRight: '70px' }}>Routines</Nav.Link>
-                            <Nav.Link className={`nav-link ${currentPath === '/view' ? 'active' : ''}`} onClick={toView} style={{ marginRight: '70px' }}>View Progress</Nav.Link>
-                            <Nav.Link className={`nav-link ${currentPath === '/forum' ? 'active' : ''}`} onClick={toForum} style={{ marginRight: '70px' }}>Forum</Nav.Link>
+                            <Nav.Link className={`nav-link ${currentPath === '/home' ? 'active' : ''}`} onClick={toHome} style={{ marginRight: '50px' }}>Home</Nav.Link>
+                            <Nav.Link className={`nav-link ${currentPath === '/routines' ? 'active' : ''}`} onClick={toRoutine} style={{ marginRight: '50px' }}>Routines</Nav.Link>
+                            <Nav.Link className={`nav-link ${currentPath === '/view' ? 'active' : ''}`} onClick={toView} style={{ marginRight: '50px' }}>View Progress</Nav.Link>
+                            <Nav.Link className={`nav-link ${currentPath === '/forum' ? 'active' : ''}`} onClick={toForum} style={{ marginRight: '50px' }}>Forum</Nav.Link>
                             <Nav.Link onClick={handleSignOut} href="/login">Sign Out</Nav.Link>
-                            <p style={{fontSize:'0.6em', color:'grey', margin:'10px', marginLeft:'10px'}}>Logged with {user}</p>
+                            <p style={{fontSize:'0.6em', color:'grey', margin:'16px', marginLeft:'40px'}}>Logged with {user}<FaUserCircle style={{marginLeft: "5px"}} size={20} /> </p>
                         </Nav>
                         </Navbar.Collapse>
             </Container>
