@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import {FaPlus} from 'react-icons/fa';
 import ModalTrain from "./modal";
+import {toast} from "react-toastify";
 
 
 function ShowRoutine() {
@@ -105,9 +106,33 @@ function ShowRoutine() {
         setRoutines(updatedRoutines);
         setEditingExercise(null);
     }
-    const handleModal = () => {
-        setShowModal(true);
+    const handleModal = (id) => {
+        setShowModal(id);
     }
+
+    function save(series, reps, weight, muscle, name) {
+        if (!weight || !reps || !series) {
+            toast.error("Please complete correctly all fields");
+            return;
+        }
+        const token = localStorage.getItem("token");
+        let id = 5;
+        axios
+            .get("http://localhost:8080/getTrainByName", { headers: { name: name } })
+            .then(response => {
+                id = response.data;
+                console.log("holaaa" + id);
+                const newTrain = {sets: series, reps: reps, weight: weight, token: token, muscle: muscle, id: id, trainName: name};
+                try {
+                    axios.post("http://localhost:8080/addTrainWorkout", newTrain);
+                } catch (e) {
+                    console.log(e);
+                } finally {
+                    setShowModal(false);
+                }
+            });
+    }
+
 
     return (
         <Container className="routines">
@@ -125,8 +150,13 @@ function ShowRoutine() {
                                 <Card.Text className="card-text">
                                     {routine.workouts.map(workout => (
                                         <li key={workout.id}>
-                                            <h5>{workout.routineWorkout} <FaPlus onClick={handleModal} style={{cursor: 'pointer'}} size={20}/> </h5>
-                                            {showModal && <ModalTrain/>}
+                                            <h5>{workout.routineWorkout}
+                                                <FaPlus onClick={() => handleModal(workout.id)} style={{marginLeft:'5px', cursor: 'pointer'}} size={20}/>
+                                            </h5>
+                                            {showModal === workout.id ?
+                                                <ModalTrain id={workout.id} workouts={routine.workouts} show={showModal} showModal={handleModal} saveInfo={save}/>
+                                                : null
+                                            }
                                             {editingExercise === workout.id ? (
                                                 <form onSubmit={e => {
                                                     e.preventDefault();

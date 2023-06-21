@@ -105,4 +105,10 @@ public class TrainController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("getTrainByName")
+    Long getTrainByName(@RequestHeader String name){
+        Train train = trainRepository.findByName(name);
+        return train.getId();
+    }
+
 }
