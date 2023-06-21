@@ -1,7 +1,9 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
+import { RiCloseCircleLine } from 'react-icons/ri';
 
-const Workout = ({ index, handleOnChange }) => {
+
+const Workout = ({ index, handleOnChange, handleWorkoutCancel }) => {
     const muscleOptions = ['Arms', 'Chest', 'Abs', 'Legs', 'Back'];
     const [muscleSelected, setMuscleSelected] = useState(null);
     const [trains, setTrains] = useState([]);
@@ -49,26 +51,30 @@ const Workout = ({ index, handleOnChange }) => {
         const value = event.target.value;
         setReps(value)
     };
+    
+    function handleClose() {
+        handleWorkoutCancel(index)
+    }
 
     return(
     <div>
 
-        <select  style={{height:'25px', width:'150px'}} className='m-1' name="muscleSelected" onChange={(event => {handleMuscleChange(event)})}>
+        <select  style={{height:'25px', width:'150px'}} required className='m-1' name="muscleSelected" onChange={(event => {handleMuscleChange(event)})}>
             <option value=''>Select a muscle</option>
             {muscleOptions.map((option) => (
                 <option key={option} value={option}>{option}</option>
             ))}
         </select>
 
-        <select style={{height:'25px', width:'150px'}} className='m-1' name="routineWorkout" onChange={(event => {handleWorkoutNameChange(event)})}>
+        <select style={{height:'25px', width:'150px'}} required className='m-1' name="routineWorkout" onChange={(event => {handleWorkoutNameChange(event)})}>
             <option value=""> Select a workout</option>
             {trains && trains.map(train => (
                 <option  key={train.id} value={train.name}>{train.name}</option>
             ))}
         </select>
-
-        <input style={{height:'25px', width:'100px'}} className='m-1' name="sets" placeholder="Enter sets" onChange={(event) => handleSetsChange(event)} type="number" />
-        <input style={{height:'25px', width:'100px'}} className='m-1' name="reps" placeholder="Enter reps" onChange={(event) => handleRepsChange(event)} type="number" />
+        <input style={{height:'25px', width:'100px'}} required className='m-1' name="sets" placeholder="Enter sets" onChange={(event) => handleSetsChange(event)} type="number" />
+        <input style={{height:'25px', width:'100px'}} required className='m-1' name="reps" placeholder="Enter reps" onChange={(event) => handleRepsChange(event)} type="number" />
+        <RiCloseCircleLine onClick={handleClose} style={{color: 'red', fontSize:'20px', backgroundColor:'transparent', border:'none', cursor: 'pointer'}}/>
     </div>
 )
 }

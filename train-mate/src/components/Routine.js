@@ -52,7 +52,10 @@ const Routine = () => {
 
             }
         }
-        else toast.error("Error creating the routine. Complete all required fields.")
+        else {
+            toast.error("Error creating the routine. Complete all required fields.")
+            return
+        }
     };
 
     const handleSubmit = (event) => {
@@ -72,6 +75,11 @@ const Routine = () => {
         setRoutineWorkouts(updatedWorkouts);
     }, [routineWorkouts])
 
+    function handleWorkoutCancel(index) {
+        const updatedWorkouts = routineWorkouts.filter((_, i) => i !== index);
+        setRoutineWorkouts(updatedWorkouts);
+    }
+
     return (
         <div>
             <Button className='m-3 ' variant="primary" onClick={handleNewRoutineClick}> New routine </Button>
@@ -80,7 +88,7 @@ const Routine = () => {
                     <form className='m-1' onSubmit={handleSubmit}>
                         <input className='mb-3' name="routineName" required placeholder="Enter routine name" onChange={handleNameChange} type="text" />
                         {routineWorkouts.map((workout,index) => (
-                            <Workout index={index} handleOnChange={handleOnChange}/>
+                            <Workout index={index} handleOnChange={handleOnChange} handleWorkoutCancel={handleWorkoutCancel}/>
                             ))}
                         <Button className='m-2' variant="secondary" onClick={handleAddWorkout}>Add workout</Button>
                         <Button className='m-2' variant="secondary" type="submit" onClick={handleEndRoutineClick}> Create routine </Button>
