@@ -27,15 +27,27 @@ public class TrainController {
 
     @PostMapping("/createTrain")
     public ResponseEntity<?> createTrain(@RequestBody TrainRequest trainRequest) {
-        try {
-            TrainMateUser user = userRepository.findByToken(trainRequest.getToken());
-            Train train = new Train(trainRequest.getName(), trainRequest.getMuscle());
-            user.addTrain(train);
-            userRepository.save(user);
-            return ResponseEntity.ok("");
-        } catch (Exception e) {
-            return ResponseEntity.internalServerError().body("");
+        if (!existsTrain(trainRequest.getToken(), trainRequest.getName())) {
+            try {
+                TrainMateUser user = userRepository.findByToken(trainRequest.getToken());
+                Train train = new Train(trainRequest.getName(), trainRequest.getMuscle());
+                user.addTrain(train);
+                userRepository.save(user);
+                return ResponseEntity.ok("");
+            } catch (Exception e) {
+                return ResponseEntity.internalServerError().body("");
+            }
         }
+        else return ResponseEntity.internalServerError().body("");
+    }
+
+    private boolean existsTrain(String token, String name){
+        try {
+            TrainMateUser user = userRepository.findByToken(token);
+            String temp = user.findTrain(name).getName();
+            return temp.equals(name);
+        }
+        catch (Exception e) {return false;}
     }
 
     @PostMapping("/addTrainWorkout")
@@ -106,8 +118,9 @@ public class TrainController {
     }
 
     @GetMapping("getTrainByName")
-    Long getTrainByName(@RequestHeader String name){
-        Train train = trainRepository.findByName(name);
+    Long getTrainByName(@RequestHeader String name, @RequestHeader String token){
+        TrainMateUser user = userRepository.findByToken(token);
+        Train train = user.findTrain(name);
         return train.getId();
     }
 

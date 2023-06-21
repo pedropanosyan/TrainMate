@@ -39,6 +39,7 @@ const AddTrain = ({muscle}) => {
                 await axios.post("http://localhost:8080/createTrain", newTrain);
             } catch (e) {
                 console.log(e);
+                    toast.error(`An error occurred. Check if "${trainName}" is already used`)
             } finally {
                 newTrain.current.reset();
             }

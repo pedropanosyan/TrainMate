@@ -118,7 +118,7 @@ function ShowRoutine() {
         const token = localStorage.getItem("token");
         let id = 5;
         axios
-            .get("http://localhost:8080/getTrainByName", { headers: { name: name } })
+            .get("http://localhost:8080/getTrainByName", { headers: { name: name, token: token } })
             .then(response => {
                 id = response.data;
                 console.log("holaaa" + id);
@@ -129,6 +129,7 @@ function ShowRoutine() {
                     console.log(e);
                 } finally {
                     setShowModal(false);
+                    toast.success("Workout added successfully!")
                 }
             });
     }
