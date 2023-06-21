@@ -5,7 +5,7 @@ import { RiCloseCircleLine } from 'react-icons/ri';
 
 const Workout = ({ index, handleOnChange, handleWorkoutCancel }) => {
     const muscleOptions = ['Arms', 'Chest', 'Abs', 'Legs', 'Back'];
-    const [muscleSelected, setMuscleSelected] = useState(null);
+    const [muscle, setMuscle] = useState(null);
     const [trains, setTrains] = useState([]);
     const [routineWorkout, setRoutineWorkout] = useState("");
     const [sets, setSets] = useState("");
@@ -14,18 +14,18 @@ const Workout = ({ index, handleOnChange, handleWorkoutCancel }) => {
     useEffect(() => {
         const accessToken = localStorage.getItem("token");
         axios
-            .get(`http://localhost:8080/getTrains/${muscleSelected}`, {
+            .get(`http://localhost:8080/getTrains/${muscle}`, {
                 headers: {
                     token: accessToken,
                 },
             })
             .then((response) => setTrains(response.data))
             .catch((error) => console.log(error));
-    }, [muscleSelected])
+    }, [muscle])
 
     useEffect(() => {
         if (reps !== "" && sets !== "" && routineWorkout !== ""){
-            const workout = { routineWorkout, sets, reps }
+            const workout = { routineWorkout, sets, reps, muscle }
             if(routineWorkout) {
                 handleOnChange(workout, index)
             }
@@ -35,7 +35,7 @@ const Workout = ({ index, handleOnChange, handleWorkoutCancel }) => {
 
 
     const handleMuscleChange = (event) => {
-        setMuscleSelected(event.target.value);
+        setMuscle(event.target.value);
     };
 
     const handleWorkoutNameChange = (event) => {

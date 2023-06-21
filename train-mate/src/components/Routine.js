@@ -21,7 +21,7 @@ const Routine = () => {
     };
 
     const handleAddWorkout = () => {
-        setRoutineWorkouts([...routineWorkouts, {routineWorkout: '', sets: 0, reps: 0, muscleSelected: ''}]);
+        setRoutineWorkouts([...routineWorkouts, {routineWorkout: '', sets: 0, reps: 0, muscle: ''}]);
     };
 
     const handleEndRoutineClick = async () => {

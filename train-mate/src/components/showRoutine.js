@@ -4,12 +4,15 @@ import '../css/showRoutine.css';
 import {Button, Col, Card, Container, Row} from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import {FaPlus} from 'react-icons/fa';
+import ModalTrain from "./modal";
 
 
 function ShowRoutine() {
 
     const [routines, setRoutines] = useState([]);
     const [editingExercise, setEditingExercise] = useState(null);
+    const [showModal, setShowModal] = useState(false);
 
 
     useEffect(() => {
@@ -102,6 +105,9 @@ function ShowRoutine() {
         setRoutines(updatedRoutines);
         setEditingExercise(null);
     }
+    const handleModal = () => {
+        setShowModal(true);
+    }
 
     return (
         <Container className="routines">
@@ -119,7 +125,8 @@ function ShowRoutine() {
                                 <Card.Text className="card-text">
                                     {routine.workouts.map(workout => (
                                         <li key={workout.id}>
-                                            <h5>{workout.routineWorkout}</h5>
+                                            <h5>{workout.routineWorkout} <FaPlus onClick={handleModal} style={{cursor: 'pointer'}} size={20}/> </h5>
+                                            {showModal && <ModalTrain/>}
                                             {editingExercise === workout.id ? (
                                                 <form onSubmit={e => {
                                                     e.preventDefault();
