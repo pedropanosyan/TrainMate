@@ -29,6 +29,9 @@ function NavBar() {
     const toForum = () => {
         window.location.assign("/forum");
     }
+    const toView = () => {
+        window.location.assign("/view")
+    }
 
     return (
         <>
@@ -52,6 +55,7 @@ function NavBar() {
                         <Nav className="me-auto" style={{ color: 'white', fontSize: '1.4em', marginLeft: '10%', marginTop: '-12px', justifyContent: 'space-between' }}>
                             <Nav.Link className={`nav-link ${currentPath === '/home' ? 'active' : ''}`} onClick={toHome} style={{ marginRight: '70px' }}>Home</Nav.Link>
                             <Nav.Link className={`nav-link ${currentPath === '/routines' ? 'active' : ''}`} onClick={toRoutine} style={{ marginRight: '70px' }}>Routines</Nav.Link>
+                            <Nav.Link className={`nav-link ${currentPath === '/view' ? 'active' : ''}`} onClick={toView} style={{ marginRight: '70px' }}>View Progress</Nav.Link>
                             <Nav.Link className={`nav-link ${currentPath === '/forum' ? 'active' : ''}`} onClick={toForum} style={{ marginRight: '70px' }}>Forum</Nav.Link>
                             <Nav.Link onClick={handleSignOut} href="/login">Sign Out</Nav.Link>
                         </Nav>

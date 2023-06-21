@@ -30,13 +30,13 @@ function ShowTrains({muscle}) {
             .catch(error => console.log(error));
     }, [muscle, trains])
     
-    const handleSave = async (trainId) => {
+    const handleSave = async (trainId, name) => {
         if (!weight || !repetitions || !series){
             toast.error ("Please complete correctly all fields")
             return
         }
         const token = localStorage.getItem("token");
-        const newTrain = {sets: series, reps: repetitions, weight: weight, token: token, id: trainId};
+        const newTrain = {sets: series, reps: repetitions, weight: weight, token: token, id: trainId, muscle: muscle, trainName: name};
         try {
             await axios.post("http://localhost:8080/addTrainWorkout", newTrain);
         } catch (e) {
@@ -114,7 +114,7 @@ function ShowTrains({muscle}) {
                                         </Modal.Body>
                                         <Modal.Footer>
                                             <Button variant="secondary" onClick={() => setShowModal(false)}>Cancel</Button>
-                                            <Button variant="primary" onClick={() => handleSave(train.id)}>Save</Button>
+                                            <Button variant="primary" onClick={() => handleSave(train.id, train.name)}>Save</Button>
                                         </Modal.Footer>
                                     </Modal>
                                 </div>

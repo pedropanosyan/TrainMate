@@ -44,7 +44,7 @@ public class TrainController {
             TrainMateUser user = userRepository.findByToken(trainWorkoutRequest.getToken());
             Train train = user.findTrainById(trainWorkoutRequest.getId());
             TrainWorkout trainWorkout = new TrainWorkout(trainWorkoutRequest.getSets(),
-                                    trainWorkoutRequest.getReps(), trainWorkoutRequest.getWeight());
+                                    trainWorkoutRequest.getReps(), trainWorkoutRequest.getWeight(),  trainWorkoutRequest.getMuscle(), trainWorkoutRequest.getTrainName());
             if (train != null){
                 trainWorkoutRepository.save(trainWorkout);
                 train.addTrainWorkout(trainWorkout);
@@ -59,25 +59,29 @@ public class TrainController {
         }
     }
 
-     @GetMapping("/getTrains/{muscle}")
-     ResponseEntity<List<Train>> getTrain(@PathVariable String muscle, @RequestHeader String token) {
-         TrainMateUser user = userRepository.findByToken(token);
-         List<Train> trains = user.getTrains();
-         List<Train> trainsMuscle = new ArrayList<>();
-         for (Train train : trains) {
-             if (train.getMuscle().equals(muscle)) {
-                 trainsMuscle.add(train);
-             }
-         }
-         return ResponseEntity.ok(trainsMuscle);
-     }
+    @GetMapping("/getTrains/{muscle}")
+    ResponseEntity<List<Train>> getTrain(@PathVariable String muscle, @RequestHeader String token) {
+        TrainMateUser user = userRepository.findByToken(token);
+        List<Train> trains = user.getTrains();
+        List<Train> trainsMuscle = new ArrayList<>();
+        for (Train train : trains) {
+            if (train.getMuscle().equals(muscle)) {
+                trainsMuscle.add(train);
+            }
+        }
+        return ResponseEntity.ok(trainsMuscle);
+    }
 
 
     @GetMapping("/getTrainWorkouts")
-    ResponseEntity<List<TrainWorkout>> getRoutines(@RequestParam Long id, @RequestHeader String token) {
+    ResponseEntity<List<TrainWorkout>> getRoutines( @RequestHeader String token) {
         TrainMateUser user = userRepository.findByToken(token);
-        Train train = user.findTrainById(id);
-        return ResponseEntity.ok(train.getTrainWorkouts());
+        List <Train> trains=  user.getTrains();
+        List <TrainWorkout> workouts = new ArrayList<>();
+        for (int i=0; i<trains.size(); i++){
+            workouts.addAll(trains.get(i).getTrainWorkouts());
+        }
+        return ResponseEntity.ok(workouts);
     }
 
     @DeleteMapping("/deleteTrain/{id}")

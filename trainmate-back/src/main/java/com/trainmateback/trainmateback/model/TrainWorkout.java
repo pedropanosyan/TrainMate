@@ -24,12 +24,19 @@ public class TrainWorkout {
     @Column
     private LocalDate date;
 
+    @Column
+    private String Muscle;
 
-    public TrainWorkout(int sets, int reps, String weight) {
+    @Column
+    private String TrainName;
+
+    public TrainWorkout(int sets, int reps, String weight, String muscle, String trainName) {
         this.sets = sets;
         this.reps = reps;
         this.weight = weight;
         this.date = LocalDate.now();
+        Muscle = muscle;
+        TrainName = trainName;
     }
 
     public TrainWorkout() {
@@ -75,5 +82,19 @@ public class TrainWorkout {
         this.date = date;
     }
 
+    public String getMuscle() {
+        return Muscle;
+    }
 
+    public void setMuscle(String muscle) {
+        Muscle = muscle;
+    }
+
+    public String getTrainName() {
+        return TrainName;
+    }
+
+    public void setTrainName(String trainName) {
+        TrainName = trainName;
+    }
 }

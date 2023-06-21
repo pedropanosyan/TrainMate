@@ -10,6 +10,10 @@ public class TrainWorkoutRequest {
     private String token;
     private int id;
 
+    private String muscle;
+
+    private String trainName;
+
     public int getId() {
         return id;
     }
@@ -48,5 +52,21 @@ public class TrainWorkoutRequest {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getMuscle() {
+        return muscle;
+    }
+
+    public void setMuscle(String muscle) {
+        this.muscle = muscle;
+    }
+
+    public String getTrainName() {
+        return trainName;
+    }
+
+    public void setTrainName(String trainName) {
+        this.trainName = trainName;
     }
 }
