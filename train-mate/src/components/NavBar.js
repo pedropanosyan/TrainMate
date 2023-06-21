@@ -1,10 +1,13 @@
 import {Container, Nav, Navbar, Image} from 'react-bootstrap';
 import axios from "axios";
+import {useEffect, useState} from "react";
+import {toast} from "react-toastify";
 
 
 function NavBar() {
 
     const currentPath = window.location.pathname;
+    const [user, setUser] = useState("");
 
     const handleSignOut = (event) => {
         event.preventDefault();
@@ -33,6 +36,18 @@ function NavBar() {
         window.location.assign("/view")
     }
 
+    useEffect(() => {
+        const token = localStorage.getItem("token")
+        axios.get('http://localhost:8080/getUser', {
+            headers: {
+                token: token
+                }
+            })
+            .then(response => setUser(response.data))
+            .catch(error => console.log(error));
+    }, []);
+
+
     return (
         <>
             <Navbar bg="dark" expand="sm" variant="dark" style={{backgroundColor:'#212529'}}>
@@ -58,6 +73,7 @@ function NavBar() {
                             <Nav.Link className={`nav-link ${currentPath === '/view' ? 'active' : ''}`} onClick={toView} style={{ marginRight: '70px' }}>View Progress</Nav.Link>
                             <Nav.Link className={`nav-link ${currentPath === '/forum' ? 'active' : ''}`} onClick={toForum} style={{ marginRight: '70px' }}>Forum</Nav.Link>
                             <Nav.Link onClick={handleSignOut} href="/login">Sign Out</Nav.Link>
+                            <p style={{fontSize:'0.6em', color:'grey', margin:'10px', marginLeft:'10px'}}>Logged with {user}</p>
                         </Nav>
                         </Navbar.Collapse>
             </Container>

@@ -61,4 +61,9 @@ public class UserController {
         userRepository.save(trainMateUser);
         return ResponseEntity.ok("");
     }
+
+    @GetMapping("/getUser")
+    String getUser(@RequestHeader String token){
+        return userRepository.findByToken(token).getUsername();
+    }
 }
