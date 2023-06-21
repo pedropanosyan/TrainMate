@@ -35,6 +35,11 @@ public class ForumController {
         return questionController.findAll();
     }
 
+    @GetMapping("/getQuestionsById/{id}")
+    Question getQuestionById(@PathVariable long id){
+        return questionController.findById(id);
+    }
+
     @PostMapping("/addAnswer/{id}")
     ResponseEntity<?> addAnswer(@PathVariable long id, @RequestBody Answer answer){
         String author = userRepository.findByToken(answer.getToken()).getUsername();

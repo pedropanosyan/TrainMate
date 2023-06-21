@@ -3,6 +3,9 @@ import {Container, Row} from "react-bootstrap";
 import ForumNewPost from "../components/forum-components/ForumNewPost";
 import Footer from "../components/Footer";
 import ShowQuestions from "../components/forum-components/ShowQuestions";
+import Question from "../components/new-forum/Question";
+import Questions from "../components/new-forum/Questions";
+import AskQuestion from "../components/new-forum/AskQuestion";
 
 const divider = <div style={{paddingTop: '30px', backgroundColor:'#1b263b'}}/>
 
@@ -12,11 +15,10 @@ function Forum() {
             <NavBar/>
             {divider}
             <Container style={{minHeight:'80vh'}}>
-                <Row>
-                    <ForumNewPost/>
-                    <ShowQuestions/>
-                </Row>
-            </Container>
+¿                    {/*<ForumNewPost/>*/}
+                    {/*<ShowQuestions/>*/}
+                    <Questions/>
+¿            </Container>
             {divider}
             <Footer/>
         </div>

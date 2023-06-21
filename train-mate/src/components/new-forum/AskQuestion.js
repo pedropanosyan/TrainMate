@@ -1,20 +1,20 @@
-import {Form, Modal} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import {useState} from "react";
-import axios from "axios";
+import {Form, Modal} from "react-bootstrap";
 import {toast} from "react-toastify";
+import axios from "axios";
+import {useState} from "react";
 
-function ForumNewPost() {
+function AskQuestion({onAdd}) {
 
     const [isAsking, setIsAsking] = useState(false);
     const [question, setQuestion] = useState("");
 
     const handleIsAsking = () => {
-      setIsAsking(!isAsking);
+        setIsAsking(!isAsking);
     }
 
     const handleQuestion = (event) => {
-      setQuestion(event.target.value);
+        setQuestion(event.target.value);
     }
 
     const handleSubmit = () => {
@@ -26,7 +26,7 @@ function ForumNewPost() {
             const data = {question, token}
             axios.post('http://localhost:8080/addQuestion', data)
                 .then(function (response) {
-
+                    onAdd()
                 })
                 .catch(function (error) {
                     toast.error(JSON.stringify(error.response.data));
@@ -37,7 +37,7 @@ function ForumNewPost() {
     }
 
     const handleCancel = () => {
-      setIsAsking(!isAsking)
+        setIsAsking(!isAsking)
     }
 
     return(
@@ -59,8 +59,8 @@ function ForumNewPost() {
                                 <Form.Control className="border border-primary" onChange={handleQuestion} type="post-title" placeholder="Post Question"/>
                             </Form.Group>
                             <div className="d-flex justify-content-between">
-                            <Button onClick={handleSubmit} className="mt-2 justify-content-end" variant="primary">Submit</Button>
-                            <Button onClick={handleCancel} className="mt-2 justify-content-end" variant="danger">Cancel</Button>
+                                <Button onClick={handleSubmit} className="mt-2 justify-content-end" variant="primary">Submit</Button>
+                                <Button onClick={handleCancel} className="mt-2 justify-content-end" variant="danger">Cancel</Button>
                             </div>
                         </Form>
                     </Modal.Body>
@@ -69,4 +69,4 @@ function ForumNewPost() {
         </div>
     )}
 
-export default ForumNewPost;
+export default AskQuestion

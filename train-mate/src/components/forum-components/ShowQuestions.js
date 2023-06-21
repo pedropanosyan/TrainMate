@@ -63,7 +63,7 @@ function ShowQuestions() {
                         <Toast onClose={()=>handleDelete(question.id)} key={index} className="border border-primary m-3" style={{width:'600px'}}>
                                 <Toast.Header>
                                     <strong className="me-auto">{question.question}</strong>
-                                    <small>{question.questionTime}  question by {question.author}</small>
+                                    <small>{question.questionTime}  Question by {question.author}</small>
                                 </Toast.Header>
                                 <Toast.Body>
                                         <Form.Group>

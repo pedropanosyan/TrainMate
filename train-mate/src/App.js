@@ -12,6 +12,7 @@ import Legs from "./pages/muscles/Legs";
 import Back from "./pages/muscles/Back";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Discussion from "./pages/Discussion";
 
 
 
@@ -49,6 +50,8 @@ function App() {
                 <Route path="/register" element = {<Register />}/>
                 <Route path='/routines' element={isAuthenticated() ? <Routine /> : <Navigate to="/"/>}/>
                 <Route path='/forum' element={isAuthenticated() ? <Forum /> : <Navigate to="/"/>}/>
+                <Route path='/discussion' element={isAuthenticated() ? <Discussion /> : <Navigate to="/"/>}/>
+
             </Routes>
         </Router>
     );

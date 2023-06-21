@@ -1,0 +1,11 @@
+.question-title {
+    text-decoration: none;
+    color: #212529;
+    font-weight: bold;
+
+
+}
+.question-title:hover {
+    color: darkblue;
+    cursor: pointer;
+}
