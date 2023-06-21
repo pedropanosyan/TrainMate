@@ -2,15 +2,31 @@ import React, {useState} from "react";
 import {Button, Form, Modal} from "react-bootstrap";
 
 
-function ModalTrain(){
+function ModalTrain({id, workouts, show, showModal, saveInfo}){
 
     const [series, setSeries] = useState('');
     const [repetitions, setRepetitions] = useState('');
     const [weight, setWeight] = useState('');
 
+    const workout = findWorkout(id, workouts);
+
+    function findWorkout(id, workouts) {
+        console.log(workouts)
+        console.log(id)
+        return workouts.find(workout => workout.id === id);
+
+    }
+
+    function handleCancel(){
+        showModal();
+    }
+
+    function save() {
+        saveInfo(series, repetitions, weight, workout.muscle, workout.routineWorkout)
+    }
 
     return(
-        <Modal>
+        <Modal show={show} onHide={showModal}>
             <Modal.Header closeButton>
                 <Modal.Title>Enter Workout Information</Modal.Title>
             </Modal.Header>
@@ -32,10 +48,10 @@ function ModalTrain(){
                     </Form.Group>
                 </Form>
             </Modal.Body>
-        {/*    <Modal.Footer>*/}
-        {/*        <Button variant="secondary" onClick={() => setShowModal(false)}>Cancel</Button>*/}
-        {/*        <Button variant="primary" onClick={() => handleSave(train.id, train.name)}>Save</Button>*/}
-        {/*    </Modal.Footer>*/}
+            <Modal.Footer>
+                <Button variant="secondary" onClick={handleCancel}>Cancel</Button>
+                <Button variant="primary" onClick={save}>Save</Button>
+            </Modal.Footer>
         </Modal>
 )
 

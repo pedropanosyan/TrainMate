@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TrainRepository extends JpaRepository<Train, String> {
     Train findById(long id);
+    Train findByName(String name);
 }
