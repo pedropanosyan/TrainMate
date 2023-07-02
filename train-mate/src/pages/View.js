@@ -11,8 +11,12 @@ function View(){
         <div style={{backgroundColor:'#212529'}}>
             <NavBar/>
             {divider}
-            <ViewCard/>
+            <div className="mt-5">
+                <ViewCard/>
+            </div>
+            <div>
             {divider}
+            </div>
             <Footer/>
         </div>
     )}

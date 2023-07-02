@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Pagination from "react-bootstrap/Pagination";
+import Selector from "./progress-components/selector";
 
 function ViewCard() {
     const [workouts, setWorkouts] = useState([]);
+    const [workoutsCopy, setWorkoutsCopy] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 8;
 
@@ -17,6 +19,7 @@ function ViewCard() {
             .then(response => {
                 const sortedWorkouts = response.data.sort((a, b) => new Date(b.date) - new Date(a.date));
                 setWorkouts(sortedWorkouts);
+                setWorkoutsCopy(sortedWorkouts);
             })
             .catch(error => console.log(error));
     }, []);
@@ -27,7 +30,7 @@ function ViewCard() {
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const displayedWorkouts = workouts.slice(indexOfFirstItem, indexOfLastItem);
+    const displayedWorkouts = workoutsCopy.slice(indexOfFirstItem, indexOfLastItem);
     const totalPages = Math.ceil(workouts.length / itemsPerPage);
 
     const generatePageNumbers = () => {
@@ -49,8 +52,27 @@ function ViewCard() {
         margin: '0 auto 10px',
     };
 
+    function orderByDate(array) {
+        setWorkoutsCopy(array);
+    }
+
+    function orderByMuscle(array) {
+        setWorkoutsCopy(array)
+    }
+
+    function orderByTrain(array) {
+        setWorkoutsCopy(array);
+    }
+
+    function orderAll(array) {
+        setWorkoutsCopy(array);
+    }
+
     return (
-        <div>
+        <div className="container min-vh-100">
+            <div className="row">
+                <Selector orderAll={orderAll} orderTrain={orderByTrain} orderMuscle={orderByMuscle} trains={workouts} />
+            </div>
             {displayedWorkouts.map(workout => (
                 <div key={workout.id} className="mt-3">
                     <li style={{ listStyle: 'inside', listStylePosition: 'initial' }}>
@@ -66,7 +88,7 @@ function ViewCard() {
                     </li>
                 </div>
             ))}
-            <Pagination style={{ marginLeft: '40%' }}>
+            <Pagination className="" style={{ marginLeft: '40%' }}>
                 <Pagination.First onClick={() => handlePageChange(1)} />
                 <Pagination.Prev
                     onClick={() =>
