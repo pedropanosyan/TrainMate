@@ -1,7 +1,7 @@
 import {useState} from "react";
 import TrainSelector from "./trainSelector";
 
-const Selector = ({trains, orderMuscle, orderTrain, orderAll}) => {
+const Selector = ({trains, orderMuscle, orderTrain, orderAll, changePagination}) => {
 
     const [selectedOption, setSelectedOption] = useState('');
     const [showTrainSelector, setShowTrainSelector] = useState(false);
@@ -51,10 +51,12 @@ const Selector = ({trains, orderMuscle, orderTrain, orderAll}) => {
         else if (option === "All") {
             orderAll(trains)
         }
+        changePagination();
     };
 
     function handleOptionChange2(option) {
         filterByTrain(option)
+        changePagination();
     }
 
     return (

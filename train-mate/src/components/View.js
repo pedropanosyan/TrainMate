@@ -52,10 +52,6 @@ function ViewCard() {
         margin: '0 auto 10px',
     };
 
-    function orderByDate(array) {
-        setWorkoutsCopy(array);
-    }
-
     function orderByMuscle(array) {
         setWorkoutsCopy(array)
     }
@@ -67,11 +63,15 @@ function ViewCard() {
     function orderAll(array) {
         setWorkoutsCopy(array);
     }
+    
+    function changePagination() {
+        handlePageChange(1)
+    }
 
     return (
         <div className="container min-vh-100">
             <div className="row">
-                <Selector orderAll={orderAll} orderTrain={orderByTrain} orderMuscle={orderByMuscle} trains={workouts} />
+                <Selector orderAll={orderAll} orderTrain={orderByTrain} orderMuscle={orderByMuscle} trains={workouts} changePagination={changePagination} />
             </div>
             {displayedWorkouts.map(workout => (
                 <div key={workout.id} className="mt-3">
