@@ -4,15 +4,28 @@ import {Container, Row} from "react-bootstrap";
 import {toast} from "react-toastify";
 import Question from "./Question";
 import AskQuestion from "./AskQuestion";
+import { Pagination } from 'react-bootstrap';
+
 
 function Questions() {
 
     const [questions, setQuestions] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const questionsPerPage = 8;
+    const indexOfLastQuestion = currentPage * questionsPerPage;
+    const indexOfFirstQuestion = indexOfLastQuestion - questionsPerPage;
+    const currentQuestions = questions.slice(indexOfFirstQuestion, indexOfLastQuestion);
+
 
 
     useEffect(() => {
         axios.get('http://localhost:8080/getQuestions')
-            .then(response => setQuestions(response.data))
+            .then(response => {
+                const sortedQuestions = response.data.sort((a, b) => {
+                    return new Date(b.date) - new Date(a.date);
+                }).reverse();
+                setQuestions(sortedQuestions);
+            })
             .catch(error => console.log(error));
     }, []);
 
@@ -39,10 +52,35 @@ function Questions() {
     return (
         <Container>
             <AskQuestion onAdd={handleOnAdd} />
-            {questions.map((question, index) => (
-                    <Question question={question} index={index} onDelete={handleDelete} />
+            {currentQuestions.map((question, index) => (
+                <Question question={question} index={index} onDelete={handleDelete} />
+            ))}
+            <Pagination>
+                <Pagination.First onClick={() => setCurrentPage(1)} disabled={currentPage === 1} />
+                <Pagination.Prev
+                    onClick={() => setCurrentPage(currentPage - 1)}
+                    disabled={currentPage === 1}
+                />
+                {Array.from({ length: Math.ceil(questions.length / questionsPerPage) }).map((_, index) => (
+                    <Pagination.Item
+                        key={index + 1}
+                        active={currentPage === index + 1}
+                        onClick={() => setCurrentPage(index + 1)}
+                    >
+                        {index + 1}
+                    </Pagination.Item>
                 ))}
+                <Pagination.Next
+                    onClick={() => setCurrentPage(currentPage + 1)}
+                    disabled={currentPage === Math.ceil(questions.length / questionsPerPage)}
+                />
+                <Pagination.Last
+                    onClick={() => setCurrentPage(Math.ceil(questions.length / questionsPerPage))}
+                    disabled={currentPage === Math.ceil(questions.length / questionsPerPage)}
+                />
+            </Pagination>
         </Container>
+
     );
 }
 
