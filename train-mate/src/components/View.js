@@ -70,7 +70,7 @@ function ViewCard() {
 
     return (
         <div className="container min-vh-100">
-            <div className="row">
+            <div className="row" style = {{ marginLeft: '8%'}}>
                 <Selector orderAll={orderAll} orderTrain={orderByTrain} orderMuscle={orderByMuscle} trains={workouts} changePagination={changePagination} />
             </div>
             {displayedWorkouts.map(workout => (
