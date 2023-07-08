@@ -88,7 +88,7 @@ function ViewCard() {
                     </li>
                 </div>
             ))}
-            <Pagination className="" style={{ marginLeft: '40%' }}>
+            <Pagination className="" style={{ marginLeft: '40%', marginTop: '20%'}}>
                 <Pagination.First onClick={() => handlePageChange(1)} />
                 <Pagination.Prev
                     onClick={() =>
