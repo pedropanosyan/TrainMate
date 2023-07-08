@@ -1,10 +1,9 @@
 import axios from "axios";
 import {useEffect, useState} from "react";
-import {Container, Row} from "react-bootstrap";
 import {toast} from "react-toastify";
 import Question from "./Question";
 import AskQuestion from "./AskQuestion";
-import { Pagination } from 'react-bootstrap';
+import { Button, Pagination, Col, Row, Container } from 'react-bootstrap';
 
 
 function Questions() {
@@ -50,35 +49,53 @@ function Questions() {
     console.log(questions)
 
     return (
-        <Container>
-            <AskQuestion onAdd={handleOnAdd} />
-            {currentQuestions.map((question, index) => (
-                <Question question={question} index={index} onDelete={handleDelete} />
-            ))}
-            <Pagination>
-                <Pagination.First onClick={() => setCurrentPage(1)} disabled={currentPage === 1} />
-                <Pagination.Prev
-                    onClick={() => setCurrentPage(currentPage - 1)}
-                    disabled={currentPage === 1}
-                />
-                {Array.from({ length: Math.ceil(questions.length / questionsPerPage) }).map((_, index) => (
-                    <Pagination.Item
-                        key={index + 1}
-                        active={currentPage === index + 1}
-                        onClick={() => setCurrentPage(index + 1)}
-                    >
-                        {index + 1}
-                    </Pagination.Item>
+        <Container >
+            <Row className="justify-content-md-center">
+            <Col></Col>
+                <Col sm={3}>
+            <div div className="d-grid gap-2" >
+                <AskQuestion onAdd={handleOnAdd} />
+            </div>
+                </Col>
+                <Col sm></Col>
+            </Row>       
+
+            <Row>
+                {currentQuestions.map((question, index) => (
+                    <Question question={question} index={index} onDelete={handleDelete} />
                 ))}
-                <Pagination.Next
-                    onClick={() => setCurrentPage(currentPage + 1)}
-                    disabled={currentPage === Math.ceil(questions.length / questionsPerPage)}
-                />
-                <Pagination.Last
-                    onClick={() => setCurrentPage(Math.ceil(questions.length / questionsPerPage))}
-                    disabled={currentPage === Math.ceil(questions.length / questionsPerPage)}
-                />
-            </Pagination>
+            </Row>
+            <Row className="justify-content-md-center">
+            <Col></Col>
+                <Col sm={2} style={{marginTop: "20%"}}>
+                <Pagination>
+                    <Pagination.First onClick={() => setCurrentPage(1)} disabled={currentPage === 1} />
+                    <Pagination.Prev
+                        onClick={() => setCurrentPage(currentPage - 1)}
+                        disabled={currentPage === 1}
+                    />
+                    {Array.from({ length: Math.ceil(questions.length / questionsPerPage) }).map((_, index) => (
+                        <Pagination.Item
+                            key={index + 1}
+                            active={currentPage === index + 1}
+                            onClick={() => setCurrentPage(index + 1)}
+                        >
+                            {index + 1}
+                        </Pagination.Item>
+                    ))}
+                    <Pagination.Next
+                        onClick={() => setCurrentPage(currentPage + 1)}
+                        disabled={currentPage === Math.ceil(questions.length / questionsPerPage)}
+                    />
+                    <Pagination.Last
+                        onClick={() => setCurrentPage(Math.ceil(questions.length / questionsPerPage))}
+                        disabled={currentPage === Math.ceil(questions.length / questionsPerPage)}
+                    />
+                </Pagination>
+                </Col>
+                <Col></Col>
+
+            </Row>
         </Container>
 
     );

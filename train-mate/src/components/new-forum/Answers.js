@@ -1,4 +1,4 @@
-import {Container} from "react-bootstrap";
+import {Container, Row, Col} from "react-bootstrap";
 import Answer from "./Answer";
 import axios from "axios";
 import {useState, useEffect} from "react";
@@ -46,10 +46,22 @@ function Answers({questionId}) {
 
     return (
             <Container>
-                <AddAnswer handleAnswerSubmit={handleAnswerSubmit} question={question}/>
+            <Row>
+                <Col sm={2}></Col>
+                <Col>
+                    <AddAnswer handleAnswerSubmit={handleAnswerSubmit} question={question}/>
+                </Col>
+                <Col></Col>
+            </Row>
+
+            <Row>
+                <Col sm={2}></Col>
+                <Col>
                 {answers.map((answer, index) => (
                     <Answer answer={answer}/>
                 ))}
+                </Col>
+            </Row>
             </Container>
         )
 

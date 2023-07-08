@@ -43,13 +43,12 @@ function AskQuestion({onAdd}) {
     return(
         <div
             className="modal show"
-            style={{ display: 'block', position: 'initial' }}
-        >
-            <div className="m-3">
-                <Button variant="primary" onClick={handleIsAsking}>Add a question</Button>
+            style={{ display: 'block', position: 'initial' }}>
+            <div className="d-grid gap-2 m-3 ">
+                <Button size='lg' variant="primary" onClick={handleIsAsking}>Add a question</Button>
             </div>
             {isAsking &&
-                <Modal.Dialog size="lg">
+                <Modal.Dialog>
                     <Modal.Header>
                         <Modal.Title>Ask new question</Modal.Title>
                     </Modal.Header>
