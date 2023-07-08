@@ -58,7 +58,7 @@ function NavBar() {
                         width="60"
                         height="60"
                         className='d-inline block align top'
-                        style={{marginRight: '10px', marginBottom: '15px'}}
+                        style={{marginRight: '10px', marginBottom: '7px'}}
                         /> 
                     <Navbar.Brand className='navBar-brand' href="/home">
                          <p style={{color: '#f8f8f8', fontSize: '2em'}}>Train<span style={{color:'#8db5ff'}}>Mate</span></p>
@@ -67,7 +67,7 @@ function NavBar() {
                      
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="me-auto" style={{ color: 'white', fontSize: '1.4em', marginLeft: '30%', marginTop: '-12px', justifyContent: 'space-between' }}>
+                        <Nav className="me-auto" style={{ color: 'white', fontSize: '1.4em', marginLeft: '30%', marginTop: '-10px', justifyContent: 'space-between' }}>
                             <Nav.Link className={`nav-link ${currentPath === '/home' ? 'active' : ''}`} onClick={toHome} style={{ marginRight: '40px' }}>Home</Nav.Link>
                             <Nav.Link className={`nav-link ${currentPath === '/routines' ? 'active' : ''}`} onClick={toRoutine} style={{ marginRight: '40px' }}>Routines</Nav.Link>
                             <Nav.Link className={`nav-link ${currentPath === '/view' ? 'active' : ''}`} onClick={toView} style={{ marginRight: '40px' }}>Progress</Nav.Link>
@@ -75,7 +75,7 @@ function NavBar() {
                             {/* <Nav.Link onClick={handleSignOut} href="/login">Sign Out</Nav.Link> */}
                             <NavDropdown title="Account" id="navbarScrollingDropdown">
                             {/* <p style={{fontSize:'0.8em', color:'lightblue', margin: '14px 14px 14px 150px'}}> {user}<FaUserCircle style={{marginLeft: "5px"}} size={24} /> </p> */}
-                            <p style={{color: 'black', margin: '0px 00px 0px 0px'}}> Logged in as: {user}</p>
+                            <p style={{color: 'black', marginLeft: '10px'}}> Logged in as: {user}</p>
                             <NavDropdown.Divider />
                             <NavDropdown.Item href="/login"> Sign Out </NavDropdown.Item>
             </NavDropdown>

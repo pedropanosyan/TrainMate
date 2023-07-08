@@ -77,7 +77,7 @@ function ViewCard() {
                 <div key={workout.id} className="mt-3">
                     <li style={{ listStyle: 'inside', listStylePosition: 'initial' }}>
                         <div style={rectangleStyle}>
-                            <div>
+                            <div style={{fontSize: '15px'}}>
                                 <span>{workout.muscle}: {workout.trainName}</span>
                                 <span style={{ marginLeft: '60px' }}>Reps: {workout.reps}</span>
                                 <span style={{ marginLeft: '60px' }}>Weight: {workout.weight}Kg</span>
@@ -88,7 +88,7 @@ function ViewCard() {
                     </li>
                 </div>
             ))}
-            <Pagination className="" style={{ marginLeft: '40%', marginTop: '20%'}}>
+            <Pagination className="" style={{ marginLeft: '41%', marginTop: '20%'}}>
                 <Pagination.First onClick={() => handlePageChange(1)} />
                 <Pagination.Prev
                     onClick={() =>
