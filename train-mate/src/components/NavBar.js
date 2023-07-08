@@ -60,7 +60,7 @@ function NavBar() {
                         className='d-inline block align top'
                         style={{marginRight: '10px', marginBottom: '15px'}}
                         /> 
-                    <Navbar.Brand className='navBar-brand' href="#home">
+                    <Navbar.Brand className='navBar-brand' href="/home">
                          <p style={{color: '#f8f8f8', fontSize: '2em'}}>Train<span style={{color:'#8db5ff'}}>Mate</span></p>
                          </Navbar.Brand>
 
