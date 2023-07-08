@@ -3,6 +3,7 @@ import axios from "axios";
 import Button from 'react-bootstrap/Button';
 import Workout from "./Workout";
 import {toast} from "react-toastify";
+import { Container, Row, Col } from "react-bootstrap";
 
 
 const Routine = () => {
@@ -81,22 +82,40 @@ const Routine = () => {
     }
 
     return (
-        <div>
-            <Button className='m-3 ' variant="primary" onClick={handleNewRoutineClick}> New routine </Button>
-            {showInputs && (
+        <Container>
+
+        <Row className="justify-content-md-center">
+            <Col sm></Col>
+            <Col sm={3}>
+            <div div className="d-grid gap-2">
+                <Button size='lg' className='m-4' variant="primary" onClick={handleNewRoutineClick}> New routine </Button>
+            </div>
+            </Col>
+            <Col sm></Col>
+        </Row>
+
+        <Row>
+        <Col md></Col>
+
+            <Col md='auto'>            {showInputs && (
                 <div className=' d-inline-flex border border-primary rounded p-3 mt-3'>
-                    <form className='m-1' onSubmit={handleSubmit}>
-                        <input className='mb-3' name="routineName" required placeholder="Enter routine name" onChange={handleNameChange} type="text" />
-                        {routineWorkouts.map((workout,index) => (
-                            <Workout index={index} handleOnChange={handleOnChange} handleWorkoutCancel={handleWorkoutCancel}/>
-                            ))}
-                        <Button className='m-2' variant="secondary" onClick={handleAddWorkout}>Add workout</Button>
-                        <Button className='m-2' variant="secondary" type="submit" onClick={handleEndRoutineClick}> Create routine </Button>
-                        <Button className='m-2' variant="danger" onClick={handleCancel}> Cancel </Button>
-                    </form>
-                </div>
-            )}
-        </div>
+                        <form className='m-1' onSubmit={handleSubmit}>
+                            <input className='mb-3' name="routineName" required placeholder="Enter routine name" onChange={handleNameChange} type="text" />
+                            {routineWorkouts.map((workout,index) => (
+                                <Workout index={index} handleOnChange={handleOnChange} handleWorkoutCancel={handleWorkoutCancel}/>
+                                ))}
+                            <Button className='m-2' variant="secondary" onClick={handleAddWorkout}>Add workout</Button>
+                            <Button className='m-2' variant="secondary" type="submit" onClick={handleEndRoutineClick}> Create routine </Button>
+                            <Button className='m-2' variant="danger" onClick={handleCancel}> Cancel </Button>
+                        </form>
+                        </div>
+                )}
+                </Col>
+                <Col md></Col>
+
+
+            </Row>
+        </Container>
     );
 };
 
