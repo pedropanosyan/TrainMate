@@ -75,10 +75,10 @@ function NavBar() {
                             {/* <Nav.Link onClick={handleSignOut} href="/login">Sign Out</Nav.Link> */}
                             <NavDropdown title="Account" id="navbarScrollingDropdown">
                             {/* <p style={{fontSize:'0.8em', color:'lightblue', margin: '14px 14px 14px 150px'}}> {user}<FaUserCircle style={{marginLeft: "5px"}} size={24} /> </p> */}
-                            <p style={{color: 'black', marginLeft: '10px'}}> Logged in as: {user}</p>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="/login"> Sign Out </NavDropdown.Item>
-            </NavDropdown>
+                                <p style={{color: 'black', marginLeft: '10px'}}> Logged in as: {user}</p>
+                                <NavDropdown.Divider />
+                                <NavDropdown.Item onClick={handleSignOut} href="/login"> Sign Out </NavDropdown.Item>
+        <                   /NavDropdown>
                         </Nav>
                         </Navbar.Collapse>
             </Container>

@@ -60,24 +60,27 @@ const Selector = ({trains, orderMuscle, orderTrain, orderAll, changePagination})
     }
 
     return (
-        <div className="form-group w-25 d-flex float-end m-3 ">
-            <select
-                className="form-control"
-                id="options"
-                value={selectedOption}
-                onChange={handleOptionChange1}
-            >
-                <option value="option1">Date</option>
-                <option value="Chest">Chest</option>
-                <option value="Abs">Abs</option>
-                <option value="Back">Back</option>
-                <option value="Arms">Arms</option>
-                <option value="Legs">Legs</option>
-                <option value="All">See all</option>
-            </select>
-            {showTrainSelector &&
-                <TrainSelector trains={trainsGivenMuscle} handleOptionChange2={handleOptionChange2}/>
-            }
+        <div>
+            <p className="text-light">Filter by:</p>
+            <div style={{maxWidth:'300px'}} className="form-group d-flex ">
+                <select
+                    className="form-control"
+                    id="options"
+                    value={selectedOption}
+                    onChange={handleOptionChange1}
+                >
+                    <option value="All">See all</option>
+                    <option value="option1">Date</option>
+                    <option value="Chest">Chest</option>
+                    <option value="Abs">Abs</option>
+                    <option value="Back">Back</option>
+                    <option value="Arms">Arms</option>
+                    <option value="Legs">Legs</option>
+                </select>
+                {showTrainSelector &&
+                    <TrainSelector trains={trainsGivenMuscle} handleOptionChange2={handleOptionChange2}/>
+                }
+            </div>
         </div>
     )
 }

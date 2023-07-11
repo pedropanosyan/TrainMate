@@ -15,7 +15,7 @@ function Question({question, onDelete}) {
             <Toast onClose={()=>onDelete(question.id)} className="border border-primary m-3" style={{width:'95%'}}>
                 <Toast.Header>
                     <a onClick={toAnswers} className="me-auto question-title">{question.question}</a>
-                    <small style={{fontSize: '15px'}}>{question.questionTime}  Question by {question.author}</small>
+                    <small style={{fontSize: '15px'}}>{question.questionTime}  Question by <span style={{fontStyle:'italic'}}>{question.author}</span></small>
                 </Toast.Header>
             </Toast>
         </Container>

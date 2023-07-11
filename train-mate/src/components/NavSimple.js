@@ -1,7 +1,7 @@
 import {Navbar, Container, Image, Nav} from "react-bootstrap";
 import {useState} from "react";
 
-function NavSimple() {
+function    NavSimple() {
 
     const [hovered, setHovered] = useState(false);
 

@@ -7,6 +7,7 @@ function AddAnswer({question, handleAnswerSubmit}) {
     const [answer, setAnswer] = useState("")
     const [isAnswering, setIsAnswering] = useState(false);
 
+
     const handleAnswer = (e) => {
       setAnswer(e.target.value);
     }
@@ -21,7 +22,7 @@ function AddAnswer({question, handleAnswerSubmit}) {
     }
 
     return(
-        <div style={{margin:'30px'}}>
+        <div style={{margin:'30px', minWidth:"80vw"}}>
             <h1 style={{color:'whitesmoke'}}>Discussion: {question.question}</h1>
             <div className="m-3">
                 <Button variant="primary" onClick={handleIsAnswering}>Answer</Button>
@@ -29,7 +30,7 @@ function AddAnswer({question, handleAnswerSubmit}) {
                 {isAnswering &&
                     <Container>
                         <Toast style={{width:'50%'}}>
-                            <Toast.Header>
+                            <Toast.Header onClick={handleIsAnswering}>
                                 <strong className="me-auto">{question.question}</strong>
                                 <small>{question.questionTime} Question by {question.author}</small>
                             </Toast.Header>

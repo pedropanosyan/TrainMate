@@ -78,17 +78,17 @@ function ViewCard() {
                     <li style={{ listStyle: 'inside', listStylePosition: 'initial' }}>
                         <div style={rectangleStyle}>
                             <div style={{fontSize: '15px'}}>
-                                <span>{workout.muscle}: {workout.trainName}</span>
-                                <span style={{ marginLeft: '60px' }}>Reps: {workout.reps}</span>
-                                <span style={{ marginLeft: '60px' }}>Weight: {workout.weight}Kg</span>
-                                <span style={{ marginLeft: '60px' }}>Sets: {workout.sets}</span>
-                                <span style={{ marginLeft: '60px' }}>Date: {workout.date}</span>
+                                <span><span style={{fontWeight:'bold'}}>{workout.muscle}:</span> {workout.trainName},</span>
+                                <span style={{ marginLeft: '2%' }}><span style={{fontWeight:'bold'}}>Reps</span>: {workout.reps},</span>
+                                <span style={{ marginLeft: '2%' }}><span style={{fontWeight:'bold'}}>Weight:</span> {workout.weight}Kg,</span>
+                                    <span style={{ marginLeft: '2%' }}><span style={{fontWeight:'bold'}}>Sets:</span> {workout.sets},</span>
+                                    <span style={{ marginLeft: '2%' }}><span style={{fontWeight:'bold'}}>Date:</span> {workout.date}</span>
                             </div>
                         </div>
                     </li>
                 </div>
             ))}
-            <Pagination className="" style={{ marginLeft: '41%', marginTop: '20%'}}>
+            <Pagination className="" style={{ marginLeft: '41%', marginTop: '8%'}}>
                 <Pagination.First onClick={() => handlePageChange(1)} />
                 <Pagination.Prev
                     onClick={() =>
