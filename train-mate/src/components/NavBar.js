@@ -1,7 +1,7 @@
-import {Container, Nav, Navbar, Image, NavDropdown} from 'react-bootstrap';
+import {Container, Nav, Navbar,  NavDropdown} from 'react-bootstrap';
 import axios from "axios";
 import {useEffect, useState} from "react";
-import { FaUserCircle } from "react-icons/fa";
+
 
 
 function NavBar() {
@@ -72,9 +72,7 @@ function NavBar() {
                             <Nav.Link className={`nav-link ${currentPath === '/routines' ? 'active' : ''}`} onClick={toRoutine} style={{ marginRight: '40px' }}>Routines</Nav.Link>
                             <Nav.Link className={`nav-link ${currentPath === '/view' ? 'active' : ''}`} onClick={toView} style={{ marginRight: '40px' }}>Progress</Nav.Link>
                             <Nav.Link className={`nav-link ${currentPath === '/forum' ? 'active' : ''}`} onClick={toForum} style={{ marginRight: '40px' }}>Forum</Nav.Link>
-                            {/* <Nav.Link onClick={handleSignOut} href="/login">Sign Out</Nav.Link> */}
                             <NavDropdown title="Account" id="navbarScrollingDropdown">
-                            {/* <p style={{fontSize:'0.8em', color:'lightblue', margin: '14px 14px 14px 150px'}}> {user}<FaUserCircle style={{marginLeft: "5px"}} size={24} /> </p> */}
                                 <p style={{color: 'black', marginLeft: '10px'}}> Logged in as: {user}</p>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item onClick={handleSignOut} href="/login"> Sign Out </NavDropdown.Item>

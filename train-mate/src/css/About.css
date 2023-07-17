@@ -1,15 +1,13 @@
 
 .caja {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     border: 5px solid lightblue;
     border-radius: 30px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     padding: 20px;
-    width: 900px;
     font-family: sans-serif;
-    margin-bottom: 100px;
+    margin: 5% 10% 5% 14%;
+    border: 20% 20% 20% 20%;
+    max-width: 70%;
 }
 
 .caja p {
@@ -19,8 +17,9 @@
 }
 
 .caja img {
-    width: 300px;
+    width:300px;
     height: auto;
+    min-width: 200px;
 }
 
 p {
