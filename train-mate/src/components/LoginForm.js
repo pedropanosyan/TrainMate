@@ -50,12 +50,12 @@ function LoginForm() {
                                 </Form.Group>
                                 <Form.Group className="mb-3" controlId="formBasicPassword">
                                     <Form.Control onChange={handlePasswordChange} type="password" placeholder="Password"/>
-                                </Form.Group>
-                            </Form>
-                            <div className="d-flex justify-content-center">
+                            <div className="">
                                 <Button onClick={handleSubmit} className='m-3' variant="outline-primary" type="submit" style={{justifyContent:'center', width:'20%', minWidth:'100px'}}>Log In</Button>
                                 <Button onClick={() => window.location.assign('/register')} className='m-3' variant="outline-danger" type="submit" style={{justifyContent:'center', width:'20%', minWidth:'100px'}}>Sign Up</Button>
                             </div>
+                                </Form.Group>
+                            </Form>
                         </Card.Body>
                     </Card>
                 </Col>

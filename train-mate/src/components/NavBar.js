@@ -78,7 +78,7 @@ function NavBar() {
                                 <p style={{color: 'black', marginLeft: '10px'}}> Logged in as: {user}</p>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item onClick={handleSignOut} href="/login"> Sign Out </NavDropdown.Item>
-        <                   /NavDropdown>
+        </NavDropdown>
                         </Nav>
                         </Navbar.Collapse>
             </Container>
