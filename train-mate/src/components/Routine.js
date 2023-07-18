@@ -55,7 +55,6 @@ const Routine = () => {
         }
         else {
             toast.error("Error creating the routine. Complete all required fields.")
-            return
         }
     };
 
@@ -83,21 +82,16 @@ const Routine = () => {
 
     return (
         <Container>
-
         <Row className="justify-content-md-center">
-            <Col sm></Col>
             <Col sm={3}>
-            <div div className="d-grid gap-2">
+            <div className="d-grid gap-2">
                 <Button size='lg' className='m-4' variant="primary" onClick={handleNewRoutineClick}> New routine </Button>
             </div>
             </Col>
-            <Col sm></Col>
         </Row>
-
         <Row>
-        <Col md></Col>
-
-            <Col md='auto'>            {showInputs && (
+            <Col md='auto'>
+                {showInputs && (
                 <div className=' d-inline-flex border border-primary rounded p-3 mt-3'>
                         <form className='m-1' onSubmit={handleSubmit}>
                             <input className='mb-3' name="routineName" required placeholder="Enter routine name" onChange={handleNameChange} type="text" />
@@ -111,9 +105,6 @@ const Routine = () => {
                         </div>
                 )}
                 </Col>
-                <Col md></Col>
-
-
             </Row>
         </Container>
     );

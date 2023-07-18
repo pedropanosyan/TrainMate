@@ -47,13 +47,11 @@ function App() {
                 <Route path="/legs" element={isAuthenticated() ? <Legs /> : <Navigate to="/" />}/>
                 <Route path="/back" element={isAuthenticated() ? <Back /> : <Navigate to="/" />}/>
                 <Route path="/login" element = {<Login />}/>
-                <Route path="/forum" element = {<Forum />}/>
                 <Route path="/register" element = {<Register />}/>
                 <Route path='/routines' element={isAuthenticated() ? <Routine /> : <Navigate to="/"/>}/>
                 <Route path='/forum' element={isAuthenticated() ? <Forum /> : <Navigate to="/"/>}/>
                 <Route path='/discussion' element={isAuthenticated() ? <Discussion /> : <Navigate to="/"/>}/>
                 <Route path='/VIEW' element={isAuthenticated() ? <View/> : <Navigate to="/"/>}/>
-
             </Routes>
         </Router>
     );

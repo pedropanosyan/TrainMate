@@ -7,6 +7,7 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import {FaPlus} from 'react-icons/fa';
 import ModalTrain from "./modal";
 import {toast} from "react-toastify";
+import Routine from "./Routine";
 
 
 function ShowRoutine() {
@@ -42,6 +43,7 @@ function ShowRoutine() {
         }
     };
 
+
     const handleRoutineState = async (routineId) => {
         const newRoutines = routines.map((r) => {
             if (r.id === routineId) {
@@ -68,6 +70,7 @@ function ShowRoutine() {
         const inactiveRoutines = routines.filter((routine) => !routine.active);
         return [...activeRoutines, ...inactiveRoutines];
     };
+
 
     const handleEdit = async (routineId, exerciseId, sets, reps) => {
         const updatedRoutines = routines.map((routine) => {

@@ -5,6 +5,7 @@ function    NavSimple() {
 
     const [hovered, setHovered] = useState(false);
 
+
     const linkStyle = {
         color: hovered ? '#8db5ff' : 'whitesmoke',
         transition: 'color 0.2s ease-in-out',

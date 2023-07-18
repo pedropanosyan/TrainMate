@@ -67,7 +67,7 @@ function Questions() {
             </Row>
             <Row className="justify-content-md-center">
             <Col></Col>
-                <Col sm={2} style={{marginTop: "20%"}}>
+                <Col sm={2} style={{marginTop: "5%"}}>
                 <Pagination>
                     <Pagination.First onClick={() => setCurrentPage(1)} disabled={currentPage === 1} />
                     <Pagination.Prev

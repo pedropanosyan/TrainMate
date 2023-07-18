@@ -20,6 +20,10 @@ function LoginForm() {
         setPassword(event.target.value);
     };
 
+    const goToRegister = () => {
+        window.location.assign("/register")
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
           formData = { username, password };
@@ -50,9 +54,9 @@ function LoginForm() {
                                 </Form.Group>
                                 <Form.Group className="mb-3" controlId="formBasicPassword">
                                     <Form.Control onChange={handlePasswordChange} type="password" placeholder="Password"/>
-                            <div className="">
+                            <div className="d-flex justify-content-center">
                                 <Button onClick={handleSubmit} className='m-3' variant="outline-primary" type="submit" style={{justifyContent:'center', width:'20%', minWidth:'100px'}}>Log In</Button>
-                                <Button onClick={() => window.location.assign('/register')} className='m-3' variant="outline-danger" type="submit" style={{justifyContent:'center', width:'20%', minWidth:'100px'}}>Sign Up</Button>
+                                <Button onClick={goToRegister} className='m-3' variant="outline-danger" style={{justifyContent:'center', width:'20%', minWidth:'100px'}}>Sign Up</Button>
                             </div>
                                 </Form.Group>
                             </Form>

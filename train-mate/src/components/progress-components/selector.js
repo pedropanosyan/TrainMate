@@ -70,7 +70,6 @@ const Selector = ({trains, orderMuscle, orderTrain, orderAll, changePagination})
                     onChange={handleOptionChange1}
                 >
                     <option value="All">See all</option>
-                    <option value="option1">Date</option>
                     <option value="Chest">Chest</option>
                     <option value="Abs">Abs</option>
                     <option value="Back">Back</option>

@@ -13,8 +13,8 @@ function AddAnswer({question, handleAnswerSubmit}) {
     }
 
     function submitAnswer() {
-        handleAnswerSubmit(answer, question.id)
-
+        handleAnswerSubmit(answer, question.id);
+        // setIsAnswering(!isAnswering);
     }
 
     function handleIsAnswering() {

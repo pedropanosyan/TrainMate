@@ -8,11 +8,12 @@ const divider2 = <div style={{ marginTop:'30px',  paddingTop: '50px', background
 
 
 function Routines(){
+
     return(
         <div style={{backgroundColor:'#212529'}}>
             <Navbar/>
             {divider}
-            <Routine/>
+            <Routine />
             <div style={{minHeight:'50vh'}}>
                 <ShowRoutine/>
             </div>
