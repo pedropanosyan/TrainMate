@@ -7,7 +7,7 @@ function ViewCard() {
     const [workouts, setWorkouts] = useState([]);
     const [workoutsCopy, setWorkoutsCopy] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 8;
+    const itemsPerPage = 10;
 
     useEffect(() => {
         const accessToken = localStorage.getItem('token');
@@ -88,7 +88,7 @@ function ViewCard() {
                     </li>
                 </div>
             ))}
-            <Pagination className="" style={{ marginLeft: '41%', marginTop: '8%'}}>
+            <Pagination style={{ marginLeft: '41%', marginTop: '8%'}}>
                 <Pagination.First onClick={() => handlePageChange(1)} />
                 <Pagination.Prev
                     onClick={() =>
