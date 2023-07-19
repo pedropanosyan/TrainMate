@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import {toast} from "react-toastify";
 import Question from "./Question";
 import AskQuestion from "./AskQuestion";
-import { Button, Pagination, Col, Row, Container } from 'react-bootstrap';
+import { Button, Pagination, Col, Row, Container, Stack} from 'react-bootstrap';
 
 
 function Questions() {
@@ -65,9 +65,10 @@ function Questions() {
                     <Question question={question} index={index} onDelete={handleDelete} />
                 ))}
             </Row>
-            <Row className="justify-content-md-center">
-            <Col></Col>
-                <Col sm={2} style={{marginTop: "5%"}}>
+
+            <Stack gap={2} className="col-md-5 mx-auto">
+            <div style={{marginTop: '20%'}}></div>
+            <div style={{'marginLeft': '30%'}}>
                 <Pagination>
                     <Pagination.First onClick={() => setCurrentPage(1)} disabled={currentPage === 1} />
                     <Pagination.Prev
@@ -92,10 +93,9 @@ function Questions() {
                         disabled={currentPage === Math.ceil(questions.length / questionsPerPage)}
                     />
                 </Pagination>
-                </Col>
-                <Col></Col>
 
-            </Row>
+            </div>
+            </Stack>
         </Container>
 
     );
